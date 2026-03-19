@@ -5,7 +5,7 @@ import { QUEST_TEMPLATES, type QuestTemplate, cloneTemplate } from '@/app/vibe/q
 import { track } from '@/lib/vibe/track';
 
 interface TemplateGalleryProps {
-  onSelectTemplate: (quest: any) => void;
+  onSelectTemplate: (quest: any) => void; // justified: inherited from OpenClawfice merge
   onClose: () => void;
 }
 

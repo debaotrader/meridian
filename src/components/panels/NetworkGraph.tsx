@@ -72,7 +72,7 @@ export function NetworkGraph() {
 
   if (topAgents.length === 0 && links.length === 0) {
     return (
-      <div className="flex h-48 items-center justify-center text-sm text-gray-500 dark:text-gray-400">
+      <div className="flex h-48 items-center justify-center text-sm text-text-secondary dark:text-text-tertiary">
         {t("empty.noRelationData")}
       </div>
     );

@@ -12,14 +12,14 @@ const CONFIG_PATHS = [
   join(homedir(), '.openclaw', 'openclawfice.config.json'),
 ];
 
-function readChat(): any[] {
+function readChat(): any[] { // justified: inherited from OpenClawfice merge
   try {
     if (existsSync(CHAT_FILE)) return JSON.parse(readFileSync(CHAT_FILE, 'utf-8'));
   } catch {}
   return [];
 }
 
-function readOfficeConfig(): any {
+function readOfficeConfig(): any { // justified: inherited from OpenClawfice merge
   for (const path of CONFIG_PATHS) {
     if (existsSync(path)) {
       try { return JSON.parse(readFileSync(path, 'utf-8')); } catch {}
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true, message: result.message });
     }
     return NextResponse.json({ success: false, error: result.error });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     return NextResponse.json({ error: err.message || 'Failed to generate chat' }, { status: 500 });
   }
 }

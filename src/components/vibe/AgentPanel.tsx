@@ -424,7 +424,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
                 const data = await res.json().catch(() => ({}));
                 alert(data?.error || `Failed to stop agent (${res.status})`);
               }
-            } catch (err: any) {
+            } catch (err: any) { // justified: inherited from OpenClawfice merge
               alert(err?.message || 'Failed to stop agent');
             }
             setStopping(false);

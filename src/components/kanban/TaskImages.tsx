@@ -115,7 +115,7 @@ export function TaskImages({ taskId }: TaskImagesProps) {
               <div className="absolute inset-0 bg-surface-0/0 group-hover:bg-surface-0/40 transition-colors flex items-center justify-center">
                 <button
                   onClick={() => handleDelete(img.filename)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 bg-red-500/80 hover:bg-red-500 rounded-full"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 bg-status-error/80 hover:bg-status-error rounded-full"
                 >
                   <X className="w-3.5 h-3.5 text-white" />
                 </button>

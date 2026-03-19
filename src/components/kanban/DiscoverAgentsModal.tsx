@@ -232,7 +232,7 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
                       <div
                         className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 ${
                           isImported
-                            ? 'border-green-500/50 bg-mc-accent-green/20'
+                            ? 'border-status-success/50 bg-mc-accent-green/20'
                             : isSelected
                             ? 'border-mc-accent bg-mc-accent'
                             : 'border-mc-border'

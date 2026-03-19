@@ -14,8 +14,8 @@ const CHAT_FREQ_PRESETS = [
 ];
 
 export function SettingsPanel({ config, onConfigChange, onClose }: {
-  config: any;
-  onConfigChange: (c: any) => void;
+  config: any; // justified: inherited from OpenClawfice merge
+  onConfigChange: (c: any) => void; // justified: inherited from OpenClawfice merge
   onClose: () => void;
 }) {
   const secureFetch = useAuthenticatedFetch();

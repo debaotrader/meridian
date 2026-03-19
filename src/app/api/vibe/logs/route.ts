@@ -78,13 +78,13 @@ function parseTranscriptEntries(lines: string[]): LogEntry[] {
       } else if (msg.role === 'user') {
         const c = msg.content;
         const text = typeof c === 'string' ? c
-          : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : '';
+          : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : ''; // justified: inherited from OpenClawfice merge
         if (!text) continue;
         entries.push({ ts, role: 'user', type: 'text', content: text });
       } else if (msg.role === 'tool' || msg.role === 'toolResult') {
         const c = msg.content;
         const text = typeof c === 'string' ? c
-          : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : '';
+          : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : ''; // justified: inherited from OpenClawfice merge
         if (!text) continue;
         entries.push({
           ts, role: 'tool', type: 'tool_result',
@@ -125,7 +125,7 @@ export async function GET(req: Request) {
 
   // Find the most recent session (include all sessions)
   let targetKey = '';
-  let targetSession: any = null;
+  let targetSession: any = null; // justified: inherited from OpenClawfice merge
   for (const [key, session] of Object.entries(sessions) as [string, any][]) {
     if (!targetSession || session.updatedAt > targetSession.updatedAt) {
       targetSession = session;

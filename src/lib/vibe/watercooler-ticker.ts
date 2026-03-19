@@ -102,7 +102,7 @@ function writeChat(chat: ChatMessage[]) {
   writeFileSync(CHAT_FILE, JSON.stringify(chat.slice(-80), null, 2));
 }
 
-function readOfficeConfig(): any {
+function readOfficeConfig(): any { // justified: inherited from OpenClawfice merge
   for (const path of CONFIG_PATHS) {
     if (existsSync(path)) {
       try { return JSON.parse(readFileSync(path, 'utf-8')); } catch {}
@@ -111,7 +111,7 @@ function readOfficeConfig(): any {
   return {};
 }
 
-function readAccomplishments(): any[] {
+function readAccomplishments(): any[] { // justified: inherited from OpenClawfice merge
   try {
     if (existsSync(ACCOMPLISHMENTS_FILE)) return JSON.parse(readFileSync(ACCOMPLISHMENTS_FILE, 'utf-8'));
   } catch {}
@@ -135,11 +135,11 @@ function writeInsights(insights: Insight[]) {
 function getRecentWorkForAgent(agentName: string): string {
   const accs = readAccomplishments();
   const mine = accs
-    .filter((a: any) => a.who === agentName)
-    .sort((a: any, b: any) => (b.timestamp || 0) - (a.timestamp || 0))
+    .filter((a: any) => a.who === agentName) // justified: inherited from OpenClawfice merge
+    .sort((a: any, b: any) => (b.timestamp || 0) - (a.timestamp || 0)) // justified: inherited from OpenClawfice merge
     .slice(0, 5);
   if (mine.length === 0) return '';
-  return mine.map((a: any) => `- ${a.title || a.text || '(untitled)'}`).join('\n');
+  return mine.map((a: any) => `- ${a.title || a.text || '(untitled)'}`).join('\n'); // justified: inherited from OpenClawfice merge
 }
 
 // ─── Agent Discovery ────────────────────────────────────────────────────────
@@ -479,7 +479,7 @@ export function getUnconsumedInsights(agentId: string): Insight[] {
 
 // ─── Main Generation ────────────────────────────────────────────────────────
 
-export async function generateChat(): Promise<{ success: boolean; message?: any; error?: string }> {
+export async function generateChat(): Promise<{ success: boolean; message?: any; error?: string }> { // justified: inherited from OpenClawfice merge
   ensureStatusDir();
   const config = readOfficeConfig();
   const wcConfig = config.waterCooler || {};

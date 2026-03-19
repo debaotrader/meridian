@@ -43,7 +43,7 @@ export function EventTimeline() {
   return (
     <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto">
       {!autoScroll && eventHistory.length > 0 && (
-        <div className="sticky top-0 z-10 flex justify-end bg-white/80 px-2 py-0.5 backdrop-blur-sm dark:bg-gray-900/80">
+        <div className="sticky top-0 z-10 flex justify-end bg-white/80 px-2 py-0.5 backdrop-blur-sm dark:bg-surface-0/80">
           <button
             onClick={() => {
               setAutoScroll(true);
@@ -51,7 +51,7 @@ export function EventTimeline() {
                 scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
               }
             }}
-            className="rounded bg-blue-600 px-1.5 py-0.5 text-[10px] text-white"
+            className="rounded bg-status-info px-1.5 py-0.5 text-[10px] text-white"
           >
             {t("eventTimeline.newEvents")}
           </button>
@@ -61,9 +61,9 @@ export function EventTimeline() {
         <button
           key={`${evt.timestamp}-${evt.agentId}-${i}`}
           onClick={() => selectAgent(evt.agentId)}
-          className="flex w-full items-start gap-1.5 border-b border-gray-100 px-3 py-1 text-left text-xs hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800"
+          className="flex w-full items-start gap-1.5 border-b border-border-subtle px-3 py-1 text-left text-xs hover:bg-surface-1 dark:border-border-default dark:hover:bg-surface-2"
         >
-          <span className="mt-0.5 shrink-0 text-gray-400">
+          <span className="mt-0.5 shrink-0 text-text-tertiary">
             {new Date(evt.timestamp).toLocaleTimeString("en-US", {
               hour12: false,
               hour: "2-digit",
@@ -80,11 +80,11 @@ export function EventTimeline() {
           >
             {evt.agentName}
           </span>
-          <span className="min-w-0 truncate text-gray-500 dark:text-gray-400">{evt.summary}</span>
+          <span className="min-w-0 truncate text-text-secondary dark:text-text-tertiary">{evt.summary}</span>
         </button>
       ))}
       {displayEvents.length === 0 && (
-        <div className="py-3 text-center text-xs text-gray-400 dark:text-gray-500">
+        <div className="py-3 text-center text-xs text-text-tertiary dark:text-text-secondary">
           {t("common:empty.noEvents")}
         </div>
       )}

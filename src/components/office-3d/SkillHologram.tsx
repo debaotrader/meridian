@@ -86,13 +86,13 @@ export function SkillHologram({ tool, position }: SkillHologramProps) {
       </mesh>
       <Html center transform={false} style={{ pointerEvents: "none" }}>
         <div className="pointer-events-none flex flex-col items-center gap-1">
-          <div className="flex items-center gap-1.5 rounded bg-blue-900/70 px-2 py-1 text-[10px] text-blue-200 shadow-lg backdrop-blur">
+          <div className="flex items-center gap-1.5 rounded bg-surface-2/70 px-2 py-1 text-[10px] text-status-info shadow-lg backdrop-blur">
             <span>{getToolIcon(tool.name)}</span>
             <span className="max-w-[100px] truncate font-medium">{tool.name}</span>
           </div>
-          <div className="h-0.5 w-16 overflow-hidden rounded-full bg-blue-900/50">
+          <div className="h-0.5 w-16 overflow-hidden rounded-full bg-surface-2/50">
             <div
-              className="h-full w-full rounded-full bg-blue-400"
+              className="h-full w-full rounded-full bg-status-info"
               style={{
                 animation: "hologram-progress 1.5s ease-in-out infinite",
               }}

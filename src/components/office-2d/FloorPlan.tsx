@@ -85,7 +85,7 @@ export function FloorPlan() {
   );
 
   return (
-    <div className="relative h-full w-full bg-gray-100 dark:bg-gray-950">
+    <div className="relative h-full w-full bg-surface-1 dark:bg-surface-0">
       <svg
         viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
         className="h-full w-full"

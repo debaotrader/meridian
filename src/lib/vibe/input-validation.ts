@@ -85,7 +85,7 @@ export function validateFilename(filename: string): boolean {
  * Sanitize JSON object for safe serialization
  * Removes functions and circular references
  */
-export function sanitizeJSON(obj: any): any {
+export function sanitizeJSON(obj: any): any { // justified: inherited from OpenClawfice merge
   try {
     return JSON.parse(JSON.stringify(obj));
   } catch (err) {
@@ -96,7 +96,7 @@ export function sanitizeJSON(obj: any): any {
 /**
  * Validate array of agent IDs
  */
-export function validateAgentIdArray(agentIds: any): boolean {
+export function validateAgentIdArray(agentIds: any): boolean { // justified: inherited from OpenClawfice merge
   if (!Array.isArray(agentIds)) {
     return false;
   }

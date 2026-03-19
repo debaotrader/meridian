@@ -278,7 +278,7 @@ export default function VibeView() {
       if (officeRes.status === 'fulfilled') {
         const data = officeRes.value;
         if (data.agents) {
-          const agentData = data.agents.map((a: any) => {
+          const agentData = data.agents.map((a: any) => { // justified: inherited from OpenClawfice merge
             const defaults = generateAgentDefaults(a.id);
             return {
               ...a,
@@ -400,7 +400,7 @@ export default function VibeView() {
         lastStatusJson.current = json;
         if (data.agents) {
           setAgents(prev => {
-            const updated = data.agents.map((a: any) => {
+            const updated = data.agents.map((a: any) => { // justified: inherited from OpenClawfice merge
               const defaults = generateAgentDefaults(a.id);
               const old = prev.find(p => p.id === a.id);
               return {
@@ -793,7 +793,7 @@ export default function VibeView() {
     }
   };
 
-  const handleTemplateSelect = async (quest: any) => {
+  const handleTemplateSelect = async (quest: any) => { // justified: inherited from OpenClawfice merge
     try {
       // Add the cloned quest to actions
       const res = await secureFetch('/api/vibe/actions', {

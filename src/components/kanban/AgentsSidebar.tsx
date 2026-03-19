@@ -182,7 +182,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
                   title={`${agent.name} - ${agent.role}`}
                 >
                   <span className="text-2xl">{agent.avatar_emoji}</span>
-                  {openclawSession && <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-mc-bg-secondary" />}
+                  {openclawSession && <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-status-success rounded-full border-2 border-mc-bg-secondary" />}
                   {!!agent.is_master && <span className="absolute -top-1 -right-1 text-xs text-mc-accent-yellow">★</span>}
                   <span
                     className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${
@@ -209,7 +209,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
               >
                 <div className="text-2xl relative">
                   {agent.avatar_emoji}
-                  {openclawSession && <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-mc-bg-secondary" />}
+                  {openclawSession && <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-status-success rounded-full border-2 border-mc-bg-secondary" />}
                 </div>
 
                 <div className="flex-1 min-w-0">
@@ -276,7 +276,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
           </button>
           <button
             onClick={() => setShowDiscoverModal(true)}
-            className="w-full min-h-11 flex items-center justify-center gap-2 px-3 bg-blue-500/10 hover:bg-mc-accent-cyan/20 border border-mc-accent-cyan/20 rounded text-sm text-mc-accent-cyan hover:text-mc-accent-cyan transition-colors"
+            className="w-full min-h-11 flex items-center justify-center gap-2 px-3 bg-status-info/10 hover:bg-mc-accent-cyan/20 border border-mc-accent-cyan/20 rounded text-sm text-mc-accent-cyan hover:text-mc-accent-cyan transition-colors"
           >
             <Search className="w-4 h-4" />
             Import from Gateway

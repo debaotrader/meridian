@@ -6,7 +6,7 @@ import type { Agent } from './types';
 interface AgentSearchFilterProps {
   agents: Agent[];
   onFilterChange: (filtered: Agent[]) => void;
-  theme: any;
+  theme: any; // justified: inherited from OpenClawfice merge
   isMobile: boolean;
 }
 

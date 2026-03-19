@@ -84,7 +84,7 @@ export function ActivityHeatmap() {
 
   if (rows.length === 0) {
     return (
-      <div className="flex h-48 items-center justify-center text-sm text-gray-500 dark:text-gray-400">
+      <div className="flex h-48 items-center justify-center text-sm text-text-secondary dark:text-text-tertiary">
         {t("common:empty.noActivityData")}
       </div>
     );
@@ -139,7 +139,7 @@ export function ActivityHeatmap() {
       </svg>
       {tooltip && (
         <div
-          className="fixed z-10 rounded border border-gray-200 bg-white px-2 py-1 text-xs shadow dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200"
+          className="fixed z-10 rounded border border-border-default bg-white px-2 py-1 text-xs shadow dark:border-border-default dark:bg-surface-0 dark:text-text-primary"
           style={{ left: tooltip.x, top: tooltip.y - 32 }}
         >
           {tooltip.agentName} | {tooltip.hour} | {tooltip.count} {t("activityHeatmap.eventsUnit")}

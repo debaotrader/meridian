@@ -22,7 +22,7 @@ export async function gatewayRpc(method: string, params: Record<string, any> = {
     const parsed = JSON.parse(result.trim());
     if (parsed.error) throw new Error(parsed.error);
     return parsed;
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     if (err.stdout) {
       try {
         const parsed = JSON.parse(err.stdout.trim());

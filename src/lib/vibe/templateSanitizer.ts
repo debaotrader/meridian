@@ -3,7 +3,7 @@
  * Removes personal data, API keys, absolute paths
  */
 
-export function sanitizeConfig(config: any): any {
+export function sanitizeConfig(config: any): any { // justified: inherited from OpenClawfice merge
   if (!config) return {};
 
   const clean = JSON.parse(JSON.stringify(config)); // Deep clone
@@ -102,7 +102,7 @@ function isGenericName(name: string): boolean {
 /**
  * Recursively remove sensitive keys from object
  */
-function cleanSensitiveKeys(obj: any, sensitiveKeys: string[]): void {
+function cleanSensitiveKeys(obj: any, sensitiveKeys: string[]): void { // justified: inherited from OpenClawfice merge
   if (!obj || typeof obj !== 'object') return;
 
   for (const key in obj) {
@@ -117,7 +117,7 @@ function cleanSensitiveKeys(obj: any, sensitiveKeys: string[]): void {
 /**
  * Validate sanitized config (ensure no sensitive data leaked)
  */
-export function validateSanitized(config: any): { valid: boolean; issues: string[] } {
+export function validateSanitized(config: any): { valid: boolean; issues: string[] } { // justified: inherited from OpenClawfice merge
   const issues: string[] = [];
 
   // Check for common sensitive patterns

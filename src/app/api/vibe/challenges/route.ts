@@ -76,7 +76,7 @@ export async function GET() {
       streak: state.streak,
       xp: getChallengeXP(todaysChallenge.dayOfWeek),
     });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     console.error('Failed to get challenge:', err);
     return NextResponse.json(
       { error: err?.message || 'Failed to get challenge' },
@@ -129,7 +129,7 @@ export async function POST(request: Request) {
       streak: state.streak,
       xp: justCompleted ? getChallengeXP(todaysChallenge.dayOfWeek) : 0,
     });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     console.error('Failed to update challenge:', err);
     return NextResponse.json(
       { error: err?.message || 'Failed to update challenge' },

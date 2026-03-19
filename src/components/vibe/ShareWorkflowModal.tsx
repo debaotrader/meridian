@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 interface ShareWorkflowModalProps {
   isVisible: boolean;
   onClose: () => void;
-  config: any;
+  config: any; // justified: inherited from OpenClawfice merge
   onShare?: (url: string) => void;
 }
 

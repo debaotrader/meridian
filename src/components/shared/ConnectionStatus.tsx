@@ -27,9 +27,9 @@ export function ConnectionStatus({ className }: ConnectionStatusProps) {
       <span
         className={cn(
           'w-1.5 h-1.5 rounded-full shrink-0',
-          status === 'connected' && 'bg-green-500',
-          status === 'reconnecting' && 'bg-yellow-400 animate-pulse',
-          status === 'disconnected' && 'bg-red-500',
+          status === 'connected' && 'bg-status-success',
+          status === 'reconnecting' && 'bg-status-warning animate-pulse',
+          status === 'disconnected' && 'bg-status-error',
         )}
       />
       <span className="text-2xs text-text-muted truncate">{label}</span>

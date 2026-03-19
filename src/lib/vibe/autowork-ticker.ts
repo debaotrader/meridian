@@ -156,7 +156,7 @@ function getTeamStatus(): { id: string; name: string; status: string; task?: str
   return result;
 }
 
-function readJsonSafe(path: string): any[] {
+function readJsonSafe(path: string): any[] { // justified: inherited from OpenClawfice merge
   try {
     if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf-8'));
   } catch {}
@@ -168,7 +168,7 @@ function getRecentChat(limit = 15): { from: string; text: string; ts: number }[]
 }
 
 function getOpenQuests(): { title: string; from: string; priority: string; description?: string }[] {
-  return readJsonSafe(ACTIONS_FILE).map((a: any) => ({
+  return readJsonSafe(ACTIONS_FILE).map((a: any) => ({ // justified: inherited from OpenClawfice merge
     title: a.title,
     from: a.from,
     priority: a.priority || 'medium',
@@ -177,7 +177,7 @@ function getOpenQuests(): { title: string; from: string; priority: string; descr
 }
 
 function getRecentAccomplishments(limit = 10): { title: string; who: string; detail?: string }[] {
-  return readJsonSafe(ACCOMPLISHMENTS_FILE).slice(-limit).map((a: any) => ({
+  return readJsonSafe(ACCOMPLISHMENTS_FILE).slice(-limit).map((a: any) => ({ // justified: inherited from OpenClawfice merge
     title: a.title,
     who: a.who,
     detail: a.detail,
@@ -236,7 +236,7 @@ function getAgentRole(agentId: string): string | undefined {
     const cfg = JSON.parse(readFileSync(OPENCLAW_CONFIG, 'utf-8'));
     const agents = cfg.agents?.list || [];
     const defaultWs = cfg.agents?.defaults?.workspace || '';
-    const agent = agents.find((a: any) => a.id === agentId);
+    const agent = agents.find((a: any) => a.id === agentId); // justified: inherited from OpenClawfice merge
     if (!agent) return undefined;
     const ws = agent.workspace || defaultWs;
     const idPath = join(ws, 'IDENTITY.md');

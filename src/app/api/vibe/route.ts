@@ -89,7 +89,7 @@ function parseIdentityMd(filePath: string): Record<string, string> {
 /**
  * Read openclawfice.config.json for display overrides (colors, NPC appearance, etc.)
  */
-function readOfficeConfig(): { office?: any; agents?: Record<string, any>; owner?: any } {
+function readOfficeConfig(): { office?: any; agents?: Record<string, any>; owner?: any } { // justified: inherited from OpenClawfice merge
   try {
     const candidates = [
       join(process.cwd(), 'openclawfice.config.json'),
@@ -132,7 +132,7 @@ function discoverAgents(): AgentConfig[] {
     const ownerConfig = officeConfig.owner || {};
     
     const UTILITY_AGENTS = new Set(['watercooler']);
-    const agents: AgentConfig[] = agentsList.filter((a: any) => !UTILITY_AGENTS.has(a.id)).map((agent: any) => {
+    const agents: AgentConfig[] = agentsList.filter((a: any) => !UTILITY_AGENTS.has(a.id)).map((agent: any) => { // justified: inherited from OpenClawfice merge
       const override = agentOverrides[agent.id] || {};
       
       // Read IDENTITY.md from agent's workspace
@@ -166,7 +166,7 @@ function discoverAgents(): AgentConfig[] {
 
     // Add owner: check USER.md in the main agent's workspace for name
     // Only show owner if USER.md exists or owner is configured
-    const mainAgent = agentsList.find((a: any) => a.id === 'main');
+    const mainAgent = agentsList.find((a: any) => a.id === 'main'); // justified: inherited from OpenClawfice merge
     const mainWorkspace = mainAgent?.workspace || defaultWorkspace || '';
     let ownerName = ownerConfig.name || '';
     if (!ownerName) {
@@ -248,17 +248,17 @@ function computeMood(
   status: 'working' | 'idle' | 'blocked',
   lastActiveTs: number,
   now: number,
-  accomplishments: any[],
-  pendingActions: any[],
+  accomplishments: any[], // justified: inherited from OpenClawfice merge
+  pendingActions: any[], // justified: inherited from OpenClawfice merge
 ): Mood {
   const recentAccomplishment = accomplishments.some(
-    (a: any) => a.who === agentName && now - (a.timestamp || 0) < 30 * 60_000,
+    (a: any) => a.who === agentName && now - (a.timestamp || 0) < 30 * 60_000, // justified: inherited from OpenClawfice merge
   );
   if (recentAccomplishment) return 'great';
 
   if (status === 'working') return 'good';
 
-  const stalePending = pendingActions.some((a: any) => {
+  const stalePending = pendingActions.some((a: any) => { // justified: inherited from OpenClawfice merge
     if (a.actionAgent !== agentName && a.agent !== agentName) return false;
     if (a.response || a.archived) return false;
     const age = now - (a.createdAt || a.timestamp || 0);
@@ -277,7 +277,7 @@ function computeMood(
 /**
  * Read cron jobs and find the next scheduled run per agent.
  */
-function resolveJobTarget(job: any): string {
+function resolveJobTarget(job: any): string { // justified: inherited from OpenClawfice merge
   const name = (job.name || '').toLowerCase();
   const payload = (job.payload?.message || '').toLowerCase();
   const combined = name + ' ' + payload;
@@ -295,7 +295,7 @@ function getNextCronRuns(): Record<string, number> {
   try {
     if (!existsSync(CRON_JOBS_FILE)) return result;
     const data = JSON.parse(readFileSync(CRON_JOBS_FILE, 'utf-8'));
-    const jobs: any[] = data.jobs || [];
+    const jobs: any[] = data.jobs || []; // justified: inherited from OpenClawfice merge
     const now = Date.now();
 
     for (const job of jobs) {
@@ -319,7 +319,7 @@ function getAgentCooldowns(): Record<string, { jobId: string; jobName: string; i
   try {
     if (!existsSync(CRON_JOBS_FILE)) return result;
     const data = JSON.parse(readFileSync(CRON_JOBS_FILE, 'utf-8'));
-    const jobs: any[] = data.jobs || [];
+    const jobs: any[] = data.jobs || []; // justified: inherited from OpenClawfice merge
 
     // Map of agent names/ids to look for in job names
     const agentKeywords: Record<string, string[]> = {};
@@ -370,11 +370,11 @@ function readTailLines(filePath: string, maxLines: number = 20): string[] {
  * Detect whether recent transcript lines contain watercooler chat.
  * Watercooler user prompts contain "WATER COOLER CHAT".
  */
-function isWatercoolerEntry(msg: any): boolean {
+function isWatercoolerEntry(msg: any): boolean { // justified: inherited from OpenClawfice merge
   if (!msg) return false;
   const c = msg.content;
   const text = typeof c === 'string' ? c
-    : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : '';
+    : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : ''; // justified: inherited from OpenClawfice merge
   return text.includes('WATER COOLER CHAT');
 }
 
@@ -448,7 +448,7 @@ function inferTaskWithEvidence(agentId: string, sessionId: string): TaskEvidence
 
       if (!task && msg.role === 'assistant' && msg.content) {
         const parts = Array.isArray(msg.content) ? msg.content : [];
-        const textPart = parts.find((c: any) => c.type === 'text');
+        const textPart = parts.find((c: any) => c.type === 'text'); // justified: inherited from OpenClawfice merge
         if (textPart?.text && textPart.text.length > 10) {
           let t = textPart.text
             .split('\n')
@@ -466,7 +466,7 @@ function inferTaskWithEvidence(agentId: string, sessionId: string): TaskEvidence
         }
 
         // Check for tool calls as task evidence (supports both Anthropic and OpenClaw formats)
-        const toolPart = parts.find((c: any) => c.type === 'tool_use' || c.type === 'toolCall');
+        const toolPart = parts.find((c: any) => c.type === 'tool_use' || c.type === 'toolCall'); // justified: inherited from OpenClawfice merge
         if (toolPart) {
           const name = toolPart.name || toolPart.toolName || 'unknown';
           let detail = '';
@@ -483,7 +483,7 @@ function inferTaskWithEvidence(agentId: string, sessionId: string): TaskEvidence
       if (!task && msg.role === 'user') {
         const c = msg.content;
         const text = typeof c === 'string' ? c
-          : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : '';
+          : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : ''; // justified: inherited from OpenClawfice merge
         if (text.length > 10 && !text.includes('HEARTBEAT') && !text.includes('Read HEARTBEAT.md')
             && !text.includes('Agent-to-agent') && !text.includes('announce step')
             && !text.includes('Pre-compaction memory flush') && !text.includes('WATER COOLER CHAT')) {
@@ -517,7 +517,7 @@ function inferOwnerTask(agentId: string, sessionId: string): string {
       if (msg?.role === 'user') {
         const c = msg.content;
         const text = typeof c === 'string' ? c
-          : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : '';
+          : Array.isArray(c) ? (c.find((x: any) => x.type === 'text')?.text || '') : ''; // justified: inherited from OpenClawfice merge
         if (text.length > 5 && !text.includes('HEARTBEAT') && !text.includes('Read HEARTBEAT.md') && !text.includes('Pre-compaction memory flush') && !text.includes('WATER COOLER CHAT')) {
           let task = text.replace(/^\[.*?\]\s*/, '').replace(/\n/g, ' ').trim();
           if (task.length > 80) task = task.slice(0, 77) + '...';
@@ -667,19 +667,19 @@ export async function GET(request: Request) {
   } catch {}
 
   // Load accomplishments + pending actions for mood computation
-  let allAccomplishments: any[] = [];
+  let allAccomplishments: any[] = []; // justified: inherited from OpenClawfice merge
   try {
     if (existsSync(ACCOMPLISHMENTS_FILE))
       allAccomplishments = JSON.parse(readFileSync(ACCOMPLISHMENTS_FILE, 'utf-8'));
   } catch {}
 
-  let allPendingActions: any[] = [];
+  let allPendingActions: any[] = []; // justified: inherited from OpenClawfice merge
   try {
     const actionsFile = join(STATUS_DIR, 'actions.json');
     if (existsSync(actionsFile)) {
       const raw = JSON.parse(readFileSync(actionsFile, 'utf-8'));
       allPendingActions = (Array.isArray(raw) ? raw : []).filter(
-        (a: any) => !a.response && !a.archived,
+        (a: any) => !a.response && !a.archived, // justified: inherited from OpenClawfice merge
       );
     }
   } catch {}

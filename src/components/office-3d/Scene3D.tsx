@@ -54,7 +54,7 @@ function MeetingLabels() {
             transform={false}
             style={{ pointerEvents: "none" }}
           >
-            <div className="pointer-events-none rounded bg-blue-600/80 px-2 py-1 text-[10px] text-white shadow whitespace-nowrap">
+            <div className="pointer-events-none rounded bg-status-info/80 px-2 py-1 text-[10px] text-white shadow whitespace-nowrap">
               {names}
             </div>
           </Html>

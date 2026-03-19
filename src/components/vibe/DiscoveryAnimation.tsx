@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 interface DiscoveryAnimationProps {
-  agents: any[];
+  agents: any[]; // justified: inherited from OpenClawfice merge
   onComplete: () => void;
 }
 

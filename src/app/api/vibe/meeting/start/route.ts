@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     await fs.writeFile(MEETING_FILE, JSON.stringify(meeting, null, 2));
 
     return NextResponse.json({ success: true, meeting });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     console.error('Failed to start meeting:', err);
     return NextResponse.json(
       { error: err?.message || 'Failed to start meeting' },

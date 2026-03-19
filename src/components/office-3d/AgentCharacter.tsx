@@ -156,7 +156,7 @@ export function AgentCharacter({ agent }: AgentCharacterProps) {
       {agent.status === "speaking" && agent.speechBubble && (
         <Html position={[0, 1.0, 0]} center transform={false}>
           <div className="flex items-center justify-center">
-            <div className="relative flex h-6 w-6 items-center justify-center rounded-full bg-purple-500 text-white shadow-md">
+            <div className="relative flex h-6 w-6 items-center justify-center rounded-full bg-agent-shuri text-white shadow-md">
               <svg viewBox="0 0 20 20" fill="currentColor" className="h-3 w-3">
                 <path
                   fillRule="evenodd"
@@ -165,8 +165,8 @@ export function AgentCharacter({ agent }: AgentCharacterProps) {
                 />
               </svg>
               <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-purple-300 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-purple-400" />
+                <span className="absolute inline-flex h-full w-full animate-pulse-slow rounded-full bg-agent-shuri opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-agent-shuri" />
               </span>
             </div>
           </div>
@@ -188,7 +188,7 @@ export function AgentCharacter({ agent }: AgentCharacterProps) {
 
       {hovered && (
         <Html position={[0, 1.1, 0]} center transform={false} style={{ pointerEvents: "none" }}>
-          <div className="pointer-events-none whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-[11px] text-white shadow">
+          <div className="pointer-events-none whitespace-nowrap rounded bg-surface-2 px-2 py-1 text-[11px] text-white shadow">
             {agent.name} — {t(`agent.statusLabels.${agent.status}`)}
           </div>
         </Html>

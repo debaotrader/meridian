@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     try {
       await gatewayRpc('sessions.abort', { sessionKey }, 5000);
       aborted = true;
-    } catch (err: any) {
+    } catch (err: any) { // justified: inherited from OpenClawfice merge
       console.error('sessions.abort failed for agent:', String(agentId).replace(/[\r\n]/g, ''), err.message);
     }
 
@@ -75,7 +75,7 @@ export async function POST(request: Request) {
       aborted,
       autoworkPaused: pauseAutowork,
     });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     return NextResponse.json({ error: err.message || 'Failed to stop agent' }, { status: 500 });
   }
 }

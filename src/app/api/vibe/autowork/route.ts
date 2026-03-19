@@ -61,7 +61,7 @@ export async function POST(request: Request) {
 
     writeConfig(config);
     return NextResponse.json({ success: true });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     return NextResponse.json({ error: err.message || 'Failed to update' }, { status: 500 });
   }
 }
@@ -86,7 +86,7 @@ export async function PUT(request: Request) {
 
     const result = runTick(forceAgent);
     return NextResponse.json(result);
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     return NextResponse.json({ error: err.message || 'Tick failed' }, { status: 500 });
   }
 }

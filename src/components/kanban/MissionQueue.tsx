@@ -317,7 +317,7 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
       onClick={onClick}
       className={`group bg-mc-bg-secondary border rounded-lg cursor-pointer transition-all hover:shadow-lg hover:shadow-black/20 ${
         isDragging ? 'opacity-50 scale-95' : ''
-      } ${isHighlighted ? 'ring-2 ring-mc-accent animate-pulse-once' : ''} ${isPlanning ? 'border-purple-500/40 hover:border-purple-500' : 'border-mc-border/50 hover:border-mc-accent/40'}`}
+      } ${isHighlighted ? 'ring-2 ring-mc-accent animate-pulse-once' : ''} ${isPlanning ? 'border-agent-shuri/40 hover:border-agent-shuri' : 'border-mc-border/50 hover:border-mc-accent/40'}`}
     >
       {!mobileMode && (
         <div className="flex items-center justify-center py-1.5 border-b border-mc-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -329,44 +329,44 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
         <h4 className={`font-medium leading-snug line-clamp-2 ${portraitMode ? 'text-sm mb-3' : 'text-xs mb-2'}`}>{task.title}</h4>
 
         {isPlanning && (
-          <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-purple-500/10 rounded-md border border-purple-500/20`}>
-            <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse flex-shrink-0" />
-            <span className="text-xs text-purple-400 font-medium">Continue planning</span>
+          <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-agent-shuri/10 rounded-md border border-agent-shuri/20`}>
+            <div className="w-2 h-2 bg-agent-shuri rounded-full animate-pulse flex-shrink-0" />
+            <span className="text-xs text-agent-shuri font-medium">Continue planning</span>
           </div>
         )}
 
         {isAssigned && dispatchError && (
-          <div className={`flex items-start gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-red-500/10 rounded-md border border-red-500/30`}>
-            <div className="w-2 h-2 bg-red-400 rounded-full mt-1 flex-shrink-0" />
+          <div className={`flex items-start gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-error/10 rounded-md border border-status-error/30`}>
+            <div className="w-2 h-2 bg-status-error rounded-full mt-1 flex-shrink-0" />
             <span className="text-xs text-mc-accent-red">Assigned, but blocked: {dispatchError}</span>
           </div>
         )}
 
         {isAssigned && !dispatchError && (
-          <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-yellow-500/10 rounded-md border border-yellow-500/30`}>
-            <div className="w-2 h-2 bg-yellow-400 rounded-full flex-shrink-0" />
+          <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-warning/10 rounded-md border border-status-warning/30`}>
+            <div className="w-2 h-2 bg-status-warning rounded-full flex-shrink-0" />
             <span className="text-xs text-mc-accent-yellow">Assigned and validating — auto-start will move this to In Progress.</span>
           </div>
         )}
 
         {task.status === 'inbox' && !task.assigned_agent_id && (
-          <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-amber-500/10 rounded-md border border-amber-500/30`}>
-            <div className="w-2 h-2 bg-amber-400 rounded-full flex-shrink-0" />
-            <span className="text-xs text-amber-200">Needs agent — assign to start</span>
+          <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-warning/10 rounded-md border border-status-warning/30`}>
+            <div className="w-2 h-2 bg-status-warning rounded-full flex-shrink-0" />
+            <span className="text-xs text-status-warning">Needs agent — assign to start</span>
           </div>
         )}
 
         {['testing', 'verification'].includes(task.status) && dispatchError && (
-          <div className={`flex items-start gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-red-500/10 rounded-md border border-red-500/30`}>
-            <div className="w-2 h-2 bg-red-400 rounded-full mt-1 flex-shrink-0" />
+          <div className={`flex items-start gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-error/10 rounded-md border border-status-error/30`}>
+            <div className="w-2 h-2 bg-status-error rounded-full mt-1 flex-shrink-0" />
             <span className="text-xs text-mc-accent-red">{dispatchError}</span>
           </div>
         )}
 
         {task.status === 'review' && !dispatchError && (
-          <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-cyan-500/10 rounded-md border border-cyan-500/30`}>
-            <div className="w-2 h-2 bg-cyan-400 rounded-full flex-shrink-0" />
-            <span className="text-xs text-cyan-200">In queue — waiting for verification</span>
+          <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-agent-cyan/10 rounded-md border border-agent-cyan/30`}>
+            <div className="w-2 h-2 bg-agent-cyan rounded-full flex-shrink-0" />
+            <span className="text-xs text-agent-cyan">In queue — waiting for verification</span>
           </div>
         )}
 

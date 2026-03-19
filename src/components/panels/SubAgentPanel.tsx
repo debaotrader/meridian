@@ -14,7 +14,7 @@ export function SubAgentPanel() {
 
   if (subAgents.length === 0) {
     return (
-      <div className="py-2 text-center text-xs text-gray-400 dark:text-gray-500">
+      <div className="py-2 text-center text-xs text-text-tertiary dark:text-text-tertiary">
         {t("empty.noSubAgents")}
       </div>
     );
@@ -30,12 +30,12 @@ export function SubAgentPanel() {
           <button
             key={sub.id}
             onClick={() => selectAgent(sub.id)}
-            className="flex w-full items-start gap-2 border-b border-gray-50 px-3 py-2 text-left transition-colors hover:bg-blue-50 dark:border-gray-800 dark:hover:bg-blue-950"
+            className="flex w-full items-start gap-2 border-b border-border-subtle px-3 py-2 text-left transition-colors hover:bg-status-info/10 dark:border-border-default dark:hover:bg-status-info/10"
           >
             <Avatar agentId={sub.id} agentName={sub.name} size={24} />
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5">
-                <span className="truncate text-xs font-medium text-gray-800 dark:text-gray-200">
+                <span className="truncate text-xs font-medium text-text-primary dark:text-text-primary">
                   {sub.name}
                 </span>
                 <span
@@ -61,17 +61,17 @@ export function SubAgentPanel() {
                       selectAgent(parent.id);
                     }
                   }}
-                  className="cursor-pointer text-[10px] text-blue-500 hover:underline"
+                  className="cursor-pointer text-[10px] text-status-info hover:underline"
                 >
                   ← {parent.name}
                 </span>
               )}
               {sub.speechBubble && (
-                <div className="mt-0.5 truncate text-[10px] text-gray-400">
+                <div className="mt-0.5 truncate text-[10px] text-text-tertiary">
                   {sub.speechBubble.text.slice(0, 80)}
                 </div>
               )}
-              <div className="text-[10px] text-gray-400">{runtime}</div>
+              <div className="text-[10px] text-text-tertiary">{runtime}</div>
             </div>
           </button>
         );

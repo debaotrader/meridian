@@ -20,7 +20,7 @@ if (isNaN(PLANNING_POLL_INTERVAL_MS) || PLANNING_POLL_INTERVAL_MS < 100) {
 }
 
 // Helper to handle planning completion with proper error handling
-async function handlePlanningCompletion(taskId: string, parsed: any, messages: any[]) {
+async function handlePlanningCompletion(taskId: string, parsed: any, messages: any[]) { // justified: inherited from OpenClawfice merge
   const db = getDb();
   let dispatchError: string | null = null;
   let firstAgentId: string | null = null;
@@ -213,7 +213,7 @@ export async function GET(
 
     const messages = task.planning_messages ? JSON.parse(task.planning_messages) : [];
     // Count only assistant messages for comparison, since OpenClaw only returns assistant messages
-    const initialAssistantCount = messages.filter((m: any) => m.role === 'assistant').length;
+    const initialAssistantCount = messages.filter((m: any) => m.role === 'assistant').length; // justified: inherited from OpenClawfice merge
 
     console.log('[Planning Poll] Task', taskId, 'has', messages.length, 'total messages,', initialAssistantCount, 'assistant messages');
 

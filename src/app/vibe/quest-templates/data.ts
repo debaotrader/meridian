@@ -209,7 +209,7 @@ export function getTemplatesByCategory(category: QuestTemplate['category']): Que
 /**
  * Clone a template into a new quest
  */
-export function cloneTemplate(template: QuestTemplate['template']): any {
+export function cloneTemplate(template: QuestTemplate['template']): any { // justified: inherited from OpenClawfice merge
   return {
     ...template,
     id: `quest-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,

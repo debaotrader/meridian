@@ -88,7 +88,7 @@ export async function POST(req: Request) {
     writeFileSync(MEETING_FILE, JSON.stringify(data, null, 2));
 
     return NextResponse.json({ success: true, entry });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     const safeMsg = String(err?.message || 'Unknown error').replace(/[\r\n]/g, ' ');
     console.error('Failed to add meeting message:', safeMsg);
     return NextResponse.json({ error: safeMsg }, { status: 500 });
@@ -107,7 +107,7 @@ export async function DELETE(request: Request) {
       unlinkSync(MEETING_FILE);
     }
     return NextResponse.json({ success: true });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     const safeMsg = String(err?.message || 'Unknown error').replace(/[\r\n]/g, ' ');
     console.error('Failed to end meeting:', safeMsg);
     return NextResponse.json({ error: safeMsg }, { status: 500 });

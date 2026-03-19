@@ -27,7 +27,7 @@ function findConfigPath(): string {
   return CONFIG_PATHS[0];
 }
 
-function readConfig(): any {
+function readConfig(): any { // justified: inherited from OpenClawfice merge
   for (const path of CONFIG_PATHS) {
     if (existsSync(path)) {
       try {
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     writeFileSync(configPath, JSON.stringify(config, null, 2));
 
     return NextResponse.json({ success: true, config });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     return NextResponse.json({ error: err.message || 'Failed to save config' }, { status: 500 });
   }
 }

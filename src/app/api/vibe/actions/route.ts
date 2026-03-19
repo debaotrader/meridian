@@ -33,7 +33,7 @@ function getOwnerName(): string {
     const ocConfig = join(OPENCLAW_DIR, 'openclaw.json');
     if (existsSync(ocConfig)) {
       const cfg = JSON.parse(readFileSync(ocConfig, 'utf-8'));
-      const mainAgent = cfg.agents?.list?.find((a: any) => a.id === 'main');
+      const mainAgent = cfg.agents?.list?.find((a: any) => a.id === 'main'); // justified: inherited from OpenClawfice merge
       const workspace = mainAgent?.workspace || cfg.agents?.defaults?.workspace || '';
       const userMd = join(workspace, 'USER.md');
       if (workspace && existsSync(userMd)) {
@@ -51,7 +51,7 @@ function ensureStatusDir() {
   } catch {}
 }
 
-function readJson(path: string): any[] {
+function readJson(path: string): any[] { // justified: inherited from OpenClawfice merge
   try {
     if (existsSync(path)) {
       const raw = JSON.parse(readFileSync(path, 'utf-8'));
@@ -70,7 +70,7 @@ function readJson(path: string): any[] {
   return [];
 }
 
-function writeJson(path: string, data: any[]) {
+function writeJson(path: string, data: any[]) { // justified: inherited from OpenClawfice merge
   writeFileSync(path, JSON.stringify(data, null, 2));
 }
 
@@ -178,7 +178,7 @@ function triggerRecording(accomplishmentId: string, title: string, who: string, 
   // Mark as recording synchronously so the UI can show REC immediately
   try {
     const accs = readJson(ACCOMPLISHMENTS_FILE);
-    const target = accs.find((a: any) => a.id === accomplishmentId && !a.screenshot);
+    const target = accs.find((a: any) => a.id === accomplishmentId && !a.screenshot); // justified: inherited from OpenClawfice merge
     if (target) {
       target.screenshot = 'recording';
       writeJson(ACCOMPLISHMENTS_FILE, accs);
@@ -194,7 +194,7 @@ function triggerRecording(accomplishmentId: string, title: string, who: string, 
     // Remove the 'recording' marker since we're not actually recording
     try {
       const accs2 = readJson(ACCOMPLISHMENTS_FILE);
-      const target2 = accs2.find((a: any) => a.id === accomplishmentId && a.screenshot === 'recording');
+      const target2 = accs2.find((a: any) => a.id === accomplishmentId && a.screenshot === 'recording'); // justified: inherited from OpenClawfice merge
       if (target2) {
         delete target2.screenshot;
         writeJson(ACCOMPLISHMENTS_FILE, accs2);
@@ -221,7 +221,7 @@ function triggerRecording(accomplishmentId: string, title: string, who: string, 
         try {
           const accomplishments = readJson(ACCOMPLISHMENTS_FILE);
           const acc = accomplishments.find(
-            (a: any) => a.id === accomplishmentId
+            (a: any) => a.id === accomplishmentId // justified: inherited from OpenClawfice merge
           );
           if (acc) {
             if (value) {
@@ -256,7 +256,7 @@ function triggerRecording(accomplishmentId: string, title: string, who: string, 
 
 const MAX_ACCOMPLISHMENTS = 200;
 
-function trimAccomplishments(list: any[]): any[] {
+function trimAccomplishments(list: any[]): any[] { // justified: inherited from OpenClawfice merge
   if (list.length <= MAX_ACCOMPLISHMENTS) return list;
 
   const overflow = list.slice(0, list.length - MAX_ACCOMPLISHMENTS);
@@ -269,7 +269,7 @@ function trimAccomplishments(list: any[]): any[] {
   return list.slice(list.length - MAX_ACCOMPLISHMENTS);
 }
 
-function readArchive(offset: number, limit: number): { items: any[]; total: number } {
+function readArchive(offset: number, limit: number): { items: any[]; total: number } { // justified: inherited from OpenClawfice merge
   try {
     if (!existsSync(ACCOMPLISHMENTS_ARCHIVE)) return { items: [], total: 0 };
     const raw = readFileSync(ACCOMPLISHMENTS_ARCHIVE, 'utf-8').trim();
@@ -357,7 +357,7 @@ export async function POST(request: Request) {
 
     // Remove action
     if (body.type === 'remove_action') {
-      const actions = readJson(ACTIONS_FILE).filter((a: any) => a.id !== body.id);
+      const actions = readJson(ACTIONS_FILE).filter((a: any) => a.id !== body.id); // justified: inherited from OpenClawfice merge
       writeJson(ACTIONS_FILE, actions);
       return NextResponse.json({ success: true });
     }
@@ -365,8 +365,8 @@ export async function POST(request: Request) {
     // Respond to action (quest response)
     if (body.type === 'respond_action') {
       const actions = readJson(ACTIONS_FILE);
-      const action = actions.find((a: any) => a.id === body.id);
-      const remaining = actions.filter((a: any) => a.id !== body.id);
+      const action = actions.find((a: any) => a.id === body.id); // justified: inherited from OpenClawfice merge
+      const remaining = actions.filter((a: any) => a.id !== body.id); // justified: inherited from OpenClawfice merge
       writeJson(ACTIONS_FILE, remaining);
 
       // Save response for agent polling

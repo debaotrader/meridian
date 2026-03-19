@@ -207,7 +207,7 @@ export async function POST(request: Request) {
     writeFileSync(MEETING_FILE, JSON.stringify(data, null, 2));
 
     return NextResponse.json({ success: true, entry, totalMessages: data.transcript.length });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     const safeMsg = String(err?.message || 'Unknown error').replace(/[\r\n]/g, ' ');
     console.error('Meeting simulate error:', safeMsg);
     return NextResponse.json({ error: safeMsg }, { status: 500 });

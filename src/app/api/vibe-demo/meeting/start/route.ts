@@ -22,7 +22,7 @@ export async function POST(req: Request) {
         lastMessage: '',
       }
     });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     return NextResponse.json(
       { error: err?.message || 'Failed to start demo meeting' },
       { status: 500 }

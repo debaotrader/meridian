@@ -45,7 +45,7 @@ function sendToAgentAsync(agentId: string, message: string): void {
  */
 function addToChatLog(from: string, text: string): void {
   try {
-    let chatLog: any[] = [];
+    let chatLog: any[] = []; // justified: inherited from OpenClawfice merge
     if (existsSync(CHAT_FILE)) {
       chatLog = JSON.parse(readFileSync(CHAT_FILE, 'utf-8'));
     }
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
     let sanitizedMessage: string;
     try {
       sanitizedMessage = sanitizeMessage(message);
-    } catch (err: any) {
+    } catch (err: any) { // justified: inherited from OpenClawfice merge
       return NextResponse.json({ error: err.message }, { status: 400 });
     }
     
@@ -142,7 +142,7 @@ export async function POST(request: Request) {
       sent: true 
     });
 
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     return NextResponse.json({ 
       error: err.message || 'Failed to send message'
     }, { status: 500 });

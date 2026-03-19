@@ -89,7 +89,7 @@ export function SSEDebugPanel() {
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-12 left-0 w-96 max-h-80 bg-mc-bg-secondary border border-mc-border rounded-lg shadow-xl overflow-hidden">
+        <div className="absolute bottom-12 left-0 w-96 max-h-80 bg-mc-bg-secondary border border-mc-border rounded-lg shadow-dropdown overflow-hidden">
           <div className="p-2 border-b border-mc-border flex justify-between items-center">
             <span className="text-sm font-medium">Debug Events</span>
             <button

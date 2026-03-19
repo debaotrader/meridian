@@ -414,24 +414,24 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
           </div>
           {state.dispatchError && (
             <div className="text-right">
-              <span className="text-sm text-amber-400">⚠️ Dispatch Failed</span>
+              <span className="text-sm text-status-warning">⚠️ Dispatch Failed</span>
             </div>
           )}
         </div>
         
         {/* Dispatch Error with Retry */}
         {state.dispatchError && (
-          <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
+          <div className="bg-status-warning/10 border border-status-warning/30 rounded-lg p-4">
             <div className="flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
+              <AlertCircle className="w-4 h-4 text-status-warning mt-0.5 flex-shrink-0" />
               <div className="flex-1">
-                <p className="text-amber-400 text-sm font-medium mb-2">Task dispatch failed</p>
-                <p className="text-amber-300 text-xs mb-3">{state.dispatchError}</p>
+                <p className="text-status-warning text-sm font-medium mb-2">Task dispatch failed</p>
+                <p className="text-status-warning text-xs mb-3">{state.dispatchError}</p>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={retryDispatch}
                     disabled={retryingDispatch}
-                    className="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs rounded disabled:opacity-50 flex items-center gap-1"
+                    className="px-3 py-1 bg-status-warning/20 hover:bg-status-warning/30 text-status-warning text-xs rounded disabled:opacity-50 flex items-center gap-1"
                   >
                     {retryingDispatch ? (
                       <>
@@ -445,7 +445,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                       </>
                     )}
                   </button>
-                  <span className="text-amber-400 text-xs">
+                  <span className="text-status-warning text-xs">
                     This will attempt to assign the task to an agent
                   </span>
                 </div>

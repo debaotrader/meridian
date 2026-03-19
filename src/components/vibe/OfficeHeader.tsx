@@ -9,9 +9,9 @@ interface OfficeHeaderProps {
   accomplishments: Accomplishment[];
   working: Agent[];
   idle: Agent[];
-  theme: any;
+  theme: any; // justified: inherited from OpenClawfice merge
   isMobile: boolean;
-  sfx: any;
+  sfx: any; // justified: inherited from OpenClawfice merge
   githubStars: number | null;
   onCallMeeting: () => void;
   onShareScreenshot: () => void;

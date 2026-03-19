@@ -24,7 +24,7 @@ export function AgentDetailPanel() {
       <div className="mb-2 flex items-center gap-2">
         <SvgAvatar agentId={agent.id} size={32} />
         <div className="min-w-0 flex-1">
-          <div className="truncate text-sm font-medium text-gray-800 dark:text-gray-200">
+          <div className="truncate text-sm font-medium text-text-primary dark:text-text-primary">
             {agent.name}
           </div>
           <div className="flex items-center gap-1">
@@ -32,14 +32,14 @@ export function AgentDetailPanel() {
               className="inline-block h-2 w-2 rounded-full"
               style={{ backgroundColor: STATUS_COLORS[agent.status] }}
             />
-            <span className="text-xs text-gray-500 dark:text-gray-400">
+            <span className="text-xs text-text-secondary dark:text-text-tertiary">
               {t(`common:agent.statusLabels.${agent.status}`)}
             </span>
           </div>
         </div>
         <button
           onClick={() => selectAgent(null)}
-          className="shrink-0 text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+          className="shrink-0 text-xs text-text-tertiary hover:text-text-secondary dark:hover:text-text-primary"
           title={t("agentDetail.deselect")} aria-label={t("agentDetail.deselect")}
         >
           ✕
@@ -53,23 +53,23 @@ export function AgentDetailPanel() {
       )}
 
       {agent.speechBubble && (
-        <div className="mb-2 rounded bg-white px-2 py-1.5 text-xs leading-relaxed text-gray-700 shadow-sm dark:bg-gray-800 dark:text-gray-300">
+        <div className="mb-2 rounded bg-white px-2 py-1.5 text-xs leading-relaxed text-text-secondary shadow-sm dark:bg-surface-2 dark:text-text-secondary">
           <Markdown>{agent.speechBubble.text}</Markdown>
         </div>
       )}
 
       {agent.toolCallHistory.length > 0 && (
         <div className="mt-2">
-          <div className="mb-1 text-xs font-medium text-gray-400 dark:text-gray-500">
+          <div className="mb-1 text-xs font-medium text-text-tertiary dark:text-text-secondary">
             {t("agentDetail.toolCallHistory")}
           </div>
           {agent.toolCallHistory.map((t, i) => (
             <div
               key={`${t.name}-${t.timestamp}-${i}`}
-              className="flex items-center justify-between border-b border-gray-100 py-1 text-xs text-gray-500 dark:border-gray-700 dark:text-gray-400"
+              className="flex items-center justify-between border-b border-border-subtle py-1 text-xs text-text-secondary dark:border-border-default dark:text-text-tertiary"
             >
               <span>{t.name}</span>
-              <span className="text-gray-400">{new Date(t.timestamp).toLocaleTimeString()}</span>
+              <span className="text-text-tertiary">{new Date(t.timestamp).toLocaleTimeString()}</span>
             </div>
           ))}
         </div>

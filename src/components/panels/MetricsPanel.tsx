@@ -19,7 +19,7 @@ const ActivityHeatmap = lazy(() =>
 function TabSpinner() {
   return (
     <div className="flex min-h-[140px] items-center justify-center">
-      <div className="h-6 w-6 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+      <div className="h-6 w-6 animate-spin rounded-full border-2 border-status-info border-t-transparent" />
     </div>
   );
 }
@@ -84,8 +84,8 @@ export function MetricsPanel() {
             onClick={() => setActiveTab(tab.id)}
             className={`rounded px-2 py-0.5 text-[10px] ${
               activeTab === tab.id
-                ? "bg-gray-200 font-medium dark:bg-gray-700 dark:text-gray-200"
-                : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+                ? "bg-surface-2 font-medium dark:bg-surface-3 dark:text-text-primary"
+                : "text-text-secondary hover:bg-surface-1 dark:text-text-tertiary dark:hover:bg-surface-2"
             }`}
           >
             {tab.label}

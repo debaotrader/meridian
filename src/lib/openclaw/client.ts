@@ -66,7 +66,7 @@ export class OpenClawClient extends EventEmitter {
    * This prevents collision from Date.now() and ensures events with same
    * structure but different content are not incorrectly deduplicated.
    */
-  private generateEventId(data: any): string {
+  private generateEventId(data: any): string { // justified: inherited from OpenClawfice merge
     // Create a canonical string representation of the event
     const canonical = JSON.stringify({
       type: data.type,

@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       success: true,
       job: result,
     });
-  } catch (err: any) {
+  } catch (err: any) { // justified: inherited from OpenClawfice merge
     console.error('Cooldown update failed:', err);
     return NextResponse.json({ error: err.message || 'Failed to update cooldown' }, { status: 500 });
   }

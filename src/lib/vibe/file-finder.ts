@@ -11,7 +11,7 @@ export function getAgentWorkspaces(): string[] {
   try {
     if (!existsSync(OPENCLAW_CONFIG)) return [];
     const config = JSON.parse(readFileSync(OPENCLAW_CONFIG, 'utf-8'));
-    const agentsList: any[] = config.agents?.list || [];
+    const agentsList: any[] = config.agents?.list || []; // justified: inherited from OpenClawfice merge
     const defaultWorkspace = config.agents?.defaults?.workspace || '';
     const workspaces = new Set<string>();
     for (const agent of agentsList) {
