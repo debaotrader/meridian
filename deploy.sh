@@ -1,19 +1,24 @@
 #!/bin/bash
-set -e
-SRC="/root/Meridian-workspace/Meridian"
-DEST="/opt/meridian"
-echo "Building..."
-cd "$SRC" && rm -rf .next && npx next build
-echo "Deploying..."
-systemctl stop meridian
-cp "$DEST/.env" /tmp/meridian-env-backup
-cp -r "$DEST/data" /tmp/meridian-data-backup 2>/dev/null || true
-rsync -a --delete "$SRC/.next/standalone/" "$DEST/"
-mkdir -p "$DEST/.next/static"
-rsync -a --delete "$SRC/.next/static/" "$DEST/.next/static/"
-rsync -a "$SRC/public/" "$DEST/public/" 2>/dev/null || true
-cp /tmp/meridian-env-backup "$DEST/.env"
-cp -r /tmp/meridian-data-backup/* "$DEST/data/" 2>/dev/null || true
-systemctl start meridian
-sleep 2 && systemctl status meridian --no-pager | head -5
-echo "Deploy complete"
+set -euo pipefail
+REPO_DIR="/root/Meridian-workspace/Meridian"
+PROD_DIR="/opt/meridian"
+SERVICE="meridian.service"
+echo "Building Meridian..."
+cd "$REPO_DIR"
+npm run build
+echo "Syncing to production..."
+rsync -a --delete .next/ "$PROD_DIR/.next/"
+rsync -a node_modules/ "$PROD_DIR/node_modules/"
+cp -f package.json server.js "$PROD_DIR/"
+rsync -a public/ "$PROD_DIR/public/" 2>/dev/null || true
+rsync -a data/ "$PROD_DIR/data/" 2>/dev/null || true
+echo "Restarting service..."
+sudo systemctl restart "$SERVICE"
+sleep 2
+if systemctl is-active --quiet "$SERVICE"; then
+    echo "Meridian deployed and running"
+else
+    echo "Service failed to start"
+    journalctl -u "$SERVICE" --no-pager -n 20
+    exit 1
+fi
