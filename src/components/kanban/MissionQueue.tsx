@@ -334,7 +334,7 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
       } ${isHighlighted ? 'ring-2 ring-mc-accent animate-pulse-once' : ''} ${isPlanning ? 'border-agent-shuri/40 hover:border-agent-shuri' : 'border-mc-border/50 hover:border-mc-accent/40'}`}
     >
       {!mobileMode && (
-        <div className="flex items-center justify-center py-1.5 border-b border-mc-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div aria-label="Arrastar tarefa" role="button" className="flex items-center justify-center py-1.5 border-b border-mc-border/30 opacity-0 group-hover:opacity-100 transition-opacity">
           <GripVertical className="w-4 h-4 text-mc-text-secondary/50 cursor-grab" />
         </div>
       )}

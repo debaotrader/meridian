@@ -14,7 +14,7 @@ const ROOT = process.cwd();
 // Allowed locations for R3F imports
 const ALLOWED_PREFIXES = [
   'src/components/office-3d/',
-  'app/office/3d/page.tsx',
+  'src/app/office/3d/page.tsx',
 ];
 
 // R3F package patterns
@@ -57,19 +57,19 @@ async function check() {
   await walk(ROOT);
 
   // Verify app/office/3d/page.tsx uses dynamic with ssr:false
-  const pagePath = join(ROOT, 'app', 'office', '3d', 'page.tsx');
+  const pagePath = join(ROOT, 'src', 'app', 'office', '3d', 'page.tsx');
   try {
     const pageContent = await readFile(pagePath, 'utf-8');
     if (!DYNAMIC_SSR_FALSE.test(pageContent)) {
       violations.push({
-        file: 'app/office/3d/page.tsx',
+        file: 'src/app/office/3d/page.tsx',
         type: 'MISSING_SSR_FALSE',
         detail: `Não usa dynamic(() => import(...), { ssr: false }). R3F vai quebrar o build SSR.`,
       });
     }
   } catch {
     violations.push({
-      file: 'app/office/3d/page.tsx',
+      file: 'src/app/office/3d/page.tsx',
       type: 'FILE_NOT_FOUND',
       detail: `Arquivo não encontrado — criar a rota com dynamic + ssr:false antes de usar R3F.`,
     });

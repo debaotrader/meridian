@@ -56,4 +56,3 @@ next-env.d.ts
 /data/task-images/*
 !/data/task-images/.gitkeep
 .env.local
-.github/workflows/

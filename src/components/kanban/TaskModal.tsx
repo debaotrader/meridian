@@ -220,7 +220,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-4 min-h-11 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
                   activeTab === tab.id
-                    ? 'text-mc-accent border-b-2 border-mc-accent'
+                    ? 'text-accent border-b-2 border-accent'
                     : 'text-mc-text-secondary hover:text-mc-text'
                 }`}
               >
@@ -419,7 +419,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="min-h-11 flex items-center gap-2 px-4 py-2 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90 disabled:opacity-50"
+                className="min-h-11 flex items-center gap-2 px-4 py-2 bg-accent text-text-inverse rounded text-sm font-medium hover:bg-accent-hover disabled:opacity-50"
               >
                 <Save className="w-4 h-4" />
                 {isSubmitting ? t('actions.saving') : t('actions.save')}

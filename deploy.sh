@@ -9,6 +9,7 @@ npm run build
 echo "Syncing to production..."
 rsync -a --delete .next/standalone/ "$PROD_DIR/"
 rsync -a --delete .next/static/ "$PROD_DIR/.next/static/"
+rsync -a --delete .next/static/ "$PROD_DIR/.next/static/"
 rsync -a public/ "$PROD_DIR/public/" 2>/dev/null || true
 rsync -a data/ "$PROD_DIR/data/" 2>/dev/null || true
 echo "Restarting service..."

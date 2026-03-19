@@ -133,6 +133,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
           </h2>
           <button
             onClick={onClose}
+            aria-label="Fechar modal"
             className="p-1 hover:bg-mc-bg-tertiary rounded"
           >
             <X className="w-5 h-5" />
@@ -147,7 +148,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
               onClick={() => setActiveTab(tab.id)}
               className={`px-4 min-h-11 py-2 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                 activeTab === tab.id
-                  ? 'border-mc-accent text-mc-accent'
+                  ? 'border-accent text-accent'
                   : 'border-transparent text-mc-text-secondary hover:text-mc-text'
               }`}
             >

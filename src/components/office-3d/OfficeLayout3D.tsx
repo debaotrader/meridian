@@ -272,7 +272,7 @@ function ZoneLabel({
         style={{
           fontSize: "11px",
           fontWeight: 600,
-          color: active ? "#00FF94" : "rgba(255,255,255,0.5)",
+          color: active ? "#00FF94" : "rgba(255,255,255,0.4)",
           opacity: 1,
           textTransform: "uppercase",
           letterSpacing: "2px",
