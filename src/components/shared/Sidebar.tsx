@@ -1,18 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { clsx } from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import {
-  LayoutGrid,
+  LayoutDashboard,
   Building2,
   Box,
-  Zap,
-  BarChart2,
+  Sparkles,
+  BarChart3,
   Settings,
-  ChevronLeft,
+  ChevronsLeft,
+  ChevronsRight,
   Menu,
   X,
 } from 'lucide-react';
@@ -21,139 +22,115 @@ import { ConnectionStatus } from './ConnectionStatus';
 interface NavItem {
   label: string;
   href: string;
-  icon: React.ReactNode;
+  icon: React.ComponentType<{ className?: string }>;
+  badge?: string;
 }
 
-const NAV_ITEMS: NavItem[] = [
-  { label: 'Kanban', href: '/kanban', icon: <LayoutGrid size={18} /> },
-  { label: 'Office 2D', href: '/office', icon: <Building2 size={18} /> },
-  { label: 'Office 3D', href: '/office/3d', icon: <Box size={18} /> },
-  { label: 'Vibe', href: '/vibe', icon: <Zap size={18} /> },
-  { label: 'Analytics', href: '/analytics', icon: <BarChart2 size={18} /> },
-  { label: 'Settings', href: '/settings', icon: <Settings size={18} /> },
+const navItems: NavItem[] = [
+  { label: 'Kanban', href: '/kanban', icon: LayoutDashboard },
+  { label: 'Escritório', href: '/office', icon: Building2 },
+  { label: '3D', href: '/office/3d', icon: Box },
+  { label: 'Vibe', href: '/vibe', icon: Sparkles },
+  { label: 'Analytics', href: '/analytics', icon: BarChart3 },
+  { label: 'Configurações', href: '/settings', icon: Settings },
 ];
 
-function NavLink({
-  item,
-  collapsed,
-  onClick,
-}: {
-  item: NavItem;
-  collapsed: boolean;
-  onClick?: () => void;
-}) {
-  const pathname = usePathname();
-  const isActive =
-    item.href === '/kanban'
-      ? pathname === '/kanban' || pathname === '/'
-      : pathname.startsWith(item.href);
-
-  return (
-    <Link
-      href={item.href}
-      onClick={onClick}
-      className={cn(
-        'flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all duration-150 group relative',
-        isActive
-          ? 'bg-accent/10 text-accent'
-          : 'text-text-secondary hover:text-text-primary hover:bg-surface-2'
-      )}
-      title={collapsed ? item.label : undefined}
-    >
-      {isActive && (
-        <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-accent rounded-r" />
-      )}
-      <span className={cn('shrink-0', isActive && 'text-accent')}>{item.icon}</span>
-      {!collapsed && (
-        <motion.span
-          initial={false}
-          animate={{ opacity: 1, width: 'auto' }}
-          exit={{ opacity: 0, width: 0 }}
-          className="overflow-hidden whitespace-nowrap font-medium"
-        >
-          {item.label}
-        </motion.span>
-      )}
-    </Link>
-  );
-}
-
 export function Sidebar() {
+  const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Close mobile drawer on route change
-  const pathname = usePathname();
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  const isActive = (href: string): boolean => {
+    if (href === '/kanban') return pathname === '/kanban' || pathname === '/';
+    return pathname.startsWith(href);
+  };
 
-  const sidebarContent = (
+  const SidebarContent = () => (
     <div className="flex flex-col h-full">
-      {/* Logo / Header */}
-      <div className={cn('flex items-center h-14 px-3 border-b border-border-subtle shrink-0', collapsed ? 'justify-center' : 'justify-between')}>
+      {/* Logo / Brand */}
+      <div className={clsx(
+        'flex items-center h-13 px-4 border-b border-border-subtle',
+        collapsed ? 'justify-center' : 'gap-3'
+      )}>
+        <div className="w-7 h-7 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
+          <span className="text-text-inverse text-xs font-bold">M</span>
+        </div>
         {!collapsed && (
-          <span className="text-text-primary font-semibold tracking-tight">
-            <span className="text-accent">M</span>eridian
-          </span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="font-display font-semibold text-sm text-text-primary truncate"
+          >
+            Meridian
+          </motion.span>
         )}
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="p-1.5 rounded text-text-muted hover:text-text-primary hover:bg-surface-2 transition-colors hidden md:flex"
-          aria-label="Toggle sidebar"
-        >
-          <ChevronLeft
-            size={16}
-            className={cn('transition-transform duration-200', collapsed && 'rotate-180')}
-          />
-        </button>
       </div>
 
-      {/* Nav Items */}
-      <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-0.5">
-        {NAV_ITEMS.map((item) => (
-          <NavLink key={item.href} item={item} collapsed={collapsed} />
-        ))}
+      {/* Navigation */}
+      <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const active = isActive(item.href);
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMobileOpen(false)}
+              className={clsx(
+                'flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150',
+                collapsed && 'justify-center px-0',
+                active
+                  ? 'bg-accent-subtle text-accent font-medium'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-2'
+              )}
+            >
+              <Icon className={clsx('w-[18px] h-[18px] flex-shrink-0', active && 'text-accent')} />
+              {!collapsed && (
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  {item.label}
+                </motion.span>
+              )}
+              {!collapsed && item.badge && (
+                <span className="ml-auto badge badge-info text-[10px]">{item.badge}</span>
+              )}
+            </Link>
+          );
+        })}
       </nav>
 
-      {/* Footer */}
-      <div className={cn('px-3 py-3 border-t border-border-subtle', collapsed ? 'flex justify-center' : '')}>
-        {collapsed ? (
-          <span
-            className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0"
-            aria-label="Connection status"
-          />
-        ) : (
-          <div className="flex items-center justify-between">
-            <ConnectionStatus />
-            <span className="text-2xs text-text-muted">v0.1</span>
-          </div>
-        )}
+      {/* Connection Status */}
+      {!collapsed && (
+        <div className="px-4 py-2 border-t border-border-subtle">
+          <ConnectionStatus />
+        </div>
+      )}
+
+      {/* Collapse toggle (desktop only) */}
+      <div className="hidden lg:block px-2 py-3 border-t border-border-subtle">
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          className="flex items-center justify-center w-full py-2 rounded-lg text-text-tertiary hover:text-text-secondary hover:bg-surface-2 transition-colors"
+          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {collapsed ? <ChevronsRight className="w-4 h-4" /> : <ChevronsLeft className="w-4 h-4" />}
+        </button>
       </div>
     </div>
   );
 
   return (
     <>
-      {/* Desktop Sidebar */}
-      <motion.aside
-        animate={{ width: collapsed ? 56 : 220 }}
-        transition={{ duration: 0.2, ease: 'easeInOut' }}
-        className="hidden md:flex flex-col bg-surface-1 border-r border-border-subtle shrink-0 overflow-hidden h-screen sticky top-0"
-      >
-        {sidebarContent}
-      </motion.aside>
-
-      {/* Mobile Toggle Button */}
+      {/* Mobile toggle */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="md:hidden fixed top-3 left-3 z-50 p-2 rounded-md bg-surface-1 border border-border-default text-text-secondary hover:text-text-primary"
+        className="lg:hidden fixed top-3 left-3 z-50 p-2 rounded-lg bg-surface-1 border border-border-default text-text-secondary hover:text-text-primary"
         aria-label="Open menu"
       >
-        <Menu size={18} />
+        <Menu className="w-5 h-5" />
       </button>
 
-      {/* Mobile Drawer */}
+      {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -161,27 +138,38 @@ export function Sidebar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/60 md:hidden"
+              className="lg:hidden fixed inset-0 bg-black/60 z-40"
               onClick={() => setMobileOpen(false)}
             />
             <motion.aside
-              initial={{ x: -240 }}
+              initial={{ x: -280 }}
               animate={{ x: 0 }}
-              exit={{ x: -240 }}
-              transition={{ duration: 0.2, ease: 'easeInOut' }}
-              className="fixed left-0 top-0 bottom-0 z-50 w-[220px] bg-surface-1 border-r border-border-subtle md:hidden"
+              exit={{ x: -280 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="lg:hidden fixed left-0 top-0 bottom-0 w-64 bg-surface-1 border-r border-border-default z-50"
             >
               <button
                 onClick={() => setMobileOpen(false)}
-                className="absolute top-3 right-3 p-1.5 rounded text-text-muted hover:text-text-primary"
+                className="absolute top-3 right-3 p-1.5 rounded-lg text-text-tertiary hover:text-text-primary"
+                aria-label="Close menu"
               >
-                <X size={16} />
+                <X className="w-4 h-4" />
               </button>
-              {sidebarContent}
+              <SidebarContent />
             </motion.aside>
           </>
         )}
       </AnimatePresence>
+
+      {/* Desktop sidebar */}
+      <aside
+        className={clsx(
+          'hidden lg:block fixed left-0 top-0 bottom-0 bg-surface-1 border-r border-border-default z-30 transition-all duration-200',
+          collapsed ? 'w-15' : 'w-64'
+        )}
+      >
+        <SidebarContent />
+      </aside>
     </>
   );
 }

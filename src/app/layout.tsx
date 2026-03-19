@@ -18,7 +18,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: 'Meridian',
-  description: 'Unified AI Agent Dashboard',
+  description: 'Painel unificado de gestão de agentes de IA',
   icons: {
     icon: '/favicon.svg',
   },
@@ -30,12 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark`}>
-      <body className="font-sans bg-surface-0 text-text-primary min-h-screen flex">
+    <html lang="pt-BR" className={`dark ${geistSans.variable} ${geistMono.variable}`}>
+      <body className="font-sans bg-surface-0 text-text-primary">
         <ClientProviders>
           <Sidebar />
-          <main className="flex-1 min-h-screen overflow-auto">
-            {children}
+          {/* Main content — offset by sidebar (256px desktop, 0 mobile) */}
+          <main className="lg:pl-64 min-h-screen">
+            <div className="p-6 lg:p-8 max-w-[1600px] mx-auto">
+              {children}
+            </div>
           </main>
         </ClientProviders>
       </body>

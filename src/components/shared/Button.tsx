@@ -1,8 +1,7 @@
 'use client';
 
-import { forwardRef, ButtonHTMLAttributes } from 'react';
-import { cn } from '@/lib/utils';
-import { Loader2 } from 'lucide-react';
+import { forwardRef, type ButtonHTMLAttributes } from 'react';
+import { clsx } from 'clsx';
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';
@@ -11,65 +10,42 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   size?: Size;
   loading?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
 }
 
 const variantStyles: Record<Variant, string> = {
-  primary:
-    'bg-accent text-text-inverse hover:bg-accent-dim border-transparent shadow-glow-accent/50 font-semibold',
-  secondary:
-    'bg-surface-2 text-text-primary hover:bg-surface-3 border-border-default',
-  ghost:
-    'bg-transparent text-text-secondary hover:text-text-primary hover:bg-surface-2 border-transparent',
-  danger:
-    'bg-status-error/10 text-status-error hover:bg-status-error/20 border-status-error/30',
+  primary: 'bg-accent text-text-inverse hover:bg-accent-hover active:scale-[0.98]',
+  secondary: 'bg-surface-2 text-text-primary border border-border-default hover:border-border-strong hover:bg-surface-3',
+  ghost: 'text-text-secondary hover:text-text-primary hover:bg-surface-2',
+  danger: 'bg-status-error/15 text-status-error hover:bg-status-error/25',
 };
 
 const sizeStyles: Record<Size, string> = {
-  sm: 'h-7 px-3 text-xs gap-1.5',
-  md: 'h-9 px-4 text-sm gap-2',
-  lg: 'h-11 px-6 text-base gap-2.5',
+  sm: 'h-7 px-2.5 text-xs gap-1.5',
+  md: 'h-9 px-3.5 text-sm gap-2',
+  lg: 'h-11 px-5 text-base gap-2.5',
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      variant = 'secondary',
-      size = 'md',
-      loading = false,
-      leftIcon,
-      rightIcon,
-      disabled,
-      children,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const isDisabled = disabled || loading;
-
+  ({ variant = 'primary', size = 'md', loading = false, className, children, disabled, ...props }, ref) => {
     return (
       <button
         ref={ref}
-        disabled={isDisabled}
-        className={cn(
-          'inline-flex items-center justify-center rounded border transition-all duration-150',
-          'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50',
-          'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
+        disabled={disabled || loading}
+        className={clsx(
+          'inline-flex items-center justify-center font-medium rounded transition-all duration-150',
+          'disabled:opacity-50 disabled:cursor-not-allowed',
           variantStyles[variant],
           sizeStyles[size],
-          className
+          className,
         )}
         {...props}
       >
-        {loading ? (
-          <Loader2 className="animate-spin shrink-0" size={size === 'sm' ? 12 : size === 'md' ? 14 : 16} />
-        ) : (
-          leftIcon && <span className="shrink-0">{leftIcon}</span>
+        {loading && (
+          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" strokeDasharray="60" strokeDashoffset="20" />
+          </svg>
         )}
         {children}
-        {!loading && rightIcon && <span className="shrink-0">{rightIcon}</span>}
       </button>
     );
   }
