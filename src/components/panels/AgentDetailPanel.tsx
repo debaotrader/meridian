@@ -40,7 +40,7 @@ export function AgentDetailPanel() {
         <button
           onClick={() => selectAgent(null)}
           className="shrink-0 text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-          title={t("agentDetail.deselect")}
+          title={t("agentDetail.deselect")} aria-label={t("agentDetail.deselect")}
         >
           ✕
         </button>

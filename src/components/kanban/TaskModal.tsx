@@ -202,6 +202,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
           <button
             onClick={onClose}
             className="p-1 hover:bg-mc-bg-tertiary rounded"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>

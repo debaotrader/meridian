@@ -1,11 +1,14 @@
 'use client';
+import dynamic from 'next/dynamic';
 import { MetricsPanel } from './MetricsPanel';
-import { TokenLineChart } from './TokenLineChart';
-import { CostPieChart } from './CostPieChart';
-import { ActivityHeatmap } from './ActivityHeatmap';
-import { NetworkGraph } from './NetworkGraph';
-import { EventTimeline } from './EventTimeline';
-import { SubAgentPanel } from './SubAgentPanel';
+
+// Lazy-load chart-heavy components to keep /analytics within 200kb budget
+const TokenLineChart = dynamic(() => import('./TokenLineChart').then(m => ({ default: m.TokenLineChart })), { ssr: false });
+const CostPieChart = dynamic(() => import('./CostPieChart').then(m => ({ default: m.CostPieChart })), { ssr: false });
+const ActivityHeatmap = dynamic(() => import('./ActivityHeatmap').then(m => ({ default: m.ActivityHeatmap })), { ssr: false });
+const NetworkGraph = dynamic(() => import('./NetworkGraph').then(m => ({ default: m.NetworkGraph })), { ssr: false });
+const EventTimeline = dynamic(() => import('./EventTimeline').then(m => ({ default: m.EventTimeline })), { ssr: false });
+const SubAgentPanel = dynamic(() => import('./SubAgentPanel').then(m => ({ default: m.SubAgentPanel })), { ssr: false });
 
 export function AnalyticsDashboard() {
   return (

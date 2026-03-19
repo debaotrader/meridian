@@ -33,9 +33,16 @@ export default function RootLayout({
     <html lang="pt-BR" className={`dark ${geistSans.variable} ${geistMono.variable}`}>
       <body className="font-sans bg-surface-0 text-text-primary">
         <ClientProviders>
+          {/* Skip to main content — accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-text-inverse focus:rounded-lg focus:text-sm focus:font-medium"
+          >
+            Pular para conteúdo principal
+          </a>
           <Sidebar />
           {/* Main content — offset by sidebar (256px desktop, 0 mobile) */}
-          <main className="lg:pl-64 min-h-screen">
+          <main id="main-content" className="lg:pl-64 min-h-screen">
             <div className="p-6 lg:p-8 max-w-[1600px] mx-auto">
               {children}
             </div>

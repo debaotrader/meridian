@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  output: 'standalone',
   serverExternalPackages: ['better-sqlite3'],
   webpack: (config) => {
     config.externals.push({
@@ -19,6 +21,27 @@ const nextConfig = {
         ],
       },
     ];
+  },
+  async redirects() {
+    const redirects = [];
+
+    if (process.env.OPENCLAW_ENABLE_OFFICE_3D !== '1') {
+      redirects.push({
+        source: '/office/3d',
+        destination: '/office',
+        permanent: false,
+      });
+    }
+
+    if (process.env.OPENCLAW_ENABLE_VIBE !== '1') {
+      redirects.push({
+        source: '/vibe',
+        destination: '/kanban',
+        permanent: false,
+      });
+    }
+
+    return redirects;
   },
 };
 
