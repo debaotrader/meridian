@@ -7,6 +7,27 @@ import { STATUS_COLORS, AVATAR } from "@/lib/office/constants";
 import { useOfficeStore } from "@/lib/store/visual-office-store";
 import { useCrossModuleNav } from "@/lib/navigation/cross-module-nav";
 
+
+// Agent identity colors — matches agent-* design tokens
+const AGENT_IDENTITY_COLORS: Record<string, string> = {
+  main: "#FFD700",    // Jarvis
+  tony: "#FF4444",    // Tony Stark
+  shuri: "#A855F7",   // Shuri
+  parker: "#3B82F6",  // Parker
+  banner: "#00CC66",  // Banner
+  visao: "#FF6B35",   // Visão
+};
+
+function getAgentColor(agentId: string, fallback: string): string {
+  const key = agentId.toLowerCase();
+  for (const [name, color] of Object.entries(AGENT_IDENTITY_COLORS)) {
+    if (key === name || key.startsWith(name + "-") || key.includes(":" + name + ":")) {
+      return color;
+    }
+  }
+  return fallback;
+}
+
 const WALK_BOB_AMPLITUDE = 2;
 const WALK_BOB_FREQ = 8;
 
@@ -31,7 +52,8 @@ export const AgentAvatar = memo(function AgentAvatar({ agent }: AgentAvatarProps
   const isPlaceholder = agent.isPlaceholder;
   const isUnconfirmed = !agent.confirmed;
   const isWalking = agent.movement !== null;
-  const color = isPlaceholder || isUnconfirmed ? "#6b7280" : STATUS_COLORS[agent.status];
+  const statusColor = isPlaceholder || isUnconfirmed ? "#6b7280" : STATUS_COLORS[agent.status];
+  const color = isPlaceholder || isUnconfirmed ? "#6b7280" : getAgentColor(agent.id, statusColor);
   const isDark = theme === "dark";
   const avatarData = generateSvgAvatar(agent.id);
   const clipId = `avatar-clip-${agent.id}`;
