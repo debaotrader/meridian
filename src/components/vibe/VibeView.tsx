@@ -1562,7 +1562,7 @@ export default function VibeView() {
               &gt; RODAR DEMO
             </a>
             <a 
-              href="https://docs.openclaw.ai/configuration/agents"
+              href="https://docs.openclaw.ai/#configuration-optional"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => sfx.play('click')}
@@ -1667,7 +1667,7 @@ export default function VibeView() {
                 title="Clique para copiar">
                   $ {setupCheck?.installCommand || 'curl -fsSL https://openclaw.ai/install.sh | bash'}
                 </div>
-                <a href="https://openclaw.ai/install" target="_blank" rel="noopener noreferrer" style={{
+                <a href="https://docs.openclaw.ai/getting-started" target="_blank" rel="noopener noreferrer" style={{
                   color: '#00ff41',
                   fontSize: 10,
                   textDecoration: 'none',

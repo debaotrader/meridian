@@ -111,7 +111,7 @@ export function CommandPalette({
       label: 'Instruções de instalação',
       category: 'navigate',
       keywords: ['setup', 'download', 'getting started'],
-      onSelect: () => { window.location.href = '/install'; },
+      onSelect: () => { window.open('https://docs.openclaw.ai/getting-started', '_blank'); },
     },
     {
       id: 'nav-home',

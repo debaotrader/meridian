@@ -235,7 +235,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
           </button>
 
           <a
-            href="/docs/FIRST-5-MINUTES.md"
+            href="https://docs.openclaw.ai/getting-started"
             target="_blank"
             rel="noopener noreferrer"
             style={{

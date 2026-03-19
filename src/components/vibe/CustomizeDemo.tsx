@@ -214,7 +214,7 @@ export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps)
           marginBottom: 0,
         }}>
           Instale para usar seus agentes OpenClaw reais →{' '}
-          <a href="/install" style={{ color: '#6366f1' }}>openclawfice.com/install</a>
+          <a href="https://docs.openclaw.ai/getting-started" target="_blank" rel="noopener noreferrer" style={{ color: "#6366f1" }}>docs.openclaw.ai/getting-started</a>
         </p>
       </div>
     </div>

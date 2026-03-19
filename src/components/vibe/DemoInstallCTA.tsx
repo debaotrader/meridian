@@ -159,7 +159,7 @@ export function DemoInstallCTA({ delayMs = 30000 }: Props) {
         </button>
 
         <a
-          href="/install"
+          href="https://docs.openclaw.ai/getting-started" target="_blank" rel="noopener noreferrer"
           style={{
             flex: 1,
             background: 'rgba(99,102,241,0.2)',
