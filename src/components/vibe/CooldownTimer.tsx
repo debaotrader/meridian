@@ -75,10 +75,10 @@ export function linkifyFiles(text: string, fetchFn: typeof fetch = fetch): (stri
               });
               if (!res.ok) {
                 const data = await res.json();
-                alert(`Could not find ${filename}:\n${data.error}`);
+                alert(`Não foi possível encontrar ${filename}:\n${data.error}`);
               }
             } catch {
-              alert(`Failed to open ${filename}`);
+              alert(`Falha ao abrir ${filename}`);
             }
           }}
           style={{
