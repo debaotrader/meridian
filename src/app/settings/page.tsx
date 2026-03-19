@@ -89,7 +89,7 @@ export default function SettingsPage() {
             <button
               onClick={handleSave}
               disabled={isSaving}
-              className="px-4 py-2 bg-mc-accent text-mc-bg rounded hover:bg-mc-accent/90 flex items-center gap-2 disabled:opacity-50"
+              className="px-4 py-2 bg-[#00FF94] text-[#0a0a0a] font-medium rounded hover:bg-[#00FF94]/90 flex items-center gap-2 disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
               {isSaving ? 'Salvando...' : 'Salvar alterações'}
@@ -115,9 +115,9 @@ export default function SettingsPage() {
         )}
 
         {/* Caminhos do workspace */}
-        <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
+        <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-md">
           <div className="flex items-center gap-2 mb-4">
-            <FolderOpen className="w-5 h-5 text-mc-accent" />
+            <FolderOpen className="w-5 h-5 text-[#6b6b6b]" />
             <h2 className="text-xl font-semibold text-mc-text">Caminhos do workspace</h2>
           </div>
           <p className="text-sm text-mc-text-secondary mb-4">
@@ -165,7 +165,7 @@ export default function SettingsPage() {
                 type="text"
                 value={config.defaultProjectName}
                 onChange={(e) => handleChange('defaultProjectName', e.target.value)}
-                placeholder="mission-control"
+                placeholder="meridian"
                 className="w-full px-4 py-2 bg-mc-bg border border-mc-border rounded text-mc-text focus:border-mc-accent focus:outline-none"
               />
               <p className="text-xs text-mc-text-secondary mt-1">
@@ -176,9 +176,9 @@ export default function SettingsPage() {
         </section>
 
         {/* Configuração de API */}
-        <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
+        <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-md">
           <div className="flex items-center gap-2 mb-4">
-            <LinkIcon className="w-5 h-5 text-mc-accent" />
+            <LinkIcon className="w-5 h-5 text-[#6b6b6b]" />
             <h2 className="text-xl font-semibold text-mc-text">Configuração de API</h2>
           </div>
           <p className="text-sm text-mc-text-secondary mb-4">
@@ -205,9 +205,9 @@ export default function SettingsPage() {
         </section>
 
         {/* UX do Kanban */}
-        <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
+        <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-md">
           <div className="flex items-center gap-2 mb-4">
-            <Home className="w-5 h-5 text-mc-accent" />
+            <Home className="w-5 h-5 text-[#6b6b6b]" />
             <h2 className="text-xl font-semibold text-mc-text">UX do Kanban</h2>
           </div>
           <p className="text-sm text-mc-text-secondary mb-4">

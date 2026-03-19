@@ -29,7 +29,7 @@ const DEFAULT_CONFIG: MissionControlConfig = {
   workspaceBasePath: '~/Meridian-workspace',
   projectsPath: '~/Meridian-workspace/projects',
   missionControlUrl: typeof window !== 'undefined' ? window.location.origin : `http://localhost:${process.env.PORT || '4000'}`,
-  defaultProjectName: 'mission-control',
+  defaultProjectName: 'meridian',
   kanbanCompactEmptyColumns: false,
 };
 
