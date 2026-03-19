@@ -218,7 +218,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
       {editingTask && <TaskModal task={editingTask} onClose={() => setEditingTask(null)} workspaceId={workspaceId} />}
 
       {mobileMode && statusMoveTask && (
-        <div className="fixed inset-0 z-50 bg-black/60 p-4 flex items-end sm:items-center sm:justify-center" onClick={() => setStatusMoveTask(null)}>
+        <div className="fixed inset-0 z-50 bg-surface-0/60 p-4 flex items-end sm:items-center sm:justify-center" onClick={() => setStatusMoveTask(null)}>
           <div
             className="w-full sm:max-w-md bg-mc-bg-secondary border border-mc-border rounded-t-xl sm:rounded-xl p-4"
             onClick={(e) => e.stopPropagation()}
@@ -304,14 +304,14 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
         {isAssigned && dispatchError && (
           <div className={`flex items-start gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-red-500/10 rounded-md border border-red-500/30`}>
             <div className="w-2 h-2 bg-red-400 rounded-full mt-1 flex-shrink-0" />
-            <span className="text-xs text-red-300">Assigned, but blocked: {dispatchError}</span>
+            <span className="text-xs text-mc-accent-red">Assigned, but blocked: {dispatchError}</span>
           </div>
         )}
 
         {isAssigned && !dispatchError && (
           <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-yellow-500/10 rounded-md border border-yellow-500/30`}>
             <div className="w-2 h-2 bg-yellow-400 rounded-full flex-shrink-0" />
-            <span className="text-xs text-yellow-200">Assigned and validating — auto-start will move this to In Progress.</span>
+            <span className="text-xs text-mc-accent-yellow">Assigned and validating — auto-start will move this to In Progress.</span>
           </div>
         )}
 
@@ -325,7 +325,7 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
         {['testing', 'verification'].includes(task.status) && dispatchError && (
           <div className={`flex items-start gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-red-500/10 rounded-md border border-red-500/30`}>
             <div className="w-2 h-2 bg-red-400 rounded-full mt-1 flex-shrink-0" />
-            <span className="text-xs text-red-300">{dispatchError}</span>
+            <span className="text-xs text-mc-accent-red">{dispatchError}</span>
           </div>
         )}
 

@@ -192,7 +192,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-end sm:items-center justify-center z-50 p-3 sm:p-4">
+    <div className="fixed inset-0 bg-surface-0/80 flex items-end sm:items-center justify-center z-50 p-3 sm:p-4">
       <div className="bg-mc-bg-secondary border border-mc-border rounded-t-xl sm:rounded-lg w-full max-w-2xl max-h-[92vh] sm:max-h-[90vh] flex flex-col pb-[env(safe-area-inset-bottom)] sm:pb-0">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-mc-border flex-shrink-0">
@@ -338,8 +338,8 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
           </div>
 
           {saveError && (
-            <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-md">
-              <span className="text-sm text-red-400">{saveError}</span>
+            <div className="p-3 bg-mc-accent-red/10 border border-mc-accent-red/30 rounded-md">
+              <span className="text-sm text-mc-accent-red">{saveError}</span>
             </div>
           )}
             </form>

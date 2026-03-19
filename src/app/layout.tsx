@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
 import { Sidebar } from '@/components/shared/Sidebar';
+import { ClientProviders } from '@/components/shared/ClientProviders';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff2',
@@ -31,10 +32,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark`}>
       <body className="font-sans bg-surface-0 text-text-primary min-h-screen flex">
-        <Sidebar />
-        <main className="flex-1 min-h-screen overflow-auto">
-          {children}
-        </main>
+        <ClientProviders>
+          <Sidebar />
+          <main className="flex-1 min-h-screen overflow-auto">
+            {children}
+          </main>
+        </ClientProviders>
       </body>
     </html>
   );

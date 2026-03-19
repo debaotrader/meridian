@@ -94,7 +94,7 @@ export function TaskImages({ taskId }: TaskImagesProps) {
       </div>
 
       {error && (
-        <p className="text-xs text-red-400">{error}</p>
+        <p className="text-xs text-mc-accent-red">{error}</p>
       )}
 
       {images.length === 0 && !error && (
@@ -112,7 +112,7 @@ export function TaskImages({ taskId }: TaskImagesProps) {
                 alt={img.original_name}
                 className="w-full h-32 object-cover"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+              <div className="absolute inset-0 bg-surface-0/0 group-hover:bg-surface-0/40 transition-colors flex items-center justify-center">
                 <button
                   onClick={() => handleDelete(img.filename)}
                   className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 bg-red-500/80 hover:bg-red-500 rounded-full"

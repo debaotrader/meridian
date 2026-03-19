@@ -316,15 +316,15 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
 
       {/* Error / Success */}
       {error && (
-        <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
-          <p className="text-sm text-red-400">{error}</p>
+        <div className="p-3 bg-mc-accent-red/10 border border-mc-accent-red/30 rounded-lg">
+          <p className="text-sm text-mc-accent-red">{error}</p>
         </div>
       )}
 
       {saved && (
-        <div className="p-3 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-green-400" />
-          <p className="text-sm text-green-400">Team saved successfully</p>
+        <div className="p-3 bg-mc-accent-green/10 border border-mc-accent-green/30 rounded-lg flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-mc-accent-green" />
+          <p className="text-sm text-mc-accent-green">Team saved successfully</p>
         </div>
       )}
 

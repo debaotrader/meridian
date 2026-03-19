@@ -16,6 +16,7 @@ import {
   Menu,
   X,
 } from 'lucide-react';
+import { ConnectionStatus } from './ConnectionStatus';
 
 interface NavItem {
   label: string;
@@ -116,11 +117,19 @@ export function Sidebar() {
       </nav>
 
       {/* Footer */}
-      {!collapsed && (
-        <div className="px-4 py-3 border-t border-border-subtle">
-          <p className="text-2xs text-text-muted">Meridian v0.1</p>
-        </div>
-      )}
+      <div className={cn('px-3 py-3 border-t border-border-subtle', collapsed ? 'flex justify-center' : '')}>
+        {collapsed ? (
+          <span
+            className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0"
+            aria-label="Connection status"
+          />
+        ) : (
+          <div className="flex items-center justify-between">
+            <ConnectionStatus />
+            <span className="text-2xs text-text-muted">v0.1</span>
+          </div>
+        )}
+      </div>
     </div>
   );
 

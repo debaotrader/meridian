@@ -140,11 +140,11 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
         {!effectiveMinimized && (
           <>
             {activeSubAgents > 0 && (
-              <div className="mb-3 mt-3 px-3 py-2 bg-green-500/10 border border-green-500/20 rounded-lg">
+              <div className="mb-3 mt-3 px-3 py-2 bg-mc-accent-green/10 border border-mc-accent-green/20 rounded-lg">
                 <div className="flex items-center gap-2 text-sm">
-                  <span className="text-green-400">●</span>
+                  <span className="text-mc-accent-green">●</span>
                   <span className="text-mc-text">Active Sub-Agents:</span>
-                  <span className="font-bold text-green-400">{activeSubAgents}</span>
+                  <span className="font-bold text-mc-accent-green">{activeSubAgents}</span>
                 </div>
               </div>
             )}
@@ -186,7 +186,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
                   {!!agent.is_master && <span className="absolute -top-1 -right-1 text-xs text-mc-accent-yellow">★</span>}
                   <span
                     className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${
-                      agent.status === 'working' ? 'bg-mc-accent-green' : agent.status === 'standby' ? 'bg-mc-text-secondary' : 'bg-gray-500'
+                      agent.status === 'working' ? 'bg-mc-accent-green' : agent.status === 'standby' ? 'bg-mc-text-secondary' : 'bg-mc-text-secondary'
                     }`}
                   />
                   <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-mc-bg text-mc-text text-xs rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50 border border-mc-border">
@@ -220,7 +220,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
                   <div className="text-xs text-mc-text-secondary truncate flex items-center gap-1">
                     {agent.role}
                     {agent.source === 'gateway' && (
-                      <span className="text-[10px] px-1 py-0 bg-blue-500/20 text-blue-400 rounded" title="Imported from Gateway">
+                      <span className="text-[10px] px-1 py-0 bg-mc-accent-cyan/20 text-mc-accent-cyan rounded" title="Imported from Gateway">
                         GW
                       </span>
                     )}
@@ -237,7 +237,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
                     disabled={isConnecting}
                     className={`w-full min-h-11 flex items-center justify-center gap-2 px-2 rounded text-xs transition-colors ${
                       openclawSession
-                        ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                        ? 'bg-mc-accent-green/20 text-mc-accent-green hover:bg-mc-accent-green/30'
                         : 'bg-mc-bg text-mc-text-secondary hover:bg-mc-bg-tertiary hover:text-mc-text'
                     }`}
                   >
@@ -276,7 +276,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
           </button>
           <button
             onClick={() => setShowDiscoverModal(true)}
-            className="w-full min-h-11 flex items-center justify-center gap-2 px-3 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded text-sm text-blue-400 hover:text-blue-300 transition-colors"
+            className="w-full min-h-11 flex items-center justify-center gap-2 px-3 bg-blue-500/10 hover:bg-mc-accent-cyan/20 border border-mc-accent-cyan/20 rounded text-sm text-mc-accent-cyan hover:text-mc-accent-cyan transition-colors"
           >
             <Search className="w-4 h-4" />
             Import from Gateway

@@ -121,7 +121,7 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
   const availableCount = agents.filter((a) => !a.already_imported).length;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-end sm:items-center justify-center z-50 p-3 sm:p-4">
+    <div className="fixed inset-0 bg-surface-0/80 flex items-end sm:items-center justify-center z-50 p-3 sm:p-4">
       <div className="bg-mc-bg-secondary border border-mc-border rounded-t-xl sm:rounded-lg w-full max-w-2xl max-h-[88vh] sm:max-h-[80vh] flex flex-col pb-[env(safe-area-inset-bottom)] sm:pb-0">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-mc-border">
@@ -152,16 +152,16 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
           )}
 
           {error && (
-            <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/20 rounded-lg mb-4">
-              <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-              <span className="text-sm text-red-400">{error}</span>
+            <div className="flex items-center gap-3 p-4 bg-mc-accent-red/10 border border-mc-accent-red/20 rounded-lg mb-4">
+              <AlertCircle className="w-5 h-5 text-mc-accent-red flex-shrink-0" />
+              <span className="text-sm text-mc-accent-red">{error}</span>
             </div>
           )}
 
           {importResult && (
-            <div className="flex items-center gap-3 p-4 bg-green-500/10 border border-green-500/20 rounded-lg mb-4">
-              <Check className="w-5 h-5 text-green-400 flex-shrink-0" />
-              <span className="text-sm text-green-400">
+            <div className="flex items-center gap-3 p-4 bg-mc-accent-green/10 border border-mc-accent-green/20 rounded-lg mb-4">
+              <Check className="w-5 h-5 text-mc-accent-green flex-shrink-0" />
+              <span className="text-sm text-mc-accent-green">
                 Imported {importResult.imported} agent{importResult.imported !== 1 ? 's' : ''}
                 {importResult.skipped > 0 && ` (${importResult.skipped} skipped)`}
               </span>
@@ -232,14 +232,14 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
                       <div
                         className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 ${
                           isImported
-                            ? 'border-green-500/50 bg-green-500/20'
+                            ? 'border-green-500/50 bg-mc-accent-green/20'
                             : isSelected
                             ? 'border-mc-accent bg-mc-accent'
                             : 'border-mc-border'
                         }`}
                       >
                         {(isSelected || isImported) && (
-                          <Check className={`w-3 h-3 ${isImported ? 'text-green-400' : 'text-mc-bg'}`} />
+                          <Check className={`w-3 h-3 ${isImported ? 'text-mc-accent-green' : 'text-mc-bg'}`} />
                         )}
                       </div>
 
@@ -251,7 +251,7 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
                         <div className="flex items-center gap-2">
                           <span className="font-medium text-sm truncate">{agent.name}</span>
                           {isImported && (
-                            <span className="text-xs px-1.5 py-0.5 bg-green-500/20 text-green-400 rounded">
+                            <span className="text-xs px-1.5 py-0.5 bg-mc-accent-green/20 text-mc-accent-green rounded">
                               Imported
                             </span>
                           )}

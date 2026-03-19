@@ -22,7 +22,7 @@ export default function DemoBanner() {
         href="https://github.com/crshdn/mission-control"
         target="_blank"
         rel="noopener noreferrer"
-        className="ml-3 underline hover:text-blue-200 transition-colors"
+        className="ml-3 underline hover:text-mc-accent-cyan transition-colors"
       >
         Get Mission Control →
       </a>

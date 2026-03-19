@@ -408,7 +408,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     return (
       <div className="p-4 space-y-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-green-400">
+          <div className="flex items-center gap-2 text-mc-accent-green">
             <Lock className="w-5 h-5" />
             <span className="font-medium">Planning Complete</span>
           </div>
@@ -516,7 +516,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         </div>
         
         {error && (
-          <div className="flex items-center gap-2 text-red-400 text-sm">
+          <div className="flex items-center gap-2 text-mc-accent-red text-sm">
             <AlertCircle className="w-4 h-4" />
             {error}
           </div>
@@ -546,7 +546,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
       {/* Progress indicator with cancel button */}
       <div className="p-4 border-b border-mc-border flex items-center justify-between">
         <div className="flex items-center gap-2 text-sm text-mc-text-secondary">
-          <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" />
+          <div className="w-2 h-2 bg-mc-accent-purple rounded-full animate-pulse" />
           <span>Planning in progress...</span>
         </div>
         <button
@@ -631,17 +631,17 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                 className={`mt-4 p-3 border rounded-lg ${
                   error.includes('still processing')
                     ? 'bg-orange-500/10 border-orange-500/40'
-                    : 'bg-red-500/10 border-red-500/30'
+                    : 'bg-mc-accent-red/10 border-mc-accent-red/30'
                 }`}
               >
                 <div className="flex items-start gap-2">
                   <AlertCircle
                     className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
-                      error.includes('still processing') ? 'text-orange-300' : 'text-red-400'
+                      error.includes('still processing') ? 'text-orange-300' : 'text-mc-accent-red'
                     }`}
                   />
                   <div className="flex-1">
-                    <p className={`text-sm ${error.includes('still processing') ? 'text-orange-200' : 'text-red-400'}`}>
+                    <p className={`text-sm ${error.includes('still processing') ? 'text-orange-200' : 'text-mc-accent-red'}`}>
                       {error}
                     </p>
                     {!isWaitingForResponse && lastSubmissionRef.current && (
@@ -651,7 +651,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                         className={`mt-2 text-xs underline disabled:opacity-50 ${
                           error.includes('still processing')
                             ? 'text-orange-300 hover:text-orange-200'
-                            : 'text-red-400 hover:text-red-300'
+                            : 'text-mc-accent-red hover:text-mc-accent-red/80'
                         }`}
                       >
                         {submitting ? 'Retrying...' : 'Retry'}
