@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Plus, ChevronRight, GripVertical, ArrowRightLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useMissionControl } from '@/lib/store';
 import { triggerAutoDispatch, shouldTriggerAutoDispatch } from '@/lib/auto-dispatch';
 import { getConfig } from '@/lib/config';
@@ -151,14 +151,14 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
       <div className="p-3 border-b border-mc-border flex items-center justify-between">
         <div className="flex items-center gap-2">
           <ChevronRight className="w-4 h-4 text-mc-text-secondary" />
-          <span className="text-sm font-medium uppercase tracking-wider">Fila de missões</span>
+          <span className="text-sm font-medium uppercase tracking-wider">{t('header.missionQueue')}</span>
         </div>
         <button
           onClick={() => setShowCreateModal(true)}
           className="flex items-center gap-2 px-4 min-h-11 bg-accent text-inverse rounded text-sm font-medium hover:bg-accent-hover"
         >
           <Plus className="w-4 h-4" />
-          Nova tarefa
+          {t('task.newTaskLabel')}
         </button>
       </div>
 
@@ -228,7 +228,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
           <div className={`min-w-0 ${isPortrait ? 'space-y-3' : 'space-y-2'}`}>
             {mobileTasks.length === 0 ? (
               <div className="text-sm text-mc-text-secondary bg-mc-bg-secondary border border-mc-border rounded-lg p-4">
-                {t('ui.noTasksInStatus')}
+                {t('task.noTasksInStatus')}
               </div>
             ) : (
               mobileTasks.map((task) => (
@@ -257,7 +257,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
             className="w-full sm:max-w-md bg-mc-bg-secondary border border-mc-border rounded-t-xl sm:rounded-xl p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="text-sm text-mc-text-secondary mb-2">Move task</div>
+            <div className="text-sm text-mc-text-secondary mb-2">{t('task.moveTask')}</div>
             <div className="font-medium mb-4 line-clamp-2">{statusMoveTask.title}</div>
             <div className="space-y-2 max-h-[50vh] overflow-y-auto">
               {COLUMNS.map((column) => (
@@ -295,6 +295,7 @@ interface TaskCardProps {
 
 function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobileMode, portraitMode = true, isHighlighted = false, highlightRef }: TaskCardProps) {
   const { t } = useTranslation('kanban');
+
   const priorityStyles = {
     low: 'text-mc-text-secondary',
     normal: 'text-mc-accent',
@@ -335,14 +336,14 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
         {isPlanning && (
           <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-agent-shuri/10 rounded-md border border-agent-shuri/20`}>
             <div className="w-2 h-2 bg-agent-shuri rounded-full animate-pulse flex-shrink-0" />
-            <span className="text-xs text-agent-shuri font-medium">{t('ui.continuePlanning')}</span>
+            <span className="text-xs text-agent-shuri font-medium">{t('task.continuePlanning')}</span>
           </div>
         )}
 
         {isAssigned && dispatchError && (
           <div className={`flex items-start gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-error/10 rounded-md border border-status-error/30`}>
             <div className="w-2 h-2 bg-status-error rounded-full mt-1 flex-shrink-0" />
-            <span className="text-xs text-mc-accent-red">{t('ui.assignedBlocked')} {dispatchError}</span>
+            <span className="text-xs text-mc-accent-red">{t('task.assignedBlocked', { error: dispatchError })}</span>
           </div>
         )}
 
@@ -370,7 +371,7 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
         {task.status === 'review' && !dispatchError && (
           <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-agent-cyan/10 rounded-md border border-agent-cyan/30`}>
             <div className="w-2 h-2 bg-agent-cyan rounded-full flex-shrink-0" />
-            <span className="text-xs text-agent-cyan">{t('ui.waitingVerification')}</span>
+            <span className="text-xs text-agent-cyan">{t('task.waitingVerification')}</span>
           </div>
         )}
 
@@ -398,7 +399,7 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
             className={`w-full min-h-11 rounded-md border border-mc-border bg-mc-bg flex items-center justify-center gap-2 text-mc-text-secondary ${portraitMode ? 'mt-3 text-sm' : 'mt-2 text-xs'}`}
           >
             <ArrowRightLeft className="w-4 h-4" />
-            {t('ui.moveStatus')}
+            {t('task.moveStatus')}
           </button>
         )}
       </div>

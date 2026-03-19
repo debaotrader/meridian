@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ChevronDown, ChevronUp, LayoutPanelTop, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { MissionQueue } from './MissionQueue';
 import { PlanningTab } from './PlanningTab';
 import { LiveFeed } from './LiveFeed';
@@ -43,17 +43,17 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
             <button
               onClick={() => setShowPlanning((v) => !v)}
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded border border-border-default bg-surface-2 text-text-secondary hover:text-text-primary hover:border-border-strong transition-colors"
-              aria-label={showPlanning ? 'Ocultar painel de planejamento' : 'Mostrar painel de planejamento'}
+              aria-label={showPlanning ? t('planning.hidePanel') : t('planning.showPanel')}
             >
               {showPlanning ? (
                 <>
                   <X className="w-3.5 h-3.5" />
-                  {t('ui.closePlanning')}
+                  {t('planning.closePlanning')}
                 </>
               ) : (
                 <>
                   <LayoutPanelTop className="w-3.5 h-3.5" />
-                  {t('ui.planningPanel')}
+                  {t('planning.planningPanel')}
                 </>
               )}
             </button>
@@ -69,12 +69,12 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
           <aside className="hidden lg:flex flex-col border-l border-border-default bg-surface-1 overflow-hidden animate-slide-in-right">
             <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
               <span className="text-sm font-medium text-text-primary uppercase tracking-wider font-display">
-                {t('tabs.planning')}
+                {t('planning.title')}
               </span>
               <button
                 onClick={() => setShowPlanning(false)}
                 className="p-1 rounded hover:bg-surface-3 text-text-tertiary hover:text-text-secondary transition-colors"
-                aria-label="Fechar painel de planejamento"
+                aria-label={t('planning.closePanel')}
               >
                 <X className="w-4 h-4" />
               </button>
@@ -86,7 +86,7 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center">
                   <div className="text-4xl mb-3">📋</div>
                   <p className="text-text-secondary text-sm">
-                    {t('ui.openTaskToStart')}
+                    {t('planning.openTaskToStart')}
                   </p>
                 </div>
               )}
@@ -105,9 +105,9 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
         <button
           onClick={() => setLiveFeedOpen((v) => !v)}
           className="flex items-center justify-between px-4 py-2 text-xs text-text-secondary hover:text-text-primary hover:bg-surface-2 transition-colors shrink-0 w-full"
-          aria-label={liveFeedOpen ? 'Recolher feed ao vivo' : 'Expandir feed ao vivo'}
+          aria-label={liveFeedOpen ? t('planning.collapseFeed') : t('planning.expandFeedLabel')}
         >
-          <span className="font-medium uppercase tracking-wider font-display">Feed ao vivo</span>
+          <span className="font-medium uppercase tracking-wider font-display">{t('header.liveFeed')}</span>
           {liveFeedOpen ? (
             <ChevronDown className="w-4 h-4" />
           ) : (

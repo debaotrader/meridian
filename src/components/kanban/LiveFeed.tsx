@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ChevronRight, ChevronLeft, Clock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useMissionControl } from '@/lib/store';
 import type { Event } from '@/lib/types';
 import { formatDistanceToNow } from 'date-fns';
@@ -21,6 +21,7 @@ interface LiveFeedProps {
 }
 
 export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProps) {
+  const { t } = useTranslation('kanban');
   const { events } = useMissionControl();
   const [filter, setFilter] = useState<FeedFilter>('all');
   const [isMinimized, setIsMinimized] = useState(false);
@@ -47,12 +48,12 @@ export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProp
             <button
               onClick={toggleMinimize}
               className="p-1 rounded hover:bg-mc-bg-tertiary text-mc-text-secondary hover:text-mc-text transition-colors"
-              aria-label={effectiveMinimized ? 'Expandir feed' : 'Minimizar feed'}
+              aria-label={effectiveMinimized ? t('planning.expandFeed') : t('planning.minimizeFeed')}
             >
               {effectiveMinimized ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
             </button>
           )}
-          {!effectiveMinimized && <span className="text-sm font-medium uppercase tracking-wider">Feed ao vivo</span>}
+          {!effectiveMinimized && <span className="text-sm font-medium uppercase tracking-wider">{t('header.liveFeed')}</span>}
         </div>
 
         {!effectiveMinimized && (

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { CheckCircle, Circle, Lock, AlertCircle, Loader2, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { apiPath } from '@/lib/api-path';
 
 interface PlanningOption {
@@ -86,11 +86,11 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
       }
     } catch (err) {
       console.error('Failed to load planning state:', err);
-      setError('Falha ao carregar estado do planejamento');
+      setError(t('planning.failedLoadState'));
     } finally {
       setLoading(false);
     }
-  }, [taskId]);
+  }, [taskId, t]);
 
   // Stop polling (defined first to avoid circular dependency)
   const stopPolling = useCallback(() => {
@@ -243,10 +243,10 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         // Start polling for the first question
         startPolling();
       } else {
-        setError(data.error || 'Falha ao iniciar planejamento');
+        setError(data.error || t('planning.failedStartPlanning'));
       }
     } catch (err) {
-      setError('Falha ao iniciar planejamento');
+      setError(t('planning.failedStartPlanning'));
     } finally {
       setStarting(false);
     }
@@ -281,14 +281,14 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         // Don't clear selection yet - keep it visible while waiting for response
         startPolling();
       } else {
-        setError(data.error || 'Falha ao enviar resposta');
+        setError(data.error || t('planning.failedSubmitAnswer'));
         setIsSubmittingAnswer(false); // Clear submitting state on error
         // Clear selection on error so user can try again
         setSelectedOption(null);
         setOtherText('');
       }
     } catch (err) {
-      setError('Falha ao enviar resposta');
+      setError(t('planning.failedSubmitAnswer'));
       setIsSubmittingAnswer(false); // Clear submitting state on error
       // Clear selection on error so user can try again
       setSelectedOption(null);
@@ -320,14 +320,14 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
       if (res.ok) {
         startPolling();
       } else {
-        setError(data.error || 'Falha ao enviar resposta');
+        setError(data.error || t('planning.failedSubmitAnswer'));
         // Clear submission state and selection on error so user can retry
         setIsSubmittingAnswer(false);
         setSelectedOption(null);
         setOtherText('');
       }
     } catch (err) {
-      setError('Falha ao enviar resposta');
+      setError(t('planning.failedSubmitAnswer'));
       // Clear submission state and selection on error so user can retry
       setIsSubmittingAnswer(false);
       setSelectedOption(null);
@@ -356,7 +356,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         setError(`Failed to retry dispatch: ${data.error}`);
       }
     } catch (err) {
-      setError('Falha ao tentar despacho novamente');
+      setError(t('planning.failedRetryDispatch'));
     } finally {
       setRetryingDispatch(false);
     }
@@ -364,7 +364,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
 
   // Cancel planning
   const cancelPlanning = async () => {
-    if (!confirm('Tem certeza que deseja cancelar o planejamento? Isso redefinirá o estado.')) {
+    if (!confirm(t('planning.cancelConfirm'))) {
       return;
     }
 
@@ -388,10 +388,10 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         });
       } else {
         const data = await res.json();
-        setError(data.error || 'Falha ao cancelar planejamento');
+        setError(data.error || t('planning.failedCancelPlanning'));
       }
     } catch (err) {
-      setError('Falha ao cancelar planejamento');
+      setError(t('planning.failedCancelPlanning'));
     } finally {
       setCanceling(false);
     }
@@ -401,7 +401,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     return (
       <div className="flex items-center justify-center p-8">
         <Loader2 className="w-6 h-6 animate-spin text-mc-accent" />
-        <span className="ml-2 text-mc-text-secondary">Loading planning state...</span>
+        <span className="ml-2 text-mc-text-secondary">{t('planning.loading')}</span>
       </div>
     );
   }
@@ -413,11 +413,11 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-mc-accent-green">
             <Lock className="w-5 h-5" />
-            <span className="font-medium">Planning Complete</span>
+            <span className="font-medium">{t('planning.complete')}</span>
           </div>
           {state.dispatchError && (
             <div className="text-right">
-              <span className="text-sm text-status-warning">⚠️ Dispatch Failed</span>
+              <span className="text-sm text-status-warning">⚠️ {t('planning.dispatchFailed')}</span>
             </div>
           )}
         </div>
@@ -428,7 +428,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
             <div className="flex items-start gap-2">
               <AlertCircle className="w-4 h-4 text-status-warning mt-0.5 flex-shrink-0" />
               <div className="flex-1">
-                <p className="text-status-warning text-sm font-medium mb-2">Task dispatch failed</p>
+                <p className="text-status-warning text-sm font-medium mb-2">{t('planning.taskDispatchFailed')}</p>
                 <p className="text-status-warning text-xs mb-3">{state.dispatchError}</p>
                 <div className="flex items-center gap-2">
                   <button
@@ -439,17 +439,17 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                     {retryingDispatch ? (
                       <>
                         <Loader2 className="w-3 h-3 animate-spin" />
-                        Retrying...
+                        {t('planning.retryingDispatch')}
                       </>
                     ) : (
                       <>
                         <CheckCircle className="w-3 h-3" />
-                        Retry Dispatch
+                        {t('planning.retryDispatch')}
                       </>
                     )}
                   </button>
                   <span className="text-status-warning text-xs">
-                    This will attempt to assign the task to an agent
+                    {t('planning.dispatchAttempt')}
                   </span>
                 </div>
               </div>
@@ -464,7 +464,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
           
           {state.spec.deliverables?.length > 0 && (
             <div className="mb-3">
-              <h4 className="text-sm font-medium mb-1">Deliverables:</h4>
+              <h4 className="text-sm font-medium mb-1">{t('planning.deliverablesLabel')}</h4>
               <ul className="list-disc list-inside text-sm text-mc-text-secondary">
                 {state.spec.deliverables.map((d, i) => (
                   <li key={i}>{d}</li>
@@ -475,7 +475,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
           
           {state.spec.success_criteria?.length > 0 && (
             <div>
-              <h4 className="text-sm font-medium mb-1">Success Criteria:</h4>
+              <h4 className="text-sm font-medium mb-1">{t('planning.successCriteriaLabel')}</h4>
               <ul className="list-disc list-inside text-sm text-mc-text-secondary">
                 {state.spec.success_criteria.map((c, i) => (
                   <li key={i}>{c}</li>
@@ -488,7 +488,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         {/* Generated Agents */}
         {state.agents && state.agents.length > 0 && (
           <div>
-            <h3 className="font-medium mb-2">Agents Created:</h3>
+            <h3 className="font-medium mb-2">{t('planning.agentsCreated')}</h3>
             <div className="space-y-2">
               {state.agents.map((agent, i) => (
                 <div key={i} className="bg-mc-bg border border-mc-border rounded-lg p-3 flex items-center gap-3">
@@ -511,10 +511,9 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     return (
       <div className="flex flex-col items-center justify-center p-8 space-y-4">
         <div className="text-center">
-          <h3 className="text-lg font-medium mb-2">Start Planning</h3>
+          <h3 className="text-lg font-medium mb-2">{t('planning.startButton')}</h3>
           <p className="text-mc-text-secondary text-sm max-w-md">
-            I&apos;ll ask you a few questions to understand exactly what you need. 
-            All questions are multiple choice — just click to answer.
+            {t('planning.questionsIntro')}
           </p>
         </div>
         
@@ -533,10 +532,10 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
           {starting ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" />
-              Starting...
+              {t('planning.starting')}
             </>
           ) : (
-            <>📋 Start Planning</>
+            <>📋 {t('planning.startButton')}</>
           )}
         </button>
       </div>
@@ -550,7 +549,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
       <div className="p-4 border-b border-mc-border flex items-center justify-between">
         <div className="flex items-center gap-2 text-sm text-mc-text-secondary">
           <div className="w-2 h-2 bg-mc-accent-purple rounded-full animate-pulse" />
-          <span>Planejamento em andamento...</span>
+          <span>{t('planning.inProgress')}</span>
         </div>
         <button
           onClick={cancelPlanning}
@@ -560,12 +559,12 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
           {canceling ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              Canceling...
+              {t('planning.cancelingButton')}
             </>
           ) : (
             <>
               <X className="w-4 h-4" />
-              Cancel
+              {t('planning.cancelButton')}
             </>
           )}
         </button>
@@ -618,7 +617,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                           type="text"
                           value={otherText}
                           onChange={(e) => setOtherText(e.target.value)}
-                          placeholder="Especifique..."
+                          placeholder={t('planning.specifyPlaceholder')}
                           className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
                           disabled={submitting}
                         />
@@ -657,7 +656,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                             : 'text-mc-accent-red hover:text-mc-accent-red/80'
                         }`}
                       >
-                        {submitting ? 'Tentando novamente...' : 'Tentar novamente'}
+                        {submitting ? t('planning.retrying') : 'Tentar novamente'}
                       </button>
                     )}
                   </div>
@@ -675,10 +674,10 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                 {submitting ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Sending...
+                    {t('planning.sending')}
                   </>
                 ) : (
-                  'Continuar →'
+                  t('planning.continue')
                 )}
               </button>
 
@@ -686,7 +685,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
               {isSubmittingAnswer && !submitting && (
                 <div className="mt-4 flex items-center justify-center gap-2 text-sm text-mc-text-secondary">
                   <Loader2 className="w-4 h-4 animate-spin text-mc-accent" />
-                  <span>Aguardando resposta...</span>
+                  <span>{t('planning.waitingResponse')}</span>
                 </div>
               )}
             </div>
@@ -696,7 +695,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
             <div className="text-center">
               <Loader2 className="w-8 h-8 animate-spin text-mc-accent mx-auto mb-2" />
               <p className="text-mc-text-secondary">
-                {isWaitingForResponse ? 'Aguardando resposta...' : 'Aguardando próxima pergunta...'}
+                {isWaitingForResponse ? t('planning.waitingResponse') : t('planning.waitingNextQuestion')}
               </p>
             </div>
           </div>
@@ -707,12 +706,12 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
       {state?.messages && state.messages.length > 0 && (
         <details className="border-t border-mc-border">
           <summary className="p-3 text-sm text-mc-text-secondary cursor-pointer hover:bg-mc-bg-tertiary">
-            View conversation ({state.messages.length} messages)
+            {t('planning.viewConversation', { count: state.messages.length })}
           </summary>
           <div className="p-3 space-y-2 max-h-48 overflow-y-auto bg-mc-bg">
             {state.messages.map((msg, i) => (
               <div key={i} className={`text-sm ${msg.role === 'user' ? 'text-mc-accent' : 'text-mc-text-secondary'}`}>
-                <span className="font-medium">{msg.role === 'user' ? 'You' : 'Orchestrator'}:</span>{' '}
+                <span className="font-medium">{msg.role === 'user' ? t('planning.youLabel') : t('planning.orchestratorLabel')}:</span>{' '}
                 <span className="opacity-75">{msg.content.substring(0, 100)}...</span>
               </div>
             ))}

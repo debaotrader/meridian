@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { X, Save, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useMissionControl } from '@/lib/store';
 import type { Agent, AgentStatus } from '@/lib/types';
 import { apiPath } from '@/lib/api-path';
@@ -117,7 +117,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
   };
 
   const tabs = [
-    { id: 'info', label: t('ui.infoTab') },
+    { id: 'info', label: t('agents.info') },
     { id: 'soul', label: 'SOUL.md' },
     { id: 'user', label: 'USER.md' },
     { id: 'agents', label: 'AGENTS.md' },
@@ -129,7 +129,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-mc-border">
           <h2 className="text-lg font-semibold">
-            {agent ? `Editar ${agent.name}` : t('ui.createNewAgent')}
+            {agent ? t('agents.editAgent', { name: agent.name }) : t('agents.createNew')}
           </h2>
           <button
             onClick={onClose}
@@ -162,7 +162,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
             <div className="space-y-4">
               {/* Avatar Selection */}
               <div>
-                <label className="block text-sm font-medium mb-2">Avatar</label>
+                <label className="block text-sm font-medium mb-2">{t('agents.avatar')}</label>
                 <div className="flex flex-wrap gap-2">
                   {EMOJI_OPTIONS.map((emoji) => (
                     <button
@@ -183,20 +183,20 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
 
               {/* Name */}
               <div>
-                <label className="block text-sm font-medium mb-1">Name</label>
+                <label className="block text-sm font-medium mb-1">{t('agents.name')}</label>
                 <input
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
                   className="w-full min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
-                  placeholder={t('ui.agentNamePlaceholder')}
+                  placeholder={t('agents.namePlaceholder')}
                 />
               </div>
 
               {/* Role */}
               <div>
-                <label className="block text-sm font-medium mb-1">Role</label>
+                <label className="block text-sm font-medium mb-1">{t('agents.role')}</label>
                 <input
                   type="text"
                   value={form.role}
@@ -209,19 +209,19 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-medium mb-1">Description</label>
+                <label className="block text-sm font-medium mb-1">{t('agents.description')}</label>
                 <textarea
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   rows={2}
                   className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent resize-none"
-                  placeholder={t('ui.agentDescPlaceholder')}
+                  placeholder={t('agents.rolePlaceholder')}
                 />
               </div>
 
               {/* Status */}
               <div>
-                <label className="block text-sm font-medium mb-1">Status</label>
+                <label className="block text-sm font-medium mb-1">{t('agents.status')}</label>
                 <select
                   value={form.status}
                   onChange={(e) => setForm({ ...form, status: e.target.value as AgentStatus })}
@@ -243,36 +243,36 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                   className="w-4 h-4"
                 />
                 <label htmlFor="is_master" className="text-sm">
-                  Master Orchestrator (can coordinate other agents)
+                  {t('agents.masterOrchestrator')}
                 </label>
               </div>
 
               {/* Model Selection */}
               <div>
                 <label className="block text-sm font-medium mb-1">
-                  Model
+                  {t('agents.model')}
                   {defaultModel && form.model === defaultModel && (
-                    <span className="ml-2 text-xs text-mc-text-secondary">(Default)</span>
+                    <span className="ml-2 text-xs text-mc-text-secondary">({t('agents.defaultLabel')})</span>
                   )}
                 </label>
                 {modelsLoading ? (
-                  <div className="text-sm text-mc-text-secondary">Loading available models...</div>
+                  <div className="text-sm text-mc-text-secondary">{t('agents.loadingModels')}</div>
                 ) : (
                   <select
                     value={form.model}
                     onChange={(e) => setForm({ ...form, model: e.target.value })}
                     className="w-full min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
                   >
-                    <option value="">-- Use Default Model --</option>
+                    <option value="">{t('agents.useDefaultModel')}</option>
                     {availableModels.map((model) => (
                       <option key={model} value={model}>
-                        {model}{defaultModel === model ? ' (Default)' : ''}
+                        {model}{defaultModel === model ? ` (${t('agents.defaultLabel')})` : ''}
                       </option>
                     ))}
                   </select>
                 )}
                 <p className="text-xs text-mc-text-secondary mt-1">
-                  AI model used by this agent. Leave empty to use OpenClaw default.
+                  {t('agents.modelDesc')}
                 </p>
               </div>
             </div>
@@ -281,7 +281,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
           {activeTab === 'soul' && (
             <div>
               <label className="block text-sm font-medium mb-2">
-                SOUL.md - Agent Personality & Identity
+                SOUL.md - {t('agents.soulDesc')}
               </label>
               <textarea
                 value={form.soul_md}
@@ -296,7 +296,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
           {activeTab === 'user' && (
             <div>
               <label className="block text-sm font-medium mb-2">
-                USER.md - Context About the Human
+                USER.md - {t('agents.userDesc')}
               </label>
               <textarea
                 value={form.user_md}
@@ -311,7 +311,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
           {activeTab === 'agents' && (
             <div>
               <label className="block text-sm font-medium mb-2">
-                AGENTS.md - Team Awareness
+                AGENTS.md - {t('agents.agentsDesc')}
               </label>
               <textarea
                 value={form.agents_md}
@@ -334,7 +334,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                 className="min-h-11 flex items-center gap-2 px-3 py-2 text-mc-accent-red hover:bg-mc-accent-red/10 rounded text-sm"
               >
                 <Trash2 className="w-4 h-4" />
-                Delete
+                {t('agents.delete')}
               </button>
             )}
           </div>
@@ -344,7 +344,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
               onClick={onClose}
               className="min-h-11 px-4 py-2 text-sm text-mc-text-secondary hover:text-mc-text"
             >
-              Cancel
+              {t('agents.cancel')}
             </button>
             <button
               onClick={handleSubmit}
@@ -352,7 +352,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
               className="min-h-11 flex items-center gap-2 px-4 py-2 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90 disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
-              {isSubmitting ? 'Salvando...' : 'Salvar'}
+              {isSubmitting ? t('actions.saving') : t('actions.save')}
             </button>
           </div>
         </div>
