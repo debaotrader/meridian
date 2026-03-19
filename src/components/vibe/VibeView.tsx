@@ -1154,7 +1154,7 @@ export default function VibeView() {
             📞
           </button>
           <a
-            href="/leaderboard"
+            href="/meridian/vibe#leaderboard"
             style={{
               background: 'none',
               border: 'none',
@@ -1170,7 +1170,7 @@ export default function VibeView() {
             🏆
           </a>
           <a
-            href="/stats"
+            href="/meridian/analytics"
             style={{
               background: 'none',
               border: 'none',
@@ -1253,7 +1253,7 @@ export default function VibeView() {
             𝕏
           </button>
           <a
-            href="/viral-templates.html"
+            href="/meridian/vibe#templates"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -1344,7 +1344,7 @@ export default function VibeView() {
             ↻
           </button>
           <a
-            href="/help"
+            href="https://docs.openclaw.ai"
             style={{
               background: 'none',
               border: 'none',
@@ -1593,7 +1593,7 @@ export default function VibeView() {
               &gt; CONFIGURAR AGENTES
             </a>
             <a 
-              href="/install"
+              href="https://docs.openclaw.ai/getting-started"
               onClick={() => sfx.play('click')}
               style={{
                 background: 'transparent',
@@ -1684,7 +1684,7 @@ export default function VibeView() {
                 <div style={{ marginBottom: 12, fontSize: 10 }}>
                   &gt; Configure agents in <code style={{ background: 'rgba(0,0,0,0.5)', padding: '2px 6px', border: '1px solid #00ff41', fontSize: 9, color: '#00ff41' }}>~/.openclaw/openclaw.json</code>
                 </div>
-                <a href="/install" style={{
+                <a href="https://docs.openclaw.ai/getting-started" style={{
                   color: '#00ff41',
                   fontSize: 10,
                   textDecoration: 'none',

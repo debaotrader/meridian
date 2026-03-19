@@ -47,7 +47,7 @@ export function DemoBanner() {
           alignItems: 'center',
         }}>
           <a
-            href="/install"
+            href="https://docs.openclaw.ai/getting-started"
             style={{
               background: 'rgba(255, 255, 255, 0.25)',
               border: '1px solid rgba(255, 255, 255, 0.3)',
@@ -133,7 +133,7 @@ export function DemoBanner() {
         alignItems: 'center',
       }}>
         <a
-          href="/install"
+          href="https://docs.openclaw.ai/getting-started"
           style={{
             background: 'rgba(255, 255, 255, 0.25)',
             backdropFilter: 'blur(10px)',
@@ -158,7 +158,7 @@ export function DemoBanner() {
         </a>
 
         <a
-          href="/?demo=false"
+          href="/meridian/vibe"
           style={{
             background: 'transparent',
             border: 'none',
