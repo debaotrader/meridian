@@ -8,6 +8,12 @@ import { formatDistanceToNow } from 'date-fns';
 
 type FeedFilter = 'all' | 'tasks' | 'agents';
 
+const FILTER_LABELS: Record<FeedFilter, string> = {
+  all: 'Todos',
+  tasks: 'Tarefas',
+  agents: 'Agentes',
+};
+
 interface LiveFeedProps {
   mobileMode?: boolean;
   isPortrait?: boolean;
@@ -45,20 +51,20 @@ export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProp
               {effectiveMinimized ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
             </button>
           )}
-          {!effectiveMinimized && <span className="text-sm font-medium uppercase tracking-wider">Live Feed</span>}
+          {!effectiveMinimized && <span className="text-sm font-medium uppercase tracking-wider">Feed ao vivo</span>}
         </div>
 
         {!effectiveMinimized && (
           <div className={`mt-3 ${mobileMode && isPortrait ? 'grid grid-cols-3 gap-2' : 'flex gap-1'}`}>
             {(['all', 'tasks', 'agents'] as FeedFilter[]).map((tab) => (
               <button
-                key={tab}
+                key={FILTER_LABELS[tab]}
                 onClick={() => setFilter(tab)}
                 className={`min-h-11 text-xs rounded uppercase ${mobileMode && isPortrait ? 'px-1' : 'px-3'} ${
                   filter === tab ? 'bg-mc-accent text-mc-bg font-medium' : 'text-mc-text-secondary hover:bg-mc-bg-tertiary'
                 }`}
               >
-                {tab}
+                {FILTER_LABELS[tab]}
               </button>
             ))}
           </div>
@@ -68,7 +74,7 @@ export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProp
       {!effectiveMinimized && (
         <div className="flex-1 overflow-y-auto p-2 space-y-1 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
           {filteredEvents.length === 0 ? (
-            <div className="text-center py-8 text-mc-text-secondary text-sm">No events yet</div>
+            <div className="text-center py-8 text-mc-text-secondary text-sm">Nenhum evento ainda</div>
           ) : (
             filteredEvents.map((event) => <EventItem key={event.id} event={event} />)
           )}

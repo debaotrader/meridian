@@ -51,7 +51,7 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
               ) : (
                 <>
                   <LayoutPanelTop className="w-3.5 h-3.5" />
-                  Planning Panel
+                  Painel de planejamento
                 </>
               )}
             </button>
@@ -62,7 +62,7 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
           </div>
         </div>
 
-        {/* Right: Planning Panel (togglable) */}
+        {/* Right: Painel de planejamento (togglable) */}
         {showPlanning && (
           <aside className="hidden lg:flex flex-col border-l border-border-default bg-surface-1 overflow-hidden animate-slide-in-right">
             <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
@@ -103,9 +103,9 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
         <button
           onClick={() => setLiveFeedOpen((v) => !v)}
           className="flex items-center justify-between px-4 py-2 text-xs text-text-secondary hover:text-text-primary hover:bg-surface-2 transition-colors shrink-0 w-full"
-          aria-label={liveFeedOpen ? 'Collapse live feed' : 'Expand live feed'}
+          aria-label={liveFeedOpen ? 'Recolher feed ao vivo' : 'Expandir feed ao vivo'}
         >
-          <span className="font-medium uppercase tracking-wider font-display">Live Feed</span>
+          <span className="font-medium uppercase tracking-wider font-display">Feed ao vivo</span>
           {liveFeedOpen ? (
             <ChevronDown className="w-4 h-4" />
           ) : (

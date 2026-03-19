@@ -156,7 +156,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
           className="flex items-center gap-2 px-4 min-h-11 bg-mc-accent-pink text-mc-bg rounded text-sm font-medium hover:bg-mc-accent-pink/90"
         >
           <Plus className="w-4 h-4" />
-          New Task
+          Nova tarefa
         </button>
       </div>
 
