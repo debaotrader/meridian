@@ -10,7 +10,7 @@ interface Props {
 
 /**
  * Slide-in CTA that appears after spending time in demo mode.
- * "Ready to see YOUR agents?" with one-click install command copy.
+ * "Pronto para ver SEUS agentes?" with one-click install command copy.
  */
 export function DemoInstallCTA({ delayMs = 30000 }: Props) {
   const [visible, setVisible] = useState(false);
@@ -106,7 +106,7 @@ export function DemoInstallCTA({ delayMs = 30000 }: Props) {
         marginBottom: 8,
         lineHeight: 1.6,
       }}>
-        Ready to see YOUR agents?
+        Pronto para ver SEUS agentes?
       </div>
 
       {/* Subtext */}

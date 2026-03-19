@@ -189,7 +189,7 @@ export function AgentCard({ agent, accomplishments, onClose }: AgentCardProps) {
     ctx.fillText('STATUS', 50, statsY + 65);
     ctx.fillStyle = agent.status === 'working' ? '#10b981' : '#f59e0b';
     ctx.textAlign = 'right';
-    ctx.fillText(agent.status === 'working' ? '⚡ WORKING' : '💤 IDLE', W - 50, statsY + 65);
+    ctx.fillText(agent.status === 'working' ? '⚡ TRABALHANDO' : '💤 OCIOSO', W - 50, statsY + 65);
 
     // === SKILLS ===
     const skillsY = statsY + 100;
@@ -241,7 +241,7 @@ export function AgentCard({ agent, accomplishments, onClose }: AgentCardProps) {
       ctx.font = '10px sans-serif';
       ctx.fillStyle = '#475569';
       ctx.textAlign = 'left';
-      ctx.fillText('No recent accomplishments', 50, workY + 28);
+      ctx.fillText('Sem conquistas recentes', 50, workY + 28);
     }
 
     // === FOOTER ===
@@ -360,7 +360,7 @@ export function AgentCard({ agent, accomplishments, onClose }: AgentCardProps) {
               gap: 6,
             }}
           >
-            💾 Download Card
+            💾 Baixar Card
           </button>
           <button
             onClick={handleCopy}
@@ -378,7 +378,7 @@ export function AgentCard({ agent, accomplishments, onClose }: AgentCardProps) {
               gap: 6,
             }}
           >
-            {copied ? '✅ Copied!' : '📋 Copy Image'}
+            {copied ? '✅ Copiado!' : '📋 Copiar Imagem'}
           </button>
           <button
             onClick={onClose}

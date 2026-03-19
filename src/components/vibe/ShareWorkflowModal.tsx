@@ -119,7 +119,7 @@ export function ShareWorkflowModal({ isVisible, onClose, config, onShare }: Shar
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Twitter Bot"
+            placeholder="Bot Twitter"
             style={{
               width: '100%',
               background: 'rgba(0,0,0,0.3)',

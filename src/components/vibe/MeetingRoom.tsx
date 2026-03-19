@@ -133,7 +133,7 @@ export function MeetingRoom({
                 color: '#a78bfa',
                 fontFamily: '"Press Start 2P", monospace',
               }}>
-                {mins}:{secs.toString().padStart(2, '0')} elapsed
+                {mins}:{secs.toString().padStart(2, "0")} decorrido
               </div>
             </div>
 
@@ -196,7 +196,7 @@ export function MeetingRoom({
                 e.currentTarget.style.borderColor = 'rgba(239,68,68,0.3)';
               }}
             >
-              End Meeting
+              Encerrar Reunião
             </button>
           </div>
 

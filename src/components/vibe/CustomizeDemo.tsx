@@ -63,7 +63,7 @@ export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps)
           animation: 'pulse 2s ease-in-out infinite',
         }}
       >
-        ✏️ Name Your Agents
+        ✏️ Nomear Agentes
       </button>
     );
   }
@@ -94,7 +94,7 @@ export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps)
           marginBottom: 4,
           textAlign: 'center',
         }}>
-          ✏️ Name Your Agents
+          ✏️ Nomear Agentes
         </h3>
         <p style={{
           color: '#94a3b8',

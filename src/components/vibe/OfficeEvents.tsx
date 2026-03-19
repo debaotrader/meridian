@@ -49,7 +49,7 @@ const EVENT_TEMPLATES: { icon: string; text: string; category: OfficeEvent['cate
   { icon: '🎯', text: '{agent} hit a 7-day commit streak 🔥', category: 'milestone' },
   { icon: '⚡', text: '{agent} deployed to production with zero errors', category: 'milestone' },
   { icon: '📈', text: '{agent} broke their personal best for tasks completed', category: 'milestone' },
-  { icon: '🥇', text: '{agent} earned the "First to Respond" badge', category: 'milestone' },
+  { icon: '🥇', text: '{agent} ganhou o badge "Primeiro a Responder"', category: 'milestone' },
 
   // Chaos events
   { icon: '🔥', text: 'A wild bug appeared in production! {agent} is on it.', category: 'chaos' },

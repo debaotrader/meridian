@@ -201,7 +201,7 @@ function LiveSessionFeed({ agent, secureFetch }: { agent: Agent; secureFetch: (u
         >
           {loading ? (
             <div style={{ color: '#475569', fontSize: 8, fontStyle: 'italic' }}>
-              Connecting to session...
+              Conectando à sessão...
             </div>
           ) : entries.length > 0 ? (
             <>
@@ -246,7 +246,7 @@ function LiveSessionFeed({ agent, secureFetch }: { agent: Agent; secureFetch: (u
             </>
           ) : (
             <div style={{ color: '#475569', fontSize: 8, fontStyle: 'italic' }}>
-              No session data &#8212; agent may be idle
+              Sem dados de sessão — agente pode estar ocioso
             </div>
           )}
         </div>
@@ -295,10 +295,10 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
         setLastSent(messageText);
         setTimeout(() => setSentConfirm(false), 3000);
       } else {
-        alert('Failed to send message');
+        alert('Falha ao enviar mensagem');
       }
     } catch (err) {
-      alert('Failed to send message');
+      alert('Falha ao enviar mensagem');
     } finally {
       setSending(false);
     }
@@ -446,7 +446,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
             transition: 'all 0.2s',
           }}
         >
-          {stopping ? '⏳ Stopping...' : '⛔ STOP — Return to Idle'}
+          {stopping ? '⏳ Parando...' : '⛔ PARAR — Retornar ao Ocioso'}
         </button>
       )}
 
@@ -630,8 +630,8 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
 
           <div style={{ fontSize: 10, color: '#94a3b8', lineHeight: 1.5, marginBottom: 10 }}>
             {awEnabled
-              ? `${agent.name} gets sent to work every ${formatInterval(awIntervalMs)}.`
-              : `Paused — ${agent.name} will idle until manually tasked or enabled.`}
+              ? `${agent.name} é enviado para trabalhar a cada ${formatInterval(awIntervalMs)}.`
+              : `Paused — ${agent.name} ficará ocioso até ser acionado manualmente ou habilitado.`}
           </div>
           {hasPending && (
             <div style={{
@@ -640,7 +640,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
               borderRadius: 6, padding: '5px 8px', marginBottom: 10,
               fontSize: 9, color: '#fbbf24',
             }}>
-              ⚠ Unsaved — apply changes from the banner below
+              ⚠ Não salvo — aplique as alterações no banner abaixo
             </div>
           )}
 
@@ -671,12 +671,12 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
           {/* Directive */}
           <div style={{ marginTop: 10 }}>
             <div style={{ fontSize: 8, color: '#64748b', marginBottom: 4, textTransform: 'uppercase' as const }}>
-              Directive — what should {agent.name} focus on?
+              Diretiva — em que {agent.name} deve focar?
             </div>
             <textarea
               value={awDirective}
               onChange={(e) => { setAwDirective(e.target.value); setDirectiveDirty(true); }}
-              placeholder={`e.g. Focus on the highest priority task from the current sprint`}
+              placeholder={`ex: Foque na tarefa de maior prioridade do sprint atual`}
               rows={3}
               style={{
                 width: '100%',
@@ -710,7 +710,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
                   fontFamily: '"Press Start 2P", monospace',
                 }}
               >
-                Save Directive
+                Salvar Diretiva
               </button>
             )}
           </div>

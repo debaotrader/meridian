@@ -67,10 +67,10 @@ export function CallMeetingModal({
           fontSize: 14,
           color: '#fff',
         }}>
-          📞 Call Meeting
+          📞 Chamar Reunião
         </h2>
         <p style={{ color: '#94a3b8', fontSize: 13, marginBottom: 16, lineHeight: 1.6 }}>
-          Select participants and a discussion topic. They&apos;ll gather in the Meeting Room to work through it together.
+          Selecione participantes e um tópico de discussão. Eles se reunirão na Sala de Reunião para trabalhar juntos.
         </p>
 
         {/* Topic Input */}
@@ -82,11 +82,11 @@ export function CallMeetingModal({
             fontFamily: '"Press Start 2P", monospace',
             marginBottom: 8,
           }}>
-            Meeting Topic
+            Tópico da Reunião
           </label>
           <input
             type="text"
-            placeholder="What should they discuss? (e.g., 'Should we refactor the API?')"
+            placeholder="O que devem discutir? (ex: 'Devemos refatorar a API?')"
             value={meetingTopic}
             onChange={(e) => onTopicChange(e.target.value)}
             style={{
@@ -111,7 +111,7 @@ export function CallMeetingModal({
             fontFamily: '"Press Start 2P", monospace',
             marginBottom: 8,
           }}>
-            Participants (select at least 2)
+            Participantes (selecione pelo menos 2)
           </label>
           <div style={{
             background: '#1e293b',
@@ -198,7 +198,7 @@ export function CallMeetingModal({
               fontSize: 12,
             }}
           >
-            Cancel
+            Cancelar
           </button>
           <button
             onClick={async () => {
@@ -219,7 +219,7 @@ export function CallMeetingModal({
               opacity: canStart ? 1 : 0.5,
             }}
           >
-            Start Meeting
+            Iniciar Reunião
           </button>
         </div>
       </div>

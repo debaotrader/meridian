@@ -28,7 +28,7 @@ const TOUR_STEPS = [
     position: 'left' as const,
   },
   {
-    title: '🏆 Accomplishments',
+    title: '🏆 Conquistas',
     body: 'Cada tarefa concluída é registrada com um replay em vídeo. Os melhores momentos da equipe, com recompensas XP.',
     target: 'accomplishments',
     position: 'top' as const,
@@ -178,7 +178,7 @@ export function DemoTour({ isDemoMode }: { isDemoMode: boolean }) {
           padding: '6px 8px',
         }}
       >
-        Skip tour
+        Pular tour
       </button>
       <button
         onClick={next}

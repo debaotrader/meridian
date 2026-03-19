@@ -296,7 +296,7 @@ export function OfficeHeader({
             textDecoration: 'none',
             display: 'inline-block',
           }}
-          title="Viral Post Templates"
+          title="Templates Virais"
         >
           📝
         </a>
@@ -319,7 +319,7 @@ export function OfficeHeader({
             cursor: 'pointer',
             transition: 'all 0.2s',
           }}
-          title="Star on GitHub"
+          title="GitHub ⭐"
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'rgba(99,102,241,0.2)';
             e.currentTarget.style.borderColor = 'rgba(99,102,241,0.4)';
@@ -352,7 +352,7 @@ export function OfficeHeader({
             fontSize: 14,
             padding: '2px 4px',
           }}
-          title="Template Gallery"
+          title="Galeria de Templates"
         >
           🎨
         </button>
@@ -384,7 +384,7 @@ export function OfficeHeader({
             fontSize: 14,
             padding: '2px 4px',
           }}
-          title="Settings"
+          title="Configurações"
         >
           ⚙️
         </button>

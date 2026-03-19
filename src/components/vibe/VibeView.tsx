@@ -505,11 +505,11 @@ export default function VibeView() {
         const mkSkills = (names: string[]) => names.map(n => ({ name: n, level: 3, icon: '⚡' }));
         const mkNeeds = (e: number, f: number, o: number) => ({ energy: e, focus: f, output: o, collab: 50, queue: 2 });
         return [
-          { id: 'nova', name: 'Nova', role: 'PM / Strategist', emoji: '🧠', status: 'working' as AgentStatus, mood: 'great' as Mood, color: '#6366f1', xp: 420, level: 5, needs: mkNeeds(85, 90, 70), skills: mkSkills(['planning', 'strategy', 'communication']), task: 'Sprint planning Q2' },
-          { id: 'forge', name: 'Forge', role: 'Backend Engineer', emoji: '⚒️', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#10b981', xp: 380, level: 4, needs: mkNeeds(75, 95, 80), skills: mkSkills(['nodejs', 'rust', 'databases']), task: 'API endpoint optimization' },
-          { id: 'lens', name: 'Lens', role: 'QA Engineer', emoji: '🔍', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#f59e0b', xp: 290, level: 3, needs: mkNeeds(80, 85, 65), skills: mkSkills(['testing', 'automation', 'debugging']), task: 'Integration test suite' },
-          { id: 'pixel', name: 'Pixel', role: 'UI/UX Designer', emoji: '🎨', status: 'idle' as AgentStatus, mood: 'great' as Mood, color: '#ec4899', xp: 350, level: 4, needs: mkNeeds(90, 80, 75), skills: mkSkills(['figma', 'css', 'animation']), task: 'Dashboard redesign' },
-          { id: 'cipher', name: 'Cipher', role: 'DevOps / SRE', emoji: '🛡️', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#8b5cf6', xp: 310, level: 3, needs: mkNeeds(70, 88, 60), skills: mkSkills(['docker', 'k8s', 'monitoring']), task: 'CI/CD pipeline hardening' },
+          { id: 'nova', name: 'Nova', role: 'PM / Estrategista', emoji: '🧠', status: 'working' as AgentStatus, mood: 'great' as Mood, color: '#6366f1', xp: 420, level: 5, needs: mkNeeds(85, 90, 70), skills: mkSkills(['planning', 'strategy', 'communication']), task: 'Planejamento sprint Q2' },
+          { id: 'forge', name: 'Forge', role: 'Engenheiro Backend', emoji: '⚒️', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#10b981', xp: 380, level: 4, needs: mkNeeds(75, 95, 80), skills: mkSkills(['nodejs', 'rust', 'databases']), task: 'Otimização de endpoints API' },
+          { id: 'lens', name: 'Lens', role: 'Engenheiro QA', emoji: '🔍', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#f59e0b', xp: 290, level: 3, needs: mkNeeds(80, 85, 65), skills: mkSkills(['testing', 'automation', 'debugging']), task: 'Suite de testes de integração' },
+          { id: 'pixel', name: 'Pixel', role: 'Designer UI/UX', emoji: '🎨', status: 'idle' as AgentStatus, mood: 'great' as Mood, color: '#ec4899', xp: 350, level: 4, needs: mkNeeds(90, 80, 75), skills: mkSkills(['figma', 'css', 'animation']), task: 'Redesign do dashboard' },
+          { id: 'cipher', name: 'Cipher', role: 'DevOps / SRE', emoji: '🛡️', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#8b5cf6', xp: 310, level: 3, needs: mkNeeds(70, 88, 60), skills: mkSkills(['docker', 'k8s', 'monitoring']), task: 'Hardening do pipeline CI/CD' },
         ];
       });
     }, 500);
@@ -627,11 +627,11 @@ export default function VibeView() {
   useEffect(() => {
     if (!isDemoMode) return;
     const AMBIENT_THOUGHTS: Record<string, string[]> = {
-      nova: ['📊 Velocity looking good...', '🤔 Should we pivot?', '☕ Need more coffee', '📋 Sprint goal on track!', '💡 New feature idea...'],
+      nova: ['📊 Velocidade boa...', '🤔 Devemos pivotar?', '☕ Preciso de café', '📋 Meta do sprint no caminho!', '💡 Ideia de nova feature...'],
       forge: ['🔧 This bug is sneaky...', '💻 Clean code = happy code', '⚡ Optimizing...', '🤓 Stack trace says...', '🎯 Almost got it!'],
       lens: ['🐛 Found another edge case', '✅ Tests passing!', '🔍 Investigating...', '🧪 Need more test data', '📝 Filing a ticket'],
       pixel: ['🎨 These colors pop!', '✨ Pixel perfect!', '🖌️ Needs more contrast', '💜 Love this palette', '🤩 This animation is 🔥'],
-      cipher: ['🚀 Deploy looks clean', '📊 Metrics are healthy', '🔒 Security check done', '⚡ Response time: 42ms', '🛡️ All systems nominal'],
+      cipher: ['🚀 Deploy looks clean', '📊 Metrics are healthy', '🔒 Checagem de segurança OK', '⚡ Response time: 42ms', '🛡️ All systems nominal'],
     };
     const triggerThought = () => {
       const currentAgents = agentsRef.current;
@@ -1149,7 +1149,7 @@ export default function VibeView() {
               fontSize: 14,
               padding: '2px 4px',
             }}
-            title="Call Meeting"
+            title="Chamar Reunião"
           >
             📞
           </button>
@@ -1165,7 +1165,7 @@ export default function VibeView() {
               textDecoration: 'none',
               display: 'inline-block',
             }}
-            title="Leaderboard"
+            title="Ranking"
           >
             🏆
           </a>
@@ -1181,7 +1181,7 @@ export default function VibeView() {
               textDecoration: 'none',
               display: 'inline-block',
             }}
-            title="Office Stats"
+            title="Estatísticas"
           >
             📊
           </a>
@@ -1195,7 +1195,7 @@ export default function VibeView() {
               fontSize: 14,
               padding: '2px 4px',
             }}
-            title="Share Screenshot"
+            title="Compartilhar Screenshot"
           >
             📸
           </button>
@@ -1212,7 +1212,7 @@ export default function VibeView() {
               fontSize: 14,
               padding: '2px 4px',
             }}
-            title="Share Workflow"
+            title="Compartilhar Workflow"
           >
             📤
           </button>
@@ -1240,7 +1240,7 @@ export default function VibeView() {
               alignItems: 'center',
               justifyContent: 'center',
             }}
-            title="Share on Twitter/X"
+            title="Compartilhar no Twitter/X"
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'rgba(29,161,242,0.2)';
               e.currentTarget.style.borderColor = 'rgba(29,161,242,0.4)';
@@ -1266,7 +1266,7 @@ export default function VibeView() {
               textDecoration: 'none',
               display: 'inline-block',
             }}
-            title="Viral Post Templates"
+            title="Templates Virais"
           >
             📝
           </a>
@@ -1287,7 +1287,7 @@ export default function VibeView() {
               cursor: 'pointer',
               transition: 'all 0.2s',
             }}
-            title="Star on GitHub"
+            title="GitHub ⭐"
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'rgba(99,102,241,0.2)';
               e.currentTarget.style.borderColor = 'rgba(99,102,241,0.4)';
@@ -1339,7 +1339,7 @@ export default function VibeView() {
               padding: '2px 4px',
               animation: isRefreshing ? 'spin 1s linear infinite' : 'none',
             }}
-            title="Refresh Status"
+            title="Atualizar Status"
           >
             ↻
           </button>
@@ -1355,7 +1355,7 @@ export default function VibeView() {
               textDecoration: 'none',
               display: 'inline-block',
             }}
-            title="Help & Guide"
+            title="Ajuda"
           >
             ❓
           </a>
@@ -1369,7 +1369,7 @@ export default function VibeView() {
               fontSize: 14,
               padding: '2px 4px',
             }}
-            title="Settings"
+            title="Configurações"
           >
             ⚙️
           </button>
@@ -1430,7 +1430,7 @@ export default function VibeView() {
                 padding: '3px 8px',
                 transition: 'background 0.15s',
               }}
-              title="Command Palette (⌘K)"
+              title="Paleta de Comandos (⌘K)"
               onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(99,102,241,0.15)'; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(99,102,241,0.08)'; }}
             >
@@ -1664,7 +1664,7 @@ export default function VibeView() {
                     sfx.play('click');
                   }
                 }}
-                title="Click to copy">
+                title="Clique para copiar">
                   $ {setupCheck?.installCommand || 'curl -fsSL https://openclaw.ai/install.sh | bash'}
                 </div>
                 <a href="https://openclaw.ai/install" target="_blank" rel="noopener noreferrer" style={{
@@ -1723,7 +1723,7 @@ export default function VibeView() {
           <div>
             <div style={{ fontSize: 11, color: theme.text, fontWeight: 600 }}>Welcome to your office!</div>
             <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>
-              Your agents will appear here once they start working. Send a message in OpenClaw to wake them up!
+              Seus agentes aparecerão aqui quando começarem a trabalhar. Send a message in OpenClaw to wake them up!
               {agents.some(a => !a.hasIdentity) && (
                 <> 💡 Tip: Add <code style={{ background: theme.bgTertiary, padding: '1px 4px', borderRadius: 3 }}>IDENTITY.md</code> to agent workspaces to customize their names.</>
               )}
@@ -1747,7 +1747,7 @@ export default function VibeView() {
           gap: 6,
         }}>
           <span>💡</span>
-          <span>Some agents are using default names. Add <code style={{ background: theme.bgTertiary, padding: '1px 4px', borderRadius: 3 }}>IDENTITY.md</code> to their workspaces to customize!</span>
+          <span>Alguns agentes usam nomes padrão. Adicione <code style={{ background: theme.bgTertiary, padding: '1px 4px', borderRadius: 3 }}>IDENTITY.md</code> aos workspaces para personalizar!</span>
         </div>
       )}
 
@@ -1771,10 +1771,10 @@ export default function VibeView() {
           minHeight: 0,
           overflow: isMobile ? 'visible' : 'hidden',
         }}>
-          {/* WORK ROOM — hide in single agent mode */}
+          {/* SALA DE TRABALHO — hide in single agent mode */}
           {agents.length > 1 && (
           <Room
-            title="Work Room"
+            title="Sala de Trabalho"
             icon="💻"
             color="#0a1a10"
             borderColor="#166534"
@@ -1902,14 +1902,14 @@ export default function VibeView() {
               onPlaySound={sfx.play}
             />
           )}
-          {/* LOUNGE + QUEST LOG */}
+          {/* LOUNGE + MISSÕES */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: 6,
             flex: '0 0 auto',
           }}>
-            <Room title="The Lounge" icon="☕" color="#1a150a" borderColor="#92400e" roomType="lounge">
+            <Room title="Lounge" icon="☕" color="#1a150a" borderColor="#92400e" roomType="lounge">
               <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -1952,7 +1952,7 @@ export default function VibeView() {
                           color: '#d97706',
                           textAlign: 'center',
                         }}>
-                          {['☕ On break', '📖 Reading docs', '🎮 Taking 5', '💭 Thinking...', '🧹 Tidying up'][
+                          {['☕ Em pausa', '📖 Lendo docs', '🎮 Descansando', '💭 Pensando...', '🧹 Organizando'][
                             a.id.split('').reduce((s: number, c: string) => s + c.charCodeAt(0), 0) % 5
                           ]}
                         </div>
@@ -1996,7 +1996,7 @@ export default function VibeView() {
                         Everyone is hard at work!
                         <br />
                         <span style={{ color: '#334155', fontSize: 6 }}>
-                          Idle agents hang out here
+                          Agentes ociosos ficam aqui
                         </span>
                       </>
                     )}
@@ -2005,7 +2005,7 @@ export default function VibeView() {
               </div>
             </Room>
 
-            <Room title="Quest Log" icon="⚔️" color="#0a0a1f" borderColor="#4f46e5" dataTour="quest-log">
+            <Room title="Missões" icon="⚔️" color="#0a0a1f" borderColor="#4f46e5" dataTour="quest-log">
               <div style={{
                 padding: '10px 4px 4px',
                 minHeight: 80,
@@ -2100,14 +2100,14 @@ export default function VibeView() {
                       textShadow: '0 0 8px rgba(0,255,65,0.4)',
                       marginBottom: '4px',
                     }}>
-                      ALL CLEAR
+                      TUDO CERTO
                     </div>
                     <div style={{
                       fontFamily: '"Courier New", monospace',
                       fontSize: '9px',
                       color: '#64748b',
                     }}>
-                      No quests pending
+                      Nenhuma missão pendente
                     </div>
                     <div style={{
                       color: theme.textDim,
@@ -2115,13 +2115,13 @@ export default function VibeView() {
                       lineHeight: 1.5,
                       marginBottom: 12,
                     }}>
-                      Your agents will create quests when
+                      Seus agentes criarão missões quando
                       <br />
-                      they need your input.
+                      precisarem da sua decisão.
                       <br />
                       <br />
                       <span style={{ fontSize: 8, fontStyle: 'italic' }}>
-                        (Pulled from ~/.openclaw/.status/actions.json)
+                        (Extraído de ~/.openclaw/.status/actions.json)
                       </span>
                     </div>
                     <button
@@ -2147,7 +2147,7 @@ export default function VibeView() {
                         e.currentTarget.style.background = '#6366f1';
                       }}
                     >
-                      Browse Quest Templates
+                      Ver Templates
                     </button>
                   </div>
                 )}
@@ -2155,7 +2155,7 @@ export default function VibeView() {
             </Room>
           </div>
 
-          {/* ACCOMPLISHMENTS */}
+          {/* CONQUISTAS */}
           <div data-tour="accomplishments" style={{
             background: theme.bgSecondary,
             border: '2px solid #1e293b',
@@ -2180,7 +2180,7 @@ export default function VibeView() {
                 fontSize: 7,
                 textTransform: 'uppercase',
               }}>
-                Accomplishments
+                Conquistas
               </span>
               <span style={{
                 fontSize: 8,
@@ -2190,7 +2190,7 @@ export default function VibeView() {
                 alignItems: 'center',
                 gap: 6,
               }}>
-                {accomplishments.length} recent
+                {accomplishments.length} recentes
                 {archiveTotal > 0 && (
                   <button
                     onClick={(e) => { e.stopPropagation(); if (!showArchive) loadArchive(true); setShowArchive(!showArchive); }}
@@ -2312,20 +2312,20 @@ export default function VibeView() {
                     marginBottom: 6,
                     fontWeight: 600,
                   }}>
-                    No accomplishments yet
+                    Nenhuma conquista ainda
                   </div>
                   <div style={{
                     color: theme.textDim,
                     fontSize: 9,
                     lineHeight: 1.6,
                   }}>
-                    Once your agents complete tasks,
+                    Quando seus agentes completarem tarefas,
                     <br />
-                    they&apos;ll appear here!
+                    aparecerão aqui!
                     <br />
                     <br />
                     <span style={{ fontSize: 8 }}>
-                      Auto-detected from agent activity ✨
+                      Detectado automaticamente ✨
                     </span>
                   </div>
                 </div>
@@ -2392,7 +2392,7 @@ export default function VibeView() {
 
         </div>
 
-        {/* RIGHT COLUMN: Office Feed + Water Cooler Chat */}
+        {/* RIGHT COLUMN: Feed do Escritório + Bebedouro Chat */}
         <div style={{
           display: 'flex',
           flexDirection: 'column',
@@ -2426,7 +2426,7 @@ export default function VibeView() {
                 textTransform: 'uppercase',
                 color: '#f59e0b',
               }}>
-                Water Cooler
+                Bebedouro
               </span>
               <span style={{
                 marginLeft: 'auto',
@@ -2466,19 +2466,19 @@ export default function VibeView() {
                     marginBottom: 6,
                     fontWeight: 600,
                   }}>
-                    Water Cooler
+                    Bebedouro
                   </div>
                   <div style={{
                     fontSize: 9,
                     color: theme.textDim,
                     lineHeight: 1.6,
                   }}>
-                    No chat yet. Idle agents will start
+                    Sem mensagens ainda. Agentes ociosos vão
                     <br />
-                    chatting automatically!
+                    conversar automaticamente!
                     <br />
                     <br />
-                    Or broadcast a message below ↓
+                    Ou envie uma mensagem abaixo ↓
                   </div>
                 </div>
               )}
@@ -2547,7 +2547,7 @@ export default function VibeView() {
                 marginBottom: 6,
                 fontFamily: '"Press Start 2P", monospace',
               }}>
-                SAY SOMETHING ({agents.filter(a => a.id !== '_owner').length} listening)
+                DIGA ALGO ({agents.filter(a => a.id !== '_owner').length} ouvindo)
               </div>
               {groupSent && (
                 <div style={{
@@ -2569,7 +2569,7 @@ export default function VibeView() {
                   value={groupMessage}
                   onChange={(e) => setGroupMessage(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && !isDemoMode && sendGroupMessage()}
-                  placeholder={isDemoMode ? "Demo mode: messaging disabled" : "Say something to the team..."}
+                  placeholder={isDemoMode ? "Modo demo: mensagens desabilitadas" : "Diga algo para a equipe..."}
                   disabled={sendingGroup || isDemoMode}
                   style={{
                     flex: 1,
@@ -2784,7 +2784,7 @@ export default function VibeView() {
                   <div style={{ display: 'flex', gap: 6 }}>
                     <input
                       type="text"
-                      placeholder="Or add notes..."
+                      placeholder="Adicionar notas..."
                       id={`quest-input-${action.id}`}
                       style={{
                         flex: 1, background: theme.bgTertiary, border: '1px solid #334155',
@@ -2834,7 +2834,7 @@ export default function VibeView() {
                     <input
                       type="text"
                       autoFocus
-                      placeholder="Or respond with notes..."
+                      placeholder="Responder com notas..."
                       id={`quest-input-${action.id}`}
                       style={{
                         flex: 1, background: theme.bgTertiary, border: '1px solid #334155',

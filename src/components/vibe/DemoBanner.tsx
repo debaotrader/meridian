@@ -59,7 +59,7 @@ export function DemoBanner() {
               textDecoration: 'none',
             }}
           >
-            Create yours →
+            Criar o seu →
           </a>
           <button
             onClick={() => setDismissed(true)}

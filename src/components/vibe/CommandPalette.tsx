@@ -504,9 +504,9 @@ export function CommandPalette({
           fontSize: 9,
           color: '#475569',
         }}>
-          <span>↑↓ navigate</span>
-          <span>↵ select</span>
-          <span>esc close</span>
+          <span>↑↓ navegar</span>
+          <span>↵ selecionar</span>
+          <span>esc fechar</span>
           <span style={{ marginLeft: 'auto', fontFamily: '"Press Start 2P", monospace', fontSize: 7, color: '#334155' }}>
             OPENCLAWFICE CONSOLE
           </span>
