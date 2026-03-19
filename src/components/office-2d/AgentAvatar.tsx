@@ -292,6 +292,55 @@ export const AgentAvatar = memo(function AgentAvatar({ agent }: AgentAvatarProps
           </div>
         </foreignObject>
       )}
+
+      {/* Speech bubble (GAP 2) — shown when agent.speechBubble is truthy */}
+      {agent.speechBubble && (
+        <foreignObject
+          x={-100}
+          y={-r - 74}
+          width={200}
+          height={64}
+          style={{ pointerEvents: "none" }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "flex-end",
+              height: "100%",
+              paddingBottom: "6px",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                fontSize: "11px",
+                fontWeight: 500,
+                color: isDark ? "#f1f5f9" : "#1e293b",
+                backgroundColor: isDark
+                  ? "rgba(15, 23, 42, 0.82)"
+                  : "rgba(255, 255, 255, 0.88)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                borderRadius: "10px",
+                padding: "5px 10px",
+                maxWidth: "190px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                boxShadow: isDark
+                  ? "0 4px 16px rgba(0,0,0,0.45)"
+                  : "0 4px 12px rgba(0,0,0,0.12)",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.08)"}`,
+              }}
+            >
+              {agent.speechBubble.text.length > 80
+                ? `${agent.speechBubble.text.slice(0, 80)}…`
+                : agent.speechBubble.text}
+            </div>
+          </div>
+        </foreignObject>
+      )}
     </g>
   );
 });

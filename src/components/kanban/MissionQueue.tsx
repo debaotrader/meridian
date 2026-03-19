@@ -54,6 +54,15 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
   const [mobileStatus, setMobileStatus] = useState<TaskStatus>('planning');
   const [statusMoveTask, setStatusMoveTask] = useState<Task | null>(null);
   const highlightRef = useRef<HTMLDivElement | null>(null);
+  const [activeHighlight, setActiveHighlight] = useState<string | undefined>(highlightTaskId);
+
+  // Auto-clear highlight after 3s (GAP 4)
+  useEffect(() => {
+    setActiveHighlight(highlightTaskId);
+    if (!highlightTaskId) return;
+    const clearTimer = setTimeout(() => setActiveHighlight(undefined), 3000);
+    return () => clearTimeout(clearTimer);
+  }, [highlightTaskId]);
 
   // Scroll to and highlight a task or filter by agent when navigated from office/vibe
   useEffect(() => {
@@ -182,7 +191,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
 
                 <div className={`flex-1 overflow-y-auto p-2 ${hasTasks ? 'space-y-2' : ''}`}>
                   {columnTasks.map((task) => {
-                    const isHighlighted = task.id === highlightTaskId || task.assigned_agent_id === highlightAgentId;
+                    const isHighlighted = task.id === activeHighlight || task.assigned_agent_id === highlightAgentId;
                     return (
                       <TaskCard
                         key={task.id}
