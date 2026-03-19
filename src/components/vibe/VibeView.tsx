@@ -45,7 +45,7 @@ function Clock({ color }: { color: string }) {
       new Date().toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
-        timeZone: 'America/New_York',
+        timeZone: 'America/Sao_Paulo',
       });
     setTimeLabel(format());
     const i = setInterval(() => setTimeLabel(format()), 1000);
@@ -556,14 +556,14 @@ export default function VibeView() {
   useEffect(() => {
     if (!isDemoMode) return;
     const DEMO_TASKS = [
-      'Shipped dashboard refactor',
-      'Fixed auth module bug',
-      'Deployed to staging',
-      'Optimized database queries',
-      'Wrote integration tests',
-      'Updated API documentation',
-      'Reviewed pull request',
-      'Refactored login flow',
+      'Dashboard refatorado entregue',
+      'Bug no módulo de auth corrigido',
+      'Deploy em staging realizado',
+      'Queries do banco otimizadas',
+      'Testes de integração escritos',
+      'Documentação da API atualizada',
+      'Pull request revisado',
+      'Fluxo de login refatorado',
     ];
     const DEMO_ICONS = ['🚀', '🐛', '✅', '⚡', '📝', '🔧', '💡', '🎯'];
     const XP_AMOUNTS = [5, 10, 10, 15, 20, 25, 10, 10, 10, 50];
@@ -1105,7 +1105,7 @@ export default function VibeView() {
             color: theme.textMuted,
             marginLeft: isMobile ? 4 : 8,
           }}>
-            {agents.length} {isMobile ? 'ag' : 'agents'}
+            {agents.length} {isMobile ? 'ag' : 'agentes'}
           </span>
         </div>
         <div style={{
@@ -1498,7 +1498,7 @@ export default function VibeView() {
             ) : setupCheck?.status === 'not_configured' ? (
               <><span style={{color: '#ffd93d'}}>WARNING:</span> No agents configured<br/>Initialize at least one agent...</>
             ) : (
-              <>SYSTEM READY | OFFICE EMPTY<br/>Initialize agents to begin...</>
+              <>SISTEMA PRONTO | ESCRITÓRIO VAZIO<br/>Inicialize os agentes para começar...</>
             )}
           </div>
           <div style={{
@@ -1537,7 +1537,7 @@ export default function VibeView() {
                 e.currentTarget.style.boxShadow = '0 0 20px rgba(0,255,65,0.3), inset 0 0 20px rgba(0,255,65,0.1)';
               }}
             >
-              &gt; RUN DEMO
+              &gt; RODAR DEMO
             </a>
             <a 
               href="https://docs.openclaw.ai/configuration/agents"
@@ -1568,7 +1568,7 @@ export default function VibeView() {
                 e.currentTarget.style.boxShadow = '0 0 10px rgba(0,255,65,0.2)';
               }}
             >
-              &gt; CONFIGURE AGENTS
+              &gt; CONFIGURAR AGENTES
             </a>
             <a 
               href="/install"
@@ -1597,7 +1597,7 @@ export default function VibeView() {
                 e.currentTarget.style.boxShadow = '0 0 10px rgba(0,255,65,0.2)';
               }}
             >
-              &gt; INSTALL GUIDE
+              &gt; GUIA DE INSTALAÇÃO
             </a>
           </div>
           <div style={{
@@ -1674,10 +1674,10 @@ export default function VibeView() {
               </div>
             ) : (
               <div style={{ opacity: 0.8, fontSize: 10 }}>
-                <div style={{ marginBottom: 6 }}>[✓] System operational</div>
-                <div style={{ marginBottom: 6 }}>[✓] Auto-discovery enabled</div>
+                <div style={{ marginBottom: 6 }}>[✓] Sistema operacional</div>
+                <div style={{ marginBottom: 6 }}>[✓] Descoberta automática ativa</div>
                 <div style={{ marginBottom: 6 }}>[✓] Monitoring <code style={{ background: 'rgba(0,0,0,0.5)', padding: '1px 4px', border: '1px solid #00ff41', fontSize: 9 }}>~/.openclaw/</code></div>
-                <div style={{ marginTop: 12, color: '#ffd93d' }}>&gt; Send message to wake agents...</div>
+                <div style={{ marginTop: 12, color: '#ffd93d' }}>&gt; Envie mensagem para ativar agentes...</div>
               </div>
             )}
           </div>

@@ -72,7 +72,7 @@ export default function SettingsPage() {
               className="p-2 hover:bg-mc-bg-tertiary rounded text-mc-text-secondary"
               title="Voltar ao painel"
             >
-              ← Back
+              ← Voltar
             </button>
             <Settings className="w-6 h-6 text-mc-accent" />
             <h1 className="text-2xl font-bold text-mc-text">Configurações</h1>
@@ -84,7 +84,7 @@ export default function SettingsPage() {
               className="px-4 py-2 border border-mc-border rounded hover:bg-mc-bg-tertiary text-mc-text-secondary flex items-center gap-2"
             >
               <RotateCcw className="w-4 h-4" />
-              Reset to Defaults
+              Restaurar padrões
             </button>
             <button
               onClick={handleSave}
@@ -103,7 +103,7 @@ export default function SettingsPage() {
         {/* Success Message */}
         {saveSuccess && (
           <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded text-green-400">
-            ✓ Settings saved successfully
+            ✓ Configurações salvas com sucesso
           </div>
         )}
 
@@ -114,7 +114,7 @@ export default function SettingsPage() {
           </div>
         )}
 
-        {/* Workspace Paths */}
+        {/* Caminhos do workspace */}
         <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
           <div className="flex items-center gap-2 mb-4">
             <FolderOpen className="w-5 h-5 text-mc-accent" />
@@ -127,7 +127,7 @@ export default function SettingsPage() {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-mc-text mb-2">
-                Workspace Base Path
+                Caminho base do workspace
               </label>
               <input
                 type="text"
@@ -143,7 +143,7 @@ export default function SettingsPage() {
 
             <div>
               <label className="block text-sm font-medium text-mc-text mb-2">
-                Projects Path
+                Caminho dos projetos
               </label>
               <input
                 type="text"
@@ -159,7 +159,7 @@ export default function SettingsPage() {
 
             <div>
               <label className="block text-sm font-medium text-mc-text mb-2">
-                Default Project Name
+                Nome padrão do projeto
               </label>
               <input
                 type="text"
@@ -175,7 +175,7 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        {/* API Configuration */}
+        {/* Configuração de API */}
         <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
           <div className="flex items-center gap-2 mb-4">
             <LinkIcon className="w-5 h-5 text-mc-accent" />
@@ -188,7 +188,7 @@ export default function SettingsPage() {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-mc-text mb-2">
-                Mission Control URL
+                URL do painel
               </label>
               <input
                 type="text"
@@ -204,7 +204,7 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        {/* Kanban UX */}
+        {/* UX do Kanban */}
         <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
           <div className="flex items-center gap-2 mb-4">
             <Home className="w-5 h-5 text-mc-accent" />
