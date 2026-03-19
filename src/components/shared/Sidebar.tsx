@@ -27,7 +27,7 @@ interface NavItem {
   badge?: string;
 }
 
-const NAV_KEYS = [
+const NAV_KEYS: NavItem[] = [
   { key: 'kanban', href: '/kanban', icon: LayoutDashboard },
   { key: 'office', href: '/office', icon: Building2 },
   { key: 'office3d', href: '/office/3d', icon: Box },

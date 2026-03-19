@@ -10,7 +10,6 @@ import { TaskModal } from './TaskModal';
 import { formatDistanceToNow } from 'date-fns';
 import { emitTaskEvent } from '@/lib/events/task-events';
 import { apiPath } from '@/lib/api-path';
-import { useTranslation } from 'react-i18next';
 
 interface MissionQueueProps {
   workspaceId?: string;
@@ -21,14 +20,14 @@ interface MissionQueueProps {
 }
 
 const COLUMNS: { id: TaskStatus; label: string; color: string }[] = [
-  { id: 'planning', label: '📋 Planejamento', labelKey: 'planning', color: 'border-t-mc-accent-purple' },
-  { id: 'inbox', label: 'Entrada', labelKey: 'inbox', color: 'border-t-mc-accent-pink' },
-  { id: 'assigned', label: 'Atribuído', labelKey: 'assigned', color: 'border-t-mc-accent-yellow' },
-  { id: 'in_progress', label: 'Em andamento', labelKey: 'in_progress', color: 'border-t-mc-accent' },
-  { id: 'testing', label: 'Em teste', labelKey: 'testing', color: 'border-t-mc-accent-cyan' },
-  { id: 'review', label: 'Revisão', labelKey: 'review', color: 'border-t-mc-accent-purple' },
-  { id: 'verification', label: 'Verificação', labelKey: 'verification', color: 'border-t-orange-500' },
-  { id: 'done', label: 'Concluído', labelKey: 'done', color: 'border-t-mc-accent-green' },
+  { id: 'planning', label: '📋 Planejamento', color: 'border-t-mc-accent-purple' },
+  { id: 'inbox', label: 'Entrada', color: 'border-t-mc-accent-pink' },
+  { id: 'assigned', label: 'Atribuído', color: 'border-t-mc-accent-yellow' },
+  { id: 'in_progress', label: 'Em andamento', color: 'border-t-mc-accent' },
+  { id: 'testing', label: 'Em teste', color: 'border-t-mc-accent-cyan' },
+  { id: 'review', label: 'Revisão', color: 'border-t-mc-accent-purple' },
+  { id: 'verification', label: 'Verificação', color: 'border-t-orange-500' },
+  { id: 'done', label: 'Concluído', color: 'border-t-mc-accent-green' },
 ];
 
 export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = true, highlightTaskId, highlightAgentId }: MissionQueueProps) {
