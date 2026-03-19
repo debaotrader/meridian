@@ -259,11 +259,12 @@ function CoffeeTable({ position }: { position: [number, number, number] }) {
 function ZoneLabel({
   position,
   label,
-  color,
+  active = false,
 }: {
   position: [number, number, number];
   label: string;
-  color: string;
+  active?: boolean;
+  color?: string;
 }) {
   return (
     <Html position={position} center style={{ pointerEvents: "none" }}>
@@ -271,13 +272,13 @@ function ZoneLabel({
         style={{
           fontSize: "11px",
           fontWeight: 600,
-          color,
-          opacity: 0.85,
+          color: active ? "#00FF94" : "rgba(255,255,255,0.5)",
+          opacity: 1,
           textTransform: "uppercase",
           letterSpacing: "2px",
           whiteSpace: "nowrap",
           userSelect: "none",
-          textShadow: "0 1px 3px rgba(255,255,255,0.6)",
+          textShadow: active ? "0 0 8px rgba(0,255,148,0.5)" : "none",
         }}
       >
         {label}
@@ -366,10 +367,10 @@ export function OfficeLayout3D() {
       <ZoneFloor position={[12, 0.015, 9]} size={[6.5, 5]} color="#40a060" />
 
       {/* === Zone Labels === */}
-      <ZoneLabel position={[1.5, 0.05, 0.8]} label={t("zones.desk")} color="#2563eb" />
-      <ZoneLabel position={[9.5, 0.05, 0.8]} label={t("zones.meeting")} color="#7c3aed" />
-      <ZoneLabel position={[1.5, 0.05, 6.8]} label={t("zones.hotDesk")} color="#c2410c" />
-      <ZoneLabel position={[9.5, 0.05, 6.8]} label={t("zones.lounge")} color="#15803d" />
+      <ZoneLabel position={[1.5, 0.05, 0.8]} label={t("zones.desk")} />
+      <ZoneLabel position={[9.5, 0.05, 0.8]} label={t("zones.meeting")} />
+      <ZoneLabel position={[1.5, 0.05, 6.8]} label={t("zones.hotDesk")} />
+      <ZoneLabel position={[9.5, 0.05, 6.8]} label={t("zones.lounge")} />
 
       {/* === Desk Zone — 2 rows × 3 columns === */}
       {[

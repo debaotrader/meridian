@@ -15,7 +15,7 @@ import { ParentChildLine } from "./ParentChildLine";
 
 const SCENE_CENTER: [number, number, number] = [8, 0, 6];
 const BG_LIGHT = new THREE.Color("#e8ecf2");
-const BG_DARK = new THREE.Color("#0f1729");
+const BG_DARK = new THREE.Color("#0a0a0a");
 
 const MEETING_TABLE_CENTERS_2D = [
   { x: ZONES.meeting.x + ZONES.meeting.width / 2, y: ZONES.meeting.y + ZONES.meeting.height / 2 },
