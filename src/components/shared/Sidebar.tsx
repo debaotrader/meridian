@@ -58,13 +58,9 @@ export function Sidebar() {
           <span className="text-text-inverse text-xs font-bold">M</span>
         </div>
         {!collapsed && (
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="font-display font-semibold text-sm text-text-primary truncate"
-          >
+          <span className="font-display font-semibold text-sm text-text-primary truncate">
             Meridian
-          </motion.span>
+          </span>
         )}
       </div>
 
@@ -89,9 +85,7 @@ export function Sidebar() {
             >
               <Icon className={clsx('w-[18px] h-[18px] flex-shrink-0', active && 'text-accent')} />
               {!collapsed && (
-                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  {t(item.key)}
-                </motion.span>
+                <span>{t(item.key)}</span>
               )}
               {!collapsed && item.badge && (
                 <span className="ml-auto badge badge-info text-[10px]">{item.badge}</span>
