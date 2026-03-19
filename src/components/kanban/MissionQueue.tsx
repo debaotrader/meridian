@@ -153,7 +153,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
         </div>
         <button
           onClick={() => setShowCreateModal(true)}
-          className="flex items-center gap-2 px-4 min-h-11 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90"
+          className="flex items-center gap-2 px-4 min-h-11 bg-accent text-inverse rounded text-sm font-medium hover:bg-accent-hover"
         >
           <Plus className="w-4 h-4" />
           Nova tarefa
