@@ -153,7 +153,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
         </div>
         <button
           onClick={() => setShowCreateModal(true)}
-          className="flex items-center gap-2 px-4 min-h-11 bg-mc-accent-pink text-mc-bg rounded text-sm font-medium hover:bg-mc-accent-pink/90"
+          className="flex items-center gap-2 px-4 min-h-11 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90"
         >
           <Plus className="w-4 h-4" />
           Nova tarefa
@@ -169,12 +169,12 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
               <div
                 key={column.id}
                 style={{ width: getDesktopColumnWidth(columnTasks.length) }}
-                className={`flex-none ${compactEmptyColumns ? (hasTasks ? 'min-w-[240px]' : 'min-w-[110px] max-w-[180px]') : 'min-w-[250px] max-w-[320px]'} flex flex-col bg-mc-bg rounded-lg border border-mc-border/50 border-t-2 transition-[width] duration-200 ${column.color}`}
+                className={`flex-none ${compactEmptyColumns ? (hasTasks ? 'min-w-[240px]' : 'min-w-[110px] max-w-[180px]') : 'min-w-[250px] max-w-[320px]'} flex flex-col bg-mc-bg rounded-lg border border-[rgba(255,255,255,0.08)] transition-[width] duration-200`}
                 onDragOver={handleDragOver}
                 onDrop={(e) => handleDrop(e, column.id)}
               >
                 <div className="p-2 border-b border-mc-border flex items-center justify-between gap-2">
-                  <span className="text-xs font-medium uppercase text-mc-text-secondary whitespace-nowrap">{column.label}</span>
+                  <div className="flex items-center gap-1.5"><div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${column.color.replace('border-t-', 'bg-')}`} /><span className="text-xs font-medium uppercase text-mc-text-secondary whitespace-nowrap">{column.label}</span></div>
                   <span className="text-xs bg-mc-bg-tertiary px-2 py-0.5 rounded text-mc-text-secondary">{columnTasks.length}</span>
                 </div>
 

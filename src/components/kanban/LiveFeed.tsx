@@ -61,7 +61,7 @@ export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProp
                 key={FILTER_LABELS[tab]}
                 onClick={() => setFilter(tab)}
                 className={`min-h-11 text-xs rounded uppercase ${mobileMode && isPortrait ? 'px-1' : 'px-3'} ${
-                  filter === tab ? 'bg-mc-accent text-mc-bg font-medium' : 'text-mc-text-secondary hover:bg-mc-bg-tertiary'
+                  filter === tab ? 'bg-mc-accent/10 text-mc-accent font-medium' : 'text-mc-text-secondary hover:bg-mc-bg-tertiary'
                 }`}
               >
                 {FILTER_LABELS[tab]}
