@@ -495,6 +495,28 @@ export default function VibeView() {
   }, []);
 
   // Celebrate new accomplishments
+
+  // Demo mode: inject fictional agents when no real agents exist
+  useEffect(() => {
+    if (!isDemoMode) return;
+    const timer = setTimeout(() => {
+      setAgents(prev => {
+        if (prev.length > 0) return prev;
+        const mkSkills = (names: string[]) => names.map(n => ({ name: n, level: 3, icon: '⚡' }));
+        const mkNeeds = (e: number, f: number, o: number) => ({ energy: e, focus: f, output: o, collab: 50, queue: 2 });
+        return [
+          { id: 'nova', name: 'Nova', role: 'PM / Strategist', emoji: '🧠', status: 'working' as AgentStatus, mood: 'great' as Mood, color: '#6366f1', xp: 420, level: 5, needs: mkNeeds(85, 90, 70), skills: mkSkills(['planning', 'strategy', 'communication']), task: 'Sprint planning Q2' },
+          { id: 'forge', name: 'Forge', role: 'Backend Engineer', emoji: '⚒️', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#10b981', xp: 380, level: 4, needs: mkNeeds(75, 95, 80), skills: mkSkills(['nodejs', 'rust', 'databases']), task: 'API endpoint optimization' },
+          { id: 'lens', name: 'Lens', role: 'QA Engineer', emoji: '🔍', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#f59e0b', xp: 290, level: 3, needs: mkNeeds(80, 85, 65), skills: mkSkills(['testing', 'automation', 'debugging']), task: 'Integration test suite' },
+          { id: 'pixel', name: 'Pixel', role: 'UI/UX Designer', emoji: '🎨', status: 'idle' as AgentStatus, mood: 'great' as Mood, color: '#ec4899', xp: 350, level: 4, needs: mkNeeds(90, 80, 75), skills: mkSkills(['figma', 'css', 'animation']), task: 'Dashboard redesign' },
+          { id: 'cipher', name: 'Cipher', role: 'DevOps / SRE', emoji: '🛡️', status: 'working' as AgentStatus, mood: 'good' as Mood, color: '#8b5cf6', xp: 310, level: 3, needs: mkNeeds(70, 88, 60), skills: mkSkills(['docker', 'k8s', 'monitoring']), task: 'CI/CD pipeline hardening' },
+        ];
+      });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [isDemoMode]);
+
+
   useEffect(() => {
     // On first load, just record the high-water mark — don't celebrate old ones
     if (lastAccomplishmentCheck.current === 0 && accomplishments.length > 0) {
@@ -1511,7 +1533,7 @@ export default function VibeView() {
             zIndex: 2,
           }}>
             <a 
-              href="/?demo=true"
+              href="/meridian/vibe?demo=true"
               onClick={() => sfx.play('click')}
               style={{
                 background: 'rgba(0,255,65,0.1)',
