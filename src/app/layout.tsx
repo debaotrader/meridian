@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: 'Meridian',
   description: 'Painel unificado de gestão de agentes de IA',
   icons: {
-    icon: '/favicon.svg',
+    icon: '/meridian/favicon.svg',
   },
 };
 

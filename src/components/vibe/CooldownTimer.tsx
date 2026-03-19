@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { apiPath } from '@/lib/api-path';
 
 export function CooldownTimer({ targetMs }: { targetMs: number }) {
   const [remaining, setRemaining] = useState('');
@@ -67,7 +68,7 @@ export function linkifyFiles(text: string, fetchFn: typeof fetch = fetch): (stri
             e.preventDefault();
             e.stopPropagation();
             try {
-              const res = await fetchFn(`/api/office/open-file`, {
+              const res = await fetchFn(apiPath(`/api/office/open-file`), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: filename }),

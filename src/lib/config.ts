@@ -9,7 +9,7 @@
 
 export interface MissionControlConfig {
   // Workspace settings
-  workspaceBasePath: string; // e.g., ~/Documents/Shared
+  workspaceBasePath: string; // e.g., ~/Meridian-workspace
   projectsPath: string; // e.g., ${workspaceBasePath}/projects
   
   // Mission Control API URL (for orchestration)
@@ -26,8 +26,8 @@ export interface MissionControlConfig {
 }
 
 const DEFAULT_CONFIG: MissionControlConfig = {
-  workspaceBasePath: '~/Documents/Shared',
-  projectsPath: '~/Documents/Shared/projects',
+  workspaceBasePath: '~/Meridian-workspace',
+  projectsPath: '~/Meridian-workspace/projects',
   missionControlUrl: typeof window !== 'undefined' ? window.location.origin : `http://localhost:${process.env.PORT || '4000'}`,
   defaultProjectName: 'mission-control',
   kanbanCompactEmptyColumns: false,
@@ -140,7 +140,7 @@ export function getWorkspaceBasePath(): string {
   }
 
   // Server-side: check env var first, then default
-  return process.env.WORKSPACE_BASE_PATH || '~/Documents/Shared';
+  return process.env.WORKSPACE_BASE_PATH || '~/Meridian-workspace';
 }
 
 /**
@@ -153,7 +153,7 @@ export function getProjectsPath(): string {
   }
 
   // Server-side: check env var first, then default
-  return process.env.PROJECTS_PATH || '~/Documents/Shared/projects';
+  return process.env.PROJECTS_PATH || '~/Meridian-workspace/projects';
 }
 
 /**

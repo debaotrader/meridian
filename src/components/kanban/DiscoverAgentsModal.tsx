@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { X, Search, Download, Check, AlertCircle, Loader2, RefreshCw } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import type { DiscoveredAgent } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 interface DiscoverAgentsModalProps {
   onClose: () => void;
@@ -28,7 +29,7 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
     setImportResult(null);
 
     try {
-      const res = await fetch('/api/agents/discover');
+      const res = await fetch(apiPath('/api/agents/discover'));
       if (!res.ok) {
         const data = await res.json();
         setError(data.error || `Failed to discover agents (${res.status})`);
@@ -84,7 +85,7 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
           workspace_id: workspaceId || 'default',
         }));
 
-      const res = await fetch('/api/agents/import', {
+      const res = await fetch(apiPath('/api/agents/import'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ agents: agentsToImport }),

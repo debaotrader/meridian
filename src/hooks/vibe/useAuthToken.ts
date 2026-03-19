@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { apiPath } from '@/lib/api-path';
 
 /**
  * Hook to get the auth token for use in URLs (e.g., video src).
@@ -11,7 +12,7 @@ export function useAuthToken(): string | null {
   useEffect(() => {
     const loadToken = async () => {
       try {
-        const res = await fetch('/api/auth/token');
+        const res = await fetch(apiPath('/api/auth/token'));
         if (!res.ok) throw new Error('Failed to fetch token');
         const data = await res.json();
         setToken(data.token);

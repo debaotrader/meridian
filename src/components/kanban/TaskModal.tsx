@@ -12,6 +12,7 @@ import { TeamTab } from './TeamTab';
 import { AgentModal } from './AgentModal';
 import { TaskImages } from './TaskImages';
 import type { Task, TaskPriority, TaskStatus } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 type TabType = 'overview' | 'planning' | 'team' | 'activity' | 'deliverables' | 'images' | 'sessions';
 
@@ -65,7 +66,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
     setSaveError(null);
 
     try {
-      const url = task ? `/api/tasks/${task.id}` : '/api/tasks';
+      const url = task ? apiPath(`/api/tasks/${task.id}`) : apiPath('/api/tasks');
       const method = task ? 'PATCH' : 'POST';
       const resolvedStatus = resolveStatus();
 
@@ -124,7 +125,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
       if (usePlanningMode) {
         // Start planning session (fire-and-forget), then close modal.
         // User reopens the task from the board to see the planning tab.
-        fetch(`/api/tasks/${savedTask.id}/planning`, { method: 'POST' })
+        fetch(apiPath(`/api/tasks/${savedTask.id}/planning`), { method: 'POST' })
           .catch((error) => console.error('Failed to start planning:', error));
         onClose();
         return;
@@ -167,7 +168,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
     if (!task || !confirm(`Delete "${task.title}"?`)) return;
 
     try {
-      const res = await fetch(`/api/tasks/${task.id}`, { method: 'DELETE' });
+      const res = await fetch(apiPath(`/api/tasks/${task.id}`), { method: 'DELETE' });
       if (res.ok) {
         useMissionControl.setState((state) => ({
           tasks: state.tasks.filter((t) => t.id !== task.id),

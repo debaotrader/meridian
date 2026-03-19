@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { apiPath } from '@/lib/api-path';
 
 /**
  * Referral tracking hook.
@@ -48,7 +49,7 @@ export function useReferralTracking() {
 
         // Track the referral click
         const visitorId = localStorage.getItem('ocf-vid') || 'unknown';
-        fetch('/api/affiliate/track', {
+        fetch(apiPath('/api/affiliate/track'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

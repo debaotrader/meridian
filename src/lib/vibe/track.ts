@@ -10,6 +10,7 @@
 'use client';
 
 import { track as vercelTrack } from '@vercel/analytics';
+import { apiPath } from '@/lib/api-path';
 
 // All trackable events — add new ones here
 export type TrackEvent =
@@ -98,7 +99,7 @@ export function track(event: TrackEvent, props?: Record<string, string | number 
 
   // 2. Local JSONL log — always send (this is where real users run it)
   try {
-    fetch('/api/analytics/track', {
+    fetch(apiPath('/api/analytics/track'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

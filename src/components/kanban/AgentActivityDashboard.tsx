@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, AlertTriangle, Activity, Clock, Filter, RefreshCw } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import type { Agent, Event, Task, Workspace } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 type ActivityFilter = 'all' | 'working' | 'blocked' | 'idle';
 
@@ -44,9 +45,9 @@ export function AgentActivityDashboard({ workspace }: AgentActivityDashboardProp
     const loadData = async () => {
       try {
         const [agentsRes, tasksRes, eventsRes] = await Promise.all([
-          fetch(workspaceId ? `/api/agents?workspace_id=${workspaceId}` : '/api/agents'),
-          fetch(workspaceId ? `/api/tasks?workspace_id=${workspaceId}` : '/api/tasks'),
-          fetch('/api/events?limit=150'),
+          fetch(workspaceId ? apiPath(`/api/agents?workspace_id=${workspaceId}`) : apiPath('/api/agents')),
+          fetch(workspaceId ? apiPath(`/api/tasks?workspace_id=${workspaceId}`) : apiPath('/api/tasks')),
+          fetch(apiPath('/api/events?limit=150')),
         ]);
 
         if (!mounted) return;
@@ -72,9 +73,9 @@ export function AgentActivityDashboard({ workspace }: AgentActivityDashboardProp
     const refresh = async () => {
       try {
         const [agentsRes, tasksRes, eventsRes] = await Promise.all([
-          fetch(workspaceId ? `/api/agents?workspace_id=${workspaceId}` : '/api/agents'),
-          fetch(workspaceId ? `/api/tasks?workspace_id=${workspaceId}` : '/api/tasks'),
-          fetch('/api/events?limit=150'),
+          fetch(workspaceId ? apiPath(`/api/agents?workspace_id=${workspaceId}`) : apiPath('/api/agents')),
+          fetch(workspaceId ? apiPath(`/api/tasks?workspace_id=${workspaceId}`) : apiPath('/api/tasks')),
+          fetch(apiPath('/api/events?limit=150')),
         ]);
 
         if (agentsRes.ok) setAgents(await agentsRes.json());
@@ -98,7 +99,7 @@ export function AgentActivityDashboard({ workspace }: AgentActivityDashboardProp
     };
 
     const connectSSE = () => {
-      const source = new EventSource('/api/events/stream');
+      const source = new EventSource(apiPath('/api/events/stream'));
       eventSourceRef.current = source;
 
       source.onopen = () => {

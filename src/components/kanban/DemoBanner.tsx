@@ -1,12 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { apiPath } from '@/lib/api-path';
 
 export default function DemoBanner() {
   const [isDemo, setIsDemo] = useState(false);
 
   useEffect(() => {
-    fetch('/api/demo')
+    fetch(apiPath('/api/demo'))
       .then(r => r.json())
       .then(data => setIsDemo(data.demo))
       .catch(() => {});

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Plus, ArrowRight, Folder, Users, CheckSquare, Trash2, AlertTriangle, Activity } from 'lucide-react';
 import Link from 'next/link';
 import type { WorkspaceStats } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 export function WorkspaceDashboard() {
   const [workspaces, setWorkspaces] = useState<WorkspaceStats[]>([]);
@@ -16,7 +17,7 @@ export function WorkspaceDashboard() {
 
   const loadWorkspaces = async () => {
     try {
-      const res = await fetch('/api/workspaces?stats=true');
+      const res = await fetch(apiPath('/api/workspaces?stats=true'));
       if (res.ok) {
         const data = await res.json();
         setWorkspaces(data);
@@ -139,7 +140,7 @@ function WorkspaceCard({ workspace, onDelete }: { workspace: WorkspaceStats; onD
     e.stopPropagation();
     setDeleting(true);
     try {
-      const res = await fetch(`/api/workspaces/${workspace.id}`, { method: 'DELETE' });
+      const res = await fetch(apiPath(`/api/workspaces/${workspace.id}`), { method: 'DELETE' });
       if (res.ok) {
         onDelete(workspace.id);
       } else {
@@ -261,7 +262,7 @@ function CreateWorkspaceModal({ onClose, onCreated }: { onClose: () => void; onC
     setError(null);
 
     try {
-      const res = await fetch('/api/workspaces', {
+      const res = await fetch(apiPath('/api/workspaces'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: name.trim(), icon }),

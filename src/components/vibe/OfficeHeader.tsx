@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import type { Agent, PendingAction, Accomplishment } from './types';
+import { apiPath } from '@/lib/api-path';
 
 interface OfficeHeaderProps {
   agents: Agent[];
@@ -201,7 +202,7 @@ export function OfficeHeader({
             sfx.play('click');
             try {
               const token = localStorage.getItem('openclawfice_token');
-              const res = await fetch('/api/export/workflow', {
+              const res = await fetch(apiPath('/api/export/workflow'), {
                 headers: token ? { 'X-OpenClawfice-Token': token } : {},
               });
               if (!res.ok) throw new Error('Export failed');

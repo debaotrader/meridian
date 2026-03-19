@@ -1,4 +1,5 @@
 import { useCallback, useRef, useEffect } from 'react';
+import { apiPath } from '@/lib/api-path';
 
 /**
  * Hook for making authenticated API requests.
@@ -16,7 +17,7 @@ export function useAuthenticatedFetch() {
 
       tokenPromiseRef.current = (async () => {
         try {
-          const res = await fetch('/api/auth/token');
+          const res = await fetch(apiPath('/api/auth/token'));
           if (!res.ok) throw new Error('Failed to fetch token');
           const data = await res.json();
           tokenRef.current = data.token;
@@ -44,7 +45,7 @@ export function useAuthenticatedFetch() {
       if (tokenPromiseRef.current) {
         await tokenPromiseRef.current;
       } else {
-        const res = await fetch('/api/auth/token');
+        const res = await fetch(apiPath('/api/auth/token'));
         const data = await res.json();
         tokenRef.current = data.token;
       }

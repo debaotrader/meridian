@@ -13,6 +13,7 @@ import { useMissionControl } from '@/lib/store';
 import { useSSE } from '@/hooks/useSSE';
 import { debug } from '@/lib/debug';
 import type { Task, Workspace } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 type MobileTab = 'queue' | 'agents' | 'feed' | 'settings';
 
@@ -46,7 +47,7 @@ export default function WorkspacePage() {
   useEffect(() => {
     async function loadWorkspace() {
       try {
-        const res = await fetch(`/api/workspaces/${slug}`);
+        const res = await fetch(apiPath(`/api/workspaces/${slug}`));
         if (res.ok) {
           const data = await res.json();
           setWorkspace(data);
@@ -82,9 +83,9 @@ export default function WorkspacePage() {
         debug.api('Loading workspace data...', { workspaceId });
 
         const [agentsRes, tasksRes, eventsRes] = await Promise.all([
-          fetch(`/api/agents?workspace_id=${workspaceId}`),
-          fetch(`/api/tasks?workspace_id=${workspaceId}`),
-          fetch('/api/events'),
+          fetch(apiPath(`/api/agents?workspace_id=${workspaceId}`)),
+          fetch(apiPath(`/api/tasks?workspace_id=${workspaceId}`)),
+          fetch(apiPath('/api/events')),
         ]);
 
         if (agentsRes.ok) setAgents(await agentsRes.json());
@@ -106,7 +107,7 @@ export default function WorkspacePage() {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-        const openclawRes = await fetch('/api/openclaw/status', { signal: controller.signal });
+        const openclawRes = await fetch(apiPath('/api/openclaw/status'), { signal: controller.signal });
         clearTimeout(timeoutId);
 
         if (openclawRes.ok) {
@@ -123,7 +124,7 @@ export default function WorkspacePage() {
 
     const eventPoll = setInterval(async () => {
       try {
-        const res = await fetch('/api/events?limit=20');
+        const res = await fetch(apiPath('/api/events?limit=20'));
         if (res.ok) {
           setEvents(await res.json());
         }
@@ -134,7 +135,7 @@ export default function WorkspacePage() {
 
     const taskPoll = setInterval(async () => {
       try {
-        const res = await fetch(`/api/tasks?workspace_id=${workspaceId}`);
+        const res = await fetch(apiPath(`/api/tasks?workspace_id=${workspaceId}`));
         if (res.ok) {
           const newTasks: Task[] = await res.json();
           const currentTasks = useMissionControl.getState().tasks;
@@ -158,7 +159,7 @@ export default function WorkspacePage() {
 
     const connectionCheck = setInterval(async () => {
       try {
-        const res = await fetch('/api/openclaw/status');
+        const res = await fetch(apiPath('/api/openclaw/status'));
         if (res.ok) {
           const status = await res.json();
           setIsOnline(status.connected);

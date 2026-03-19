@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { CheckCircle, Circle, Lock, AlertCircle, Loader2, X } from 'lucide-react';
+import { apiPath } from '@/lib/api-path';
 
 interface PlanningOption {
   id: string;
@@ -74,7 +75,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
   // Load planning state (initial load only)
   const loadState = useCallback(async () => {
     try {
-      const res = await fetch(`/api/tasks/${taskId}/planning`);
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/planning`));
       if (res.ok) {
         const data = await res.json();
         setState(data);
@@ -112,7 +113,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     isPollingRef.current = true;
 
     try {
-      const res = await fetch(`/api/tasks/${taskId}/planning/poll`);
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/planning/poll`));
       if (res.ok) {
         const data = await res.json();
 
@@ -124,7 +125,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
           const questionChanged = newQuestion && currentQuestionRef.current !== newQuestion;
 
           // Force a full state reload from server to avoid stale state issues
-          const freshRes = await fetch(`/api/tasks/${taskId}/planning`);
+          const freshRes = await fetch(apiPath(`/api/tasks/${taskId}/planning`));
           if (freshRes.ok) {
             const freshData = await freshRes.json();
             setState(freshData);
@@ -226,7 +227,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     setError(null);
 
     try {
-      const res = await fetch(`/api/tasks/${taskId}/planning`, { method: 'POST' });
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/planning`), { method: 'POST' });
       const data = await res.json();
 
       if (res.ok) {
@@ -265,7 +266,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     lastSubmissionRef.current = submission;
 
     try {
-      const res = await fetch(`/api/tasks/${taskId}/planning/answer`, {
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/planning/answer`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submission),
@@ -306,7 +307,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     setError(null);
 
     try {
-      const res = await fetch(`/api/tasks/${taskId}/planning/answer`, {
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/planning/answer`), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submission),
@@ -340,7 +341,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     setError(null);
 
     try {
-      const res = await fetch(`/api/tasks/${taskId}/planning/retry-dispatch`, {
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/planning/retry-dispatch`), {
         method: 'POST',
       });
 
@@ -371,7 +372,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
     stopPolling(); // Stop polling when canceling
 
     try {
-      const res = await fetch(`/api/tasks/${taskId}/planning`, {
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/planning`), {
         method: 'DELETE',
       });
 

@@ -35,6 +35,7 @@ import { ChatBubble } from './ChatBubble';
 import { AgentSearchFilter } from './AgentSearchFilter';
 import { DiscoveryAnimation } from './DiscoveryAnimation';
 import { useCrossModuleNav } from '@/lib/navigation/cross-module-nav';
+import { apiPath } from '@/lib/api-path';
 
 
 function Clock({ color }: { color: string }) {
@@ -248,7 +249,7 @@ export default function VibeView() {
           }
         } catch {}
 
-        return fetch('/api/github/stars')
+        return fetch(apiPath('/api/github/stars'))
           .then(r => r.json())
           .then(data => {
             if (typeof data?.stars === 'number') {
@@ -629,7 +630,7 @@ export default function VibeView() {
     setArchiveLoading(true);
     try {
       const offset = reset ? 0 : archivedAccomplishments.length;
-      const res = await secureFetch(`/api/vibe/actions?archiveOffset=${offset}&limit=50`);
+      const res = await secureFetch(apiPath(`/api/vibe/actions?archiveOffset=${offset}&limit=50`));
       const data = await res.json();
       if (data.archive) {
         setArchivedAccomplishments(prev => reset ? data.archive : [...prev, ...data.archive]);
@@ -762,14 +763,14 @@ export default function VibeView() {
       const ownerName = agents.find(a => a.id === '_owner')?.name || 'You';
 
       // Add user message to water cooler chat so agents see it and respond
-      secureFetch('/api/vibe/chat', {
+      secureFetch(apiPath('/api/vibe/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'user_message', from: ownerName, text: groupMessage }),
       }).catch(() => {});
 
       // Send to all agents (broadcast)
-      const res = await secureFetch('/api/vibe/message', {
+      const res = await secureFetch(apiPath('/api/vibe/message'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -796,7 +797,7 @@ export default function VibeView() {
   const handleTemplateSelect = async (quest: any) => { // justified: inherited from OpenClawfice merge
     try {
       // Add the cloned quest to actions
-      const res = await secureFetch('/api/vibe/actions', {
+      const res = await secureFetch(apiPath('/api/vibe/actions'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'add', action: quest }),
@@ -2592,7 +2593,7 @@ export default function VibeView() {
         if (!action) return null;
         const priorityColors: Record<string, string> = { high: '#ef4444', medium: '#f59e0b', low: '#6366f1' };
         const respondAction = async (response: string) => {
-          await secureFetch('/api/vibe/actions', {
+          await secureFetch(apiPath('/api/vibe/actions'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ type: 'respond_action', id: action.id, response }),
@@ -2639,7 +2640,7 @@ export default function VibeView() {
                     e.preventDefault();
                     e.stopPropagation();
                     try {
-                      const res = await secureFetch('/api/vibe/open-file', {
+                      const res = await secureFetch(apiPath('/api/vibe/open-file'), {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name: action.data!.file }),
@@ -2846,7 +2847,7 @@ export default function VibeView() {
         accomplishment={selectedAccomplishment}
         onClose={() => setSelectedAccomplishment(null)}
         onOpenFile={async (filename) => {
-          const res = await secureFetch("/api/vibe/open-file", {
+          const res = await secureFetch(apiPath("/api/vibe/open-file"), {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: filename }),
@@ -2901,7 +2902,7 @@ export default function VibeView() {
         onDiscard={() => setPendingAutowork({})}
         onApply={async (entries) => {
           for (const [agentId, changes] of entries) {
-            await secureFetch("/api/vibe/autowork", {
+            await secureFetch(apiPath("/api/vibe/autowork"), {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ agentId, ...changes }),

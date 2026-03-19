@@ -1,3 +1,4 @@
+import { apiPath } from '@/lib/api-path';
 
 
 interface AutoDispatchOptions {
@@ -20,7 +21,7 @@ export async function triggerAutoDispatch(options: AutoDispatchOptions): Promise
   }
 
   try {
-    const dispatchRes = await fetch(`/api/tasks/${taskId}/dispatch`, {
+    const dispatchRes = await fetch(apiPath(`/api/tasks/${taskId}/dispatch`), {
       method: 'POST',
     });
 

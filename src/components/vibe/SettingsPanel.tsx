@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useAuthenticatedFetch } from '@/hooks/vibe/useAuthenticatedFetch';
+import { apiPath } from '@/lib/api-path';
 
 const CHAT_FREQ_PRESETS = [
   { label: '5s', value: '5s' },
@@ -48,7 +49,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
       },
     };
     try {
-      const res = await secureFetch('/api/office/config', {
+      const res = await secureFetch(apiPath('/api/office/config'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(patch),

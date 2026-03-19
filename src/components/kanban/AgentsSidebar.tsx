@@ -6,6 +6,7 @@ import { useMissionControl } from '@/lib/store';
 import type { Agent, AgentStatus, OpenClawSession } from '@/lib/types';
 import { AgentModal } from './AgentModal';
 import { DiscoverAgentsModal } from './DiscoverAgentsModal';
+import { apiPath } from '@/lib/api-path';
 
 type FilterTab = 'all' | 'working' | 'standby';
 
@@ -31,7 +32,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
   const loadOpenClawSessions = useCallback(async () => {
     for (const agent of agents) {
       try {
-        const res = await fetch(`/api/agents/${agent.id}/openclaw`);
+        const res = await fetch(apiPath(`/api/agents/${agent.id}/openclaw`));
         if (res.ok) {
           const data = await res.json();
           if (data.linked && data.session) {
@@ -53,7 +54,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
   useEffect(() => {
     const loadSubAgentCount = async () => {
       try {
-        const res = await fetch('/api/openclaw/sessions?session_type=subagent&status=active');
+        const res = await fetch(apiPath('/api/openclaw/sessions?session_type=subagent&status=active'));
         if (res.ok) {
           const sessions = await res.json();
           setActiveSubAgents(sessions.length);
@@ -76,12 +77,12 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
       const existingSession = agentOpenClawSessions[agent.id];
 
       if (existingSession) {
-        const res = await fetch(`/api/agents/${agent.id}/openclaw`, { method: 'DELETE' });
+        const res = await fetch(apiPath(`/api/agents/${agent.id}/openclaw`), { method: 'DELETE' });
         if (res.ok) {
           setAgentOpenClawSession(agent.id, null);
         }
       } else {
-        const res = await fetch(`/api/agents/${agent.id}/openclaw`, { method: 'POST' });
+        const res = await fetch(apiPath(`/api/agents/${agent.id}/openclaw`), { method: 'POST' });
         if (res.ok) {
           const data = await res.json();
           setAgentOpenClawSession(agent.id, data.session as OpenClawSession);

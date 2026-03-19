@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { AgentActivityDashboard } from '@/components/kanban/AgentActivityDashboard';
 import type { Workspace } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 export default function WorkspaceActivityPage() {
   const params = useParams();
@@ -13,7 +14,7 @@ export default function WorkspaceActivityPage() {
   useEffect(() => {
     async function loadWorkspace() {
       try {
-        const res = await fetch(`/api/workspaces/${slug}`);
+        const res = await fetch(apiPath(`/api/workspaces/${slug}`));
         if (res.ok) {
           setWorkspace(await res.json());
         }

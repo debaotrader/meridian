@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, usePathname } from 'next/navigation';
 import { track } from '@/lib/vibe/track';
+import { apiPath } from '@/lib/api-path';
 
 /**
  * Demo Mode Hook - Detects demo mode and returns appropriate API paths
@@ -38,7 +39,7 @@ export function useDemoMode() {
       '/api/office/challenges': '/api/demo/challenges',
     };
     
-    return demoMap[path] || path;
+    return apiPath(demoMap[path] || path);
   }, [isDemoMode]);
 
   return {

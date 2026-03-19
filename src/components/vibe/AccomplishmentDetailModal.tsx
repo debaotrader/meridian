@@ -4,6 +4,7 @@ import React from 'react';
 import type { Accomplishment } from './types';
 import { linkifyFiles } from './CooldownTimer';
 import { useAuthToken } from '@/hooks/vibe/useAuthToken';
+import { apiPath } from '@/lib/api-path';
 
 interface AccomplishmentDetailModalProps {
   accomplishment: Accomplishment | null;
@@ -126,7 +127,7 @@ export function AccomplishmentDetailModal({ accomplishment, onClose, onOpenFile 
               accomplishment.screenshot.endsWith('.webm') ||
               accomplishment.screenshot.endsWith('.mov') ? (
                 <video
-                  src={authToken ? `/api/office/screenshot?file=${encodeURIComponent(accomplishment.screenshot)}&token=${authToken}` : undefined}
+                  src={authToken ? apiPath(`/api/office/screenshot?file=${encodeURIComponent(accomplishment.screenshot)}&token=${authToken}`) : undefined}
                   controls
                   autoPlay={!accomplishment.file}
                   style={{
@@ -138,7 +139,7 @@ export function AccomplishmentDetailModal({ accomplishment, onClose, onOpenFile 
                 />
               ) : (
                 <img
-                  src={authToken ? `/api/office/screenshot?file=${encodeURIComponent(accomplishment.screenshot)}&token=${authToken}` : undefined}
+                  src={authToken ? apiPath(`/api/office/screenshot?file=${encodeURIComponent(accomplishment.screenshot)}&token=${authToken}`) : undefined}
                   alt={accomplishment.title}
                   style={{
                     width: '100%',

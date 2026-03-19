@@ -8,6 +8,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import type { TaskActivity } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 interface ActivityLogProps {
   taskId: string;
@@ -23,7 +24,7 @@ export function ActivityLog({ taskId }: ActivityLogProps) {
     try {
       if (showLoading) setLoading(true);
 
-      const res = await fetch(`/api/tasks/${taskId}/activities`);
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/activities`));
       const data = await res.json();
 
       if (res.ok) {
@@ -45,7 +46,7 @@ export function ActivityLog({ taskId }: ActivityLogProps) {
   // Polling function
   const pollForActivities = useCallback(async () => {
     try {
-      const res = await fetch(`/api/tasks/${taskId}/activities`);
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/activities`));
       if (res.ok) {
         const data = await res.json();
         // Only update if there are new activities

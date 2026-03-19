@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { apiPath } from '@/lib/api-path';
 
 interface ShareWorkflowModalProps {
   isVisible: boolean;
@@ -23,7 +24,7 @@ export function ShareWorkflowModal({ isVisible, onClose, config, onShare }: Shar
     setIsGenerating(true);
     
     try {
-      const res = await fetch('/api/templates/create', {
+      const res = await fetch(apiPath('/api/templates/create'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

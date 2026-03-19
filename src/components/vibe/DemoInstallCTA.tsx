@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { track } from '@/lib/vibe/track';
+import { apiPath } from '@/lib/api-path';
 
 interface Props {
   delayMs?: number;
@@ -40,7 +41,7 @@ export function DemoInstallCTA({ delayMs = 30000 }: Props) {
     setCopied(true);
     track('install_copied', { source: 'demo-cta' });
     // Also log to local analytics API
-    fetch('/api/analytics', {
+    fetch(apiPath('/api/analytics'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

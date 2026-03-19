@@ -9,6 +9,7 @@ import type { Task, TaskStatus } from '@/lib/types';
 import { TaskModal } from './TaskModal';
 import { formatDistanceToNow } from 'date-fns';
 import { emitTaskEvent } from '@/lib/events/task-events';
+import { apiPath } from '@/lib/api-path';
 
 interface MissionQueueProps {
   workspaceId?: string;
@@ -72,7 +73,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
     updateTaskStatus(task.id, targetStatus);
 
     try {
-      const res = await fetch(`/api/tasks/${task.id}`, {
+      const res = await fetch(apiPath(`/api/tasks/${task.id}`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: targetStatus }),

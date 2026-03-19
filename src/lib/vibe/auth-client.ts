@@ -1,3 +1,4 @@
+import { apiPath } from '@/lib/api-path';
 /**
  * Client-side auth token management.
  * Loads token from API endpoint and stores in memory.
@@ -15,7 +16,7 @@ export async function getAuthToken(): Promise<string> {
   }
 
   try {
-    const res = await fetch('/api/auth/token');
+    const res = await fetch(apiPath('/api/auth/token'));
     if (!res.ok) {
       throw new Error('Failed to fetch auth token');
     }

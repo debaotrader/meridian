@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ImagePlus, X, Loader2 } from 'lucide-react';
 import type { TaskImage } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 interface TaskImagesProps {
   taskId: string;
@@ -15,7 +16,7 @@ export function TaskImages({ taskId }: TaskImagesProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetch(`/api/tasks/${taskId}/images`)
+    fetch(apiPath(`/api/tasks/${taskId}/images`))
       .then(res => res.json())
       .then(data => setImages(data.images || []))
       .catch(() => setError('Failed to load images'));
@@ -32,7 +33,7 @@ export function TaskImages({ taskId }: TaskImagesProps) {
       const formData = new FormData();
       formData.append('file', file);
 
-      const res = await fetch(`/api/tasks/${taskId}/images`, {
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/images`), {
         method: 'POST',
         body: formData,
       });
@@ -55,7 +56,7 @@ export function TaskImages({ taskId }: TaskImagesProps) {
 
   const handleDelete = async (filename: string) => {
     try {
-      const res = await fetch(`/api/tasks/${taskId}/images`, {
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/images`), {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ filename }),
@@ -108,7 +109,7 @@ export function TaskImages({ taskId }: TaskImagesProps) {
           {images.map((img) => (
             <div key={img.filename} className="group relative rounded-lg overflow-hidden border border-mc-border bg-mc-bg">
               <img
-                src={`/api/task-images/${taskId}/${img.filename}`}
+                src={apiPath(`/api/task-images/${taskId}/${img.filename}`)}
                 alt={img.original_name}
                 className="w-full h-32 object-cover"
               />

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Users, Save, AlertCircle, CheckCircle2, RefreshCw } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import type { WorkflowTemplate, WorkflowStage } from '@/lib/types';
+import { apiPath } from '@/lib/api-path';
 
 interface TeamTabProps {
   taskId: string;
@@ -34,9 +35,9 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
     const load = async () => {
       try {
         const [rolesRes, workflowsRes, taskRes] = await Promise.all([
-          fetch(`/api/tasks/${taskId}/roles`),
-          fetch(`/api/workspaces/${workspaceId}/workflows`),
-          fetch(`/api/tasks/${taskId}`),
+          fetch(apiPath(`/api/tasks/${taskId}/roles`)),
+          fetch(apiPath(`/api/workspaces/${workspaceId}/workflows`)),
+          fetch(apiPath(`/api/tasks/${taskId}`)),
         ]);
 
         if (rolesRes.ok) {
@@ -84,7 +85,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
 
     // Update task's workflow_template_id
     try {
-      await fetch(`/api/tasks/${taskId}`, {
+      await fetch(apiPath(`/api/tasks/${taskId}`), {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ workflow_template_id: templateId || null }),
@@ -132,7 +133,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
 
     try {
       const validRoles = roles.filter(r => r.role && r.agent_id);
-      const res = await fetch(`/api/tasks/${taskId}/roles`, {
+      const res = await fetch(apiPath(`/api/tasks/${taskId}/roles`), {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ roles: validRoles }),

@@ -5,6 +5,7 @@ import type { Agent, Skill } from './types';
 import { formatInterval } from './utils';
 import { useAuthenticatedFetch } from '@/hooks/vibe/useAuthenticatedFetch';
 import { useDemoMode } from '@/hooks/vibe/useDemoMode';
+import { apiPath } from '@/lib/api-path';
 
 const COOLDOWN_PRESETS = [
   { label: '1m', ms: 60000 },
@@ -83,7 +84,7 @@ function LiveSessionFeed({ agent, secureFetch }: { agent: Agent; secureFetch: (u
     let cancelled = false;
     const poll = async () => {
       try {
-        const res = await secureFetch(`/api/office/logs?agentId=${encodeURIComponent(agent.id)}&limit=30`);
+        const res = await secureFetch(apiPath(`/api/office/logs?agentId=${encodeURIComponent(agent.id)}&limit=30`));
         if (!cancelled && res.ok) {
           const data = await res.json();
           if (data.entries?.length > 0) {
@@ -283,7 +284,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
     setSending(true);
     const messageText = dmMessage;
     try {
-      const res = await secureFetch('/api/office/message', {
+      const res = await secureFetch(apiPath('/api/office/message'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ agentId: agent.id, message: messageText }),
@@ -587,7 +588,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
                 onClick={async () => {
                   setAwSaving(true);
                   try {
-                    const res = await secureFetch('/api/office/autowork', {
+                    const res = await secureFetch(apiPath('/api/office/autowork'), {
                       method: 'PUT',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ agentId: agent.id }),
