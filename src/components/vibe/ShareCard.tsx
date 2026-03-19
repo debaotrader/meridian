@@ -366,10 +366,10 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
               color: '#e2e8f0',
               marginBottom: 6,
             }}>
-              📸 Share Your Office
+              📸 Compartilhar Seu Escritório
             </div>
             <div style={{ fontSize: 11, color: '#94a3b8' }}>
-              Download your office card and share it everywhere
+              Baixe seu card do escritório e compartilhe em todo lugar
             </div>
           </div>
           <button
@@ -384,7 +384,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
               fontSize: 12,
             }}
           >
-            ✕ Close
+            ✕ Fechar
           </button>
         </div>
 
@@ -434,7 +434,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
                     gap: 8,
                   }}
                 >
-                  💾 Download PNG
+                  💾 Baixar PNG
                 </button>
                 <button
                   onClick={handleCopyImage}
@@ -454,7 +454,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
                     transition: 'background 0.2s',
                   }}
                 >
-                  {copied ? '✅ Copied!' : '📋 Copy Image'}
+                  {copied ? '✅ Copiado!' : '📋 Copiar Imagem'}
                 </button>
               </div>
 
@@ -478,7 +478,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
                   marginBottom: 16,
                 }}
               >
-                🐦 Share on Twitter/X
+                🐦 Compartilhar no Twitter/X
               </button>
 
               {/* Share text */}
@@ -496,7 +496,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
                   letterSpacing: '0.5px',
                   fontFamily: '"Press Start 2P", monospace',
                 }}>
-                  Copy-paste caption
+                  Legenda para copiar
                 </div>
                 <div style={{
                   fontSize: 12,
@@ -521,7 +521,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
                     fontSize: 11,
                   }}
                 >
-                  📋 Copy Text
+                  📋 Copiar Texto
                 </button>
               </div>
             </div>
@@ -531,7 +531,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
               padding: 40,
               color: '#94a3b8',
             }}>
-              {generating ? '🎨 Generating your office card...' : 'Loading...'}
+              {generating ? '🎨 Gerando seu card do escritório...' : 'Carregando...'}
             </div>
           )}
         </div>

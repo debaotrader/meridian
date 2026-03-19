@@ -66,7 +66,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
             textAlign: 'center',
           }}
         >
-          👋 Welcome to OpenClawfice!
+          👋 Bem-vindo ao OpenClawfice!
         </div>
 
         <div
@@ -77,7 +77,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
             textAlign: 'center',
           }}
         >
-          Your AI agents are pixel art NPCs now
+          Seus agentes IA são NPCs em pixel art agora
         </div>
 
         {/* Steps */}
@@ -90,7 +90,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
           }}
         >
           <div style={{ fontSize: '18px', fontWeight: '600', marginBottom: '16px' }}>
-            Getting Started:
+            Como Começar:
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -114,10 +114,10 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: '600', marginBottom: '4px' }}>
-                  Ask an agent to do something
+                  Peça a um agente que faça algo
                 </div>
                 <div style={{ fontSize: '14px', opacity: 0.9 }}>
-                  In your OpenClaw CLI, tell an agent to complete a task
+                  No seu OpenClaw CLI, diga a um agente para concluir uma tarefa
                 </div>
               </div>
             </div>
@@ -142,10 +142,10 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: '600', marginBottom: '4px' }}>
-                  Watch them appear and earn XP ⚡
+                  Veja-os aparecer e ganhar XP ⚡
                 </div>
                 <div style={{ fontSize: '14px', opacity: 0.9 }}>
-                  Agents move between rooms, level up, and compete
+                  Agentes se movem entre salas, sobem de nível e competem
                 </div>
               </div>
             </div>
@@ -170,10 +170,10 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: '600', marginBottom: '4px' }}>
-                  Explore the office features 🎮
+                  Explore os recursos do escritório 🎮
                 </div>
                 <div style={{ fontSize: '14px', opacity: 0.9 }}>
-                  Check stats (📊), water cooler chat, quests, and leaderboard
+                  Veja as estatísticas (📊), Bebedouro, missões e ranking
                 </div>
               </div>
             </div>
@@ -190,7 +190,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
             justifyContent: 'center',
           }}
         >
-          {['📊 Stats', '🏆 Leaderboard', '💬 Water Cooler', '⚔️ Quests', '⚡ XP System'].map((feature) => (
+          {['📊 Estatísticas', '🏆 Ranking', '💬 Bebedouro', '⚔️ Missões', '⚡ Sistema XP'].map((feature) => (
             <div
               key={feature}
               style={{
@@ -231,7 +231,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
               e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
             }}
           >
-            Got it! Let&apos;s go 🚀
+            Entendi! Vamos lá 🚀
           </button>
 
           <a
@@ -258,7 +258,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
               e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
             }}
           >
-            📖 Read the Full Guide
+            📖 Ler o Guia Completo
           </a>
         </div>
 
@@ -271,7 +271,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
             opacity: 0.7,
           }}
         >
-          💡 Tip: Press <kbd style={{ 
+          💡 Dica: Pressione <kbd style={{ 
             background: 'rgba(255, 255, 255, 0.2)', 
             padding: '2px 6px', 
             borderRadius: '4px',

@@ -97,7 +97,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
       <div style={sectionStyle}>
         <div style={labelStyle}>🎯 Company Mission</div>
         <div style={{ fontSize: 9, color: '#475569', marginBottom: 8 }}>
-          Drives auto-work prompts and water cooler conversations
+          Controla os prompts de auto-trabalho e conversas no Bebedouro
         </div>
         <input
           type="text"
@@ -130,7 +130,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
         <button onClick={() => setMPriorities([...mPriorities, ''])} style={{
           background: 'none', border: '1px dashed #334155', borderRadius: 6,
           color: '#64748b', fontSize: 9, padding: '4px 8px', cursor: 'pointer', width: '100%', marginTop: 2,
-        }}>+ Add Priority</button>
+        }}>+ Adicionar Prioridade</button>
         <div style={{ ...labelStyle, fontSize: 8, marginTop: 8 }}>Contexto</div>
         <textarea
           value={mContext}
@@ -155,7 +155,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
           >{wcEnabled ? 'ON' : 'OFF'}</button>
         </div>
         <div style={{ fontSize: 9, color: '#475569', marginBottom: 8 }}>
-          Chat message frequency in the lounge
+          Frequência de mensagens no lounge
         </div>
         <div style={{ ...labelStyle, fontSize: 8 }}>Frequência</div>
         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 10 }}>
@@ -220,10 +220,10 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
         <div style={{ fontSize: 9, fontFamily: '"Press Start 2P", monospace', color: '#94a3b8', marginBottom: 8 }}>⌨️ Atalhos</div>
         {[
           ['1-9', 'Selecionar agente'],
-          ['T', 'Quest templates'],
-          ['M', 'Call meeting'],
-          ['?', 'Settings'],
-          ['Esc', 'Close panel'],
+          ['T', 'Modelos de missão'],
+          ['M', 'Chamar reunião'],
+          ['?', 'Configurações'],
+          ['Esc', 'Fechar painel'],
         ].map(([key, desc]) => (
           <div key={key} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
             <kbd style={{

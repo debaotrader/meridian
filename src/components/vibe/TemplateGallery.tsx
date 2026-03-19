@@ -64,7 +64,7 @@ export function TemplateGallery({ onSelectTemplate, onClose }: TemplateGalleryPr
               fontSize: 11,
               color: '#94a3b8',
             }}>
-              Jumpstart your office with common workflows
+              Comece seu escritório com fluxos de trabalho comuns
             </div>
           </div>
           <button
@@ -80,7 +80,7 @@ export function TemplateGallery({ onSelectTemplate, onClose }: TemplateGalleryPr
               fontWeight: 600,
             }}
           >
-            Close
+            Fechar
           </button>
         </div>
 
@@ -161,7 +161,7 @@ export function TemplateGallery({ onSelectTemplate, onClose }: TemplateGalleryPr
                     e.currentTarget.style.background = '#6366f1';
                   }}
                 >
-                  Use This
+                  Usar Este
                 </button>
 
                 {/* Hover Preview */}
@@ -202,7 +202,7 @@ export function TemplateGallery({ onSelectTemplate, onClose }: TemplateGalleryPr
                       color: '#6366f1',
                       fontWeight: 600,
                     }}>
-                      Click to customize →
+                      Clique para personalizar →
                     </div>
                   </div>
                 )}

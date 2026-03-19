@@ -368,7 +368,7 @@ export function OfficeHeader({
             fontSize: 14,
             padding: '2px 4px',
           }}
-          title={musicPlaying ? 'Stop Music' : 'Play Music'}
+          title={musicPlaying ? 'Parar Música' : 'Tocar Música'}
         >
           {musicPlaying ? '🔇' : '🎵'}
         </button>

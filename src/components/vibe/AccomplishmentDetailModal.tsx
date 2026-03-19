@@ -102,7 +102,7 @@ export function AccomplishmentDetailModal({ accomplishment, onClose, onOpenFile 
                 {accomplishment.file.split('/').pop()}
               </div>
               <div style={{ fontSize: 10, color: '#475569', marginTop: 2 }}>
-                Click to open in editor ↗
+                Clique para abrir no editor ↗
               </div>
             </div>
           </a>
@@ -119,7 +119,7 @@ export function AccomplishmentDetailModal({ accomplishment, onClose, onOpenFile 
                   if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
                 }}
               >
-                ▶ Screen recording
+                ▶ Gravação de tela
               </div>
             )}
             <div style={accomplishment.file ? { display: 'none' } : undefined}>
@@ -166,7 +166,7 @@ export function AccomplishmentDetailModal({ accomplishment, onClose, onOpenFile 
             fontSize: 12,
           }}
         >
-          Close
+          Fechar
         </button>
       </div>
     </div>

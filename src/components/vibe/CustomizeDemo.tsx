@@ -102,7 +102,7 @@ export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps)
           textAlign: 'center',
           marginBottom: 16,
         }}>
-          Preview what YOUR office would look like
+          Veja como seu escritório ficaria
         </p>
 
         <div style={{ display: 'grid', gap: 8 }}>
@@ -167,7 +167,7 @@ export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps)
               marginTop: 8,
             }}
           >
-            + Add Agent
+            + Adicionar Agente
           </button>
         )}
 
@@ -186,7 +186,7 @@ export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps)
               fontFamily: '"Press Start 2P", monospace',
             }}
           >
-            Cancel
+            Cancelar
           </button>
           <button
             onClick={apply}
@@ -202,7 +202,7 @@ export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps)
               fontFamily: '"Press Start 2P", monospace',
             }}
           >
-            🎮 Preview My Office
+            🎮 Pré-visualizar Meu Escritório
           </button>
         </div>
 
@@ -213,7 +213,7 @@ export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps)
           marginTop: 12,
           marginBottom: 0,
         }}>
-          Install to use your real OpenClaw agents →{' '}
+          Instale para usar seus agentes OpenClaw reais →{' '}
           <a href="/install" style={{ color: '#6366f1' }}>openclawfice.com/install</a>
         </p>
       </div>
