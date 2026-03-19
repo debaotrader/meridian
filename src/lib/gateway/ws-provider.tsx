@@ -8,19 +8,18 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { createOpenClawAdapter, type OpenClawAdapter } from './openclaw-adapter';
 import type {
   ConnectionStatus,
   GatewayContextValue,
   GatewayEvent,
   GatewayEventHandler,
   GatewayState,
+  GatewayStateObj,
   UnsubscribeFn,
 } from './types';
 
-// Re-export for convenience
-export type { ConnectionStatus, GatewayContextValue, GatewayEvent, GatewayState };
-
-const BACKOFF_STEPS = [1000, 2000, 4000, 8000, 16000];
+export type { ConnectionStatus, GatewayContextValue, GatewayEvent, GatewayState, GatewayStateObj };
 
 const GatewayContext = createContext<GatewayContextValue | null>(null);
 
@@ -36,27 +35,28 @@ interface WsProviderProps {
   children: React.ReactNode;
 }
 
+/**
+ * WsProvider — wraps the OpenClaw Gateway WS protocol v3.
+ *
+ * Handles: challenge → connect handshake → event streaming.
+ * Reconnects automatically with exponential backoff.
+ */
 export function WsProvider({ url, apiKey, children }: WsProviderProps) {
-  const [state, setState] = useState<GatewayState>({
+  const [state, setState] = useState<GatewayStateObj>({
     status: 'disconnected',
     error: null,
   });
 
-  const wsRef = useRef<WebSocket | null>(null);
-  const attemptRef = useRef(0);
-  const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const adapterRef = useRef<OpenClawAdapter | null>(null);
   const mountedRef = useRef(true);
 
   // Subscriptions: Map<eventType, Set<handler>>
-  // '*' = wildcard (all events)
   const subsRef = useRef<Map<string, Set<GatewayEventHandler>>>(new Map());
 
   const dispatch = useCallback((event: GatewayEvent) => {
     const subs = subsRef.current;
-    // Specific subscribers
     const typed = subs.get(event.type);
     if (typed) for (const h of typed) h(event);
-    // Wildcard subscribers
     const wild = subs.get('*');
     if (wild) for (const h of wild) h(event);
   }, []);
@@ -74,82 +74,62 @@ export function WsProvider({ url, apiKey, children }: WsProviderProps) {
   );
 
   const send = useCallback((message: unknown) => {
-    const ws = wsRef.current;
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify(message));
-    } else {
-      console.warn('[WsProvider] send() called but socket not open');
+    // For backwards compatibility, raw send.
+    // Prefer adapter.request() for RPC calls.
+    const adapter = adapterRef.current;
+    if (!adapter) {
+      console.warn('[WsProvider] send() called but no adapter');
+      return;
+    }
+    // If message looks like an RPC call, route through request()
+    const msg = message as Record<string, unknown>; // justified: inherited from OpenClawfice merge
+    if (msg.method && typeof msg.method === 'string') {
+      adapter.request(msg.method, msg.params).catch((err) => {
+        console.warn('[WsProvider] RPC error:', err);
+      });
     }
   }, []);
 
-  const connect = useCallback(() => {
-    if (!mountedRef.current) return;
-
-    setState({ status: 'reconnecting', error: null });
-
-    let wsUrl = url;
-    if (apiKey) {
-      const sep = wsUrl.includes('?') ? '&' : '?';
-      wsUrl = `${wsUrl}${sep}apiKey=${encodeURIComponent(apiKey)}`;
-    }
-
-    const ws = new WebSocket(wsUrl);
-    wsRef.current = ws;
-
-    ws.onopen = () => {
-      if (!mountedRef.current) return;
-      attemptRef.current = 0;
-      setState({ status: 'connected', error: null });
-    };
-
-    ws.onmessage = (evt) => {
-      if (!mountedRef.current) return;
-      try {
-        const raw = JSON.parse(evt.data as string) as Record<string, unknown>;
-        const event: GatewayEvent = {
-          type: (raw.type as string) ?? (raw.event as string) ?? 'message',
-          payload: raw.payload ?? raw,
-          ts: (raw.ts as number) ?? Date.now(),
-        };
-        dispatch(event);
-      } catch {
-        // Non-JSON frame — ignore
-      }
-    };
-
-    ws.onerror = () => {
-      // Error will be followed by onclose
-    };
-
-    ws.onclose = (evt) => {
-      if (!mountedRef.current) return;
-      wsRef.current = null;
-      const attempt = attemptRef.current;
-      const delay = BACKOFF_STEPS[Math.min(attempt, BACKOFF_STEPS.length - 1)];
-      attemptRef.current = attempt + 1;
-      setState({
-        status: 'reconnecting',
-        error: evt.reason || `Closed (${evt.code})`,
-      });
-      retryTimerRef.current = setTimeout(() => {
-        if (mountedRef.current) connect();
-      }, delay);
-    };
-  }, [url, apiKey, dispatch]);
-
   useEffect(() => {
     mountedRef.current = true;
-    connect();
+
+    const adapter = createOpenClawAdapter({
+      url,
+      token: apiKey,
+      reconnectMs: 2000,
+      maxReconnectMs: 30000,
+      protocol: 3,
+    });
+
+    adapterRef.current = adapter;
+
+    // Map adapter state → component state
+    adapter.onStateChange((adapterState) => {
+      if (!mountedRef.current) return;
+      const statusMap: Record<string, ConnectionStatus> = {
+        disconnected: 'disconnected',
+        connecting: 'reconnecting',
+        connected: 'connected',
+        reconnecting: 'reconnecting',
+      };
+      setState({
+        status: statusMap[adapterState] ?? 'disconnected',
+        error: null,
+      });
+    });
+
+    // Forward all adapter events to subscribers
+    adapter.subscribe('*', (event) => {
+      if (!mountedRef.current) return;
+      dispatch(event);
+    });
+
+    adapter.connect();
 
     return () => {
       mountedRef.current = false;
-      if (retryTimerRef.current) clearTimeout(retryTimerRef.current);
-      const ws = wsRef.current;
-      if (ws) {
-        ws.onclose = null; // prevent reconnect loop on unmount
-        ws.close();
-        wsRef.current = null;
-      }
+      adapter.disconnect();
+      adapterRef.current = null;
       setState({ status: 'disconnected', error: null });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
