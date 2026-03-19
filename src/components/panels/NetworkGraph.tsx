@@ -134,7 +134,7 @@ export function NetworkGraph() {
               y={pos.y + r + 10}
               textAnchor="middle"
               fontSize={9}
-              fill="#9090b0"
+              fill="#a1a1a1"
             >
               {agent.name.length > 8 ? `${agent.name.slice(0, 6)}…` : agent.name}
             </text>

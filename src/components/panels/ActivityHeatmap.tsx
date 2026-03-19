@@ -17,7 +17,7 @@ const COLOR_SCALE_LIGHT = [
 ];
 
 const COLOR_SCALE_DARK = [
-  { max: 0, color: "#1a1a24" },
+  { max: 0, color: "#1a1a1a" },
   { max: 5, color: "#003d22" },
   { max: 10, color: "#006633" },
   { max: Infinity, color: "#00FF94" },
