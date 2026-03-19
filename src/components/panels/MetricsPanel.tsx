@@ -42,22 +42,22 @@ export function MetricsPanel() {
     {
       label: t("metrics.activeAgents"),
       value: `${metrics.activeAgents}/${metrics.totalAgents}`,
-      color: "#3b82f6",
+      color: metrics.activeAgents > 0 ? "#3b82f6" : "#ededed",
     },
     {
       label: t("metrics.totalTokens"),
       value: formatTokens(metrics.totalTokens),
-      color: "#00FF94",
+      color: metrics.totalTokens > 0 ? "#00FF94" : "#ededed",
     },
     {
       label: t("metrics.collaboration"),
       value: `${Math.round(metrics.collaborationHeat)}%`,
-      color: "#f97316",
+      color: metrics.collaborationHeat > 0 ? "#f97316" : "#ededed",
     },
     {
       label: t("metrics.tokenRate"),
       value: `${metrics.tokenRate.toFixed(0)}${t("metrics.tokenRateUnit")}`,
-      color: "#a855f7",
+      color: metrics.tokenRate > 0 ? "#a855f7" : "#ededed",
     },
   ];
 
@@ -82,11 +82,12 @@ export function MetricsPanel() {
             key={tab.id}
             type="button"
             onClick={() => setActiveTab(tab.id)}
-            className={`rounded px-2 py-0.5 text-[10px] ${
+            className="rounded px-2 py-0.5 text-[10px] transition-colors"
+            style={
               activeTab === tab.id
-                ? "bg-surface-2 font-medium dark:bg-surface-3 dark:text-text-primary"
-                : "text-text-secondary hover:bg-surface-1 dark:text-text-tertiary dark:hover:bg-surface-2"
-            }`}
+                ? { background: "rgba(0,255,148,0.08)", color: "#00FF94", fontWeight: 500 }
+                : { background: "transparent", color: "#6b6b6b" }
+            }
           >
             {tab.label}
           </button>
