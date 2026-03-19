@@ -84,7 +84,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
       }
     } catch (err) {
       console.error('Failed to load planning state:', err);
-      setError('Failed to load planning state');
+      setError('Falha ao carregar estado do planejamento');
     } finally {
       setLoading(false);
     }
@@ -241,10 +241,10 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         // Start polling for the first question
         startPolling();
       } else {
-        setError(data.error || 'Failed to start planning');
+        setError(data.error || 'Falha ao iniciar planejamento');
       }
     } catch (err) {
-      setError('Failed to start planning');
+      setError('Falha ao iniciar planejamento');
     } finally {
       setStarting(false);
     }
@@ -279,14 +279,14 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         // Don't clear selection yet - keep it visible while waiting for response
         startPolling();
       } else {
-        setError(data.error || 'Failed to submit answer');
+        setError(data.error || 'Falha ao enviar resposta');
         setIsSubmittingAnswer(false); // Clear submitting state on error
         // Clear selection on error so user can try again
         setSelectedOption(null);
         setOtherText('');
       }
     } catch (err) {
-      setError('Failed to submit answer');
+      setError('Falha ao enviar resposta');
       setIsSubmittingAnswer(false); // Clear submitting state on error
       // Clear selection on error so user can try again
       setSelectedOption(null);
@@ -318,14 +318,14 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
       if (res.ok) {
         startPolling();
       } else {
-        setError(data.error || 'Failed to submit answer');
+        setError(data.error || 'Falha ao enviar resposta');
         // Clear submission state and selection on error so user can retry
         setIsSubmittingAnswer(false);
         setSelectedOption(null);
         setOtherText('');
       }
     } catch (err) {
-      setError('Failed to submit answer');
+      setError('Falha ao enviar resposta');
       // Clear submission state and selection on error so user can retry
       setIsSubmittingAnswer(false);
       setSelectedOption(null);
@@ -354,7 +354,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         setError(`Failed to retry dispatch: ${data.error}`);
       }
     } catch (err) {
-      setError('Failed to retry dispatch');
+      setError('Falha ao tentar despacho novamente');
     } finally {
       setRetryingDispatch(false);
     }
@@ -386,10 +386,10 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
         });
       } else {
         const data = await res.json();
-        setError(data.error || 'Failed to cancel planning');
+        setError(data.error || 'Falha ao cancelar planejamento');
       }
     } catch (err) {
-      setError('Failed to cancel planning');
+      setError('Falha ao cancelar planejamento');
     } finally {
       setCanceling(false);
     }
@@ -548,7 +548,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
       <div className="p-4 border-b border-mc-border flex items-center justify-between">
         <div className="flex items-center gap-2 text-sm text-mc-text-secondary">
           <div className="w-2 h-2 bg-mc-accent-purple rounded-full animate-pulse" />
-          <span>Planning in progress...</span>
+          <span>Planejamento em andamento...</span>
         </div>
         <button
           onClick={cancelPlanning}
@@ -667,7 +667,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
             <div className="mt-6">
               <button
                 onClick={submitAnswer}
-                disabled={!selectedOption || submitting || (selectedOption === 'Other' && !otherText.trim())}
+                disabled={!selectedOption || submitting || (selectedOption === 'Outro' && !otherText.trim())}
                 className="w-full px-6 py-3 bg-mc-accent text-mc-bg rounded-lg font-medium hover:bg-mc-accent/90 disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {submitting ? (
@@ -684,7 +684,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
               {isSubmittingAnswer && !submitting && (
                 <div className="mt-4 flex items-center justify-center gap-2 text-sm text-mc-text-secondary">
                   <Loader2 className="w-4 h-4 animate-spin text-mc-accent" />
-                  <span>Waiting for response...</span>
+                  <span>Aguardando resposta...</span>
                 </div>
               )}
             </div>

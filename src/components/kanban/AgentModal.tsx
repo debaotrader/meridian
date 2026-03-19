@@ -127,7 +127,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-mc-border">
           <h2 className="text-lg font-semibold">
-            {agent ? `Edit ${agent.name}` : 'Criar novo agente'}
+            {agent ? `Editar ${agent.name}` : 'Criar novo agente'}
           </h2>
           <button
             onClick={onClose}
@@ -201,7 +201,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                   onChange={(e) => setForm({ ...form, role: e.target.value })}
                   required
                   className="w-full min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
-                  placeholder="e.g., Code & Automation"
+                  placeholder="Ex: Código e Automação"
                 />
               </div>
 
@@ -286,7 +286,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                 onChange={(e) => setForm({ ...form, soul_md: e.target.value })}
                 rows={15}
                 className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm font-mono focus:outline-none focus:border-mc-accent resize-none"
-                placeholder="# Agent Name&#10;&#10;Define this agent's personality, values, and communication style..."
+                placeholder="# Nome do Agente&#10;&#10;Defina a personalidade, valores e estilo de comunicação desse agente..."
               />
             </div>
           )}
@@ -301,7 +301,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                 onChange={(e) => setForm({ ...form, user_md: e.target.value })}
                 rows={15}
                 className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm font-mono focus:outline-none focus:border-mc-accent resize-none"
-                placeholder="# User Context&#10;&#10;Information about the human this agent works with..."
+                placeholder="# Contexto do Usuário&#10;&#10;Informações sobre o humano com quem esse agente trabalha..."
               />
             </div>
           )}
@@ -316,7 +316,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                 onChange={(e) => setForm({ ...form, agents_md: e.target.value })}
                 rows={15}
                 className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm font-mono focus:outline-none focus:border-mc-accent resize-none"
-                placeholder="# Team Roster&#10;&#10;Information about other agents this agent works with..."
+                placeholder="# Equipe&#10;&#10;Informações sobre os outros agentes com quem esse agente trabalha..."
               />
             </div>
           )}

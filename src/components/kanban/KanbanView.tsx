@@ -72,7 +72,7 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
               <button
                 onClick={() => setShowPlanning(false)}
                 className="p-1 rounded hover:bg-surface-3 text-text-tertiary hover:text-text-secondary transition-colors"
-                aria-label="Close planning panel"
+                aria-label="Fechar painel de planejamento"
               >
                 <X className="w-4 h-4" />
               </button>

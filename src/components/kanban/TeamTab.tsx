@@ -144,10 +144,10 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
         setTimeout(() => setSaved(false), 3000);
       } else {
         const data = await res.json();
-        setError(data.error || 'Failed to save roles');
+        setError(data.error || 'Falha ao salvar funções');
       }
     } catch (err) {
-      setError('Failed to save roles');
+      setError('Falha ao salvar funções');
     } finally {
       setSaving(false);
     }
@@ -308,7 +308,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
             onClick={addCustomRole}
             disabled={addableRoles.length === 0}
             className="text-xs text-mc-accent hover:text-mc-accent/80 disabled:opacity-40 disabled:cursor-not-allowed"
-            title={addableRoles.length === 0 ? 'No additional role types available to add' : 'Add custom role from agent catalog'}
+            title={addableRoles.length === 0 ? 'Nenhum tipo de função disponível para adicionar' : 'Adicionar função personalizada do catálogo'}
           >
             + Add custom role
           </button>

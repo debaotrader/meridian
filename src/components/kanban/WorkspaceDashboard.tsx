@@ -272,10 +272,10 @@ function CreateWorkspaceModal({ onClose, onCreated }: { onClose: () => void; onC
         onCreated();
       } else {
         const data = await res.json();
-        setError(data.error || 'Failed to create workspace');
+        setError(data.error || 'Falha ao criar workspace');
       }
     } catch {
-      setError('Failed to create workspace');
+      setError('Falha ao criar workspace');
     } finally {
       setIsSubmitting(false);
     }
@@ -317,7 +317,7 @@ function CreateWorkspaceModal({ onClose, onCreated }: { onClose: () => void; onC
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g., Acme Corp"
+              placeholder="Ex: Acme Corp"
               className="w-full bg-mc-bg border border-mc-border rounded-lg px-4 py-2 focus:outline-none focus:border-mc-accent"
               autoFocus
             />
