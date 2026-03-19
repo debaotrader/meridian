@@ -16,7 +16,7 @@ interface CustomizeDemoProps {
 }
 
 const PLACEHOLDER_NAMES = ['Cipher', 'Scout', 'Nova', 'Forge', 'Pixel'];
-const ROLES = ['Engineer', 'Researcher', 'Strategist', 'Builder', 'Designer', 'Analyst', 'Writer', 'Ops'];
+const ROLES = ['Engenheiro', 'Pesquisador', 'Estrategista', 'Construtor', 'Designer', 'Analista', 'Escritor', 'Operações'];
 const EMOJIS = ['⚡', '🔍', '✨', '🔧', '🎨', '📊', '✍️', '🚀', '🧠', '🎯', '🛡️', '💎'];
 
 export function CustomizeDemo({ onCustomize, currentNames }: CustomizeDemoProps) {

@@ -92,7 +92,7 @@ export function CommandPalette({
     {
       id: 'nav-stats',
       icon: '📊',
-      label: 'View Stats Dashboard',
+      label: 'Ver painel de estatísticas',
       category: 'navigate',
       keywords: ['analytics', 'statistics', 'xp', 'leaderboard'],
       onSelect: () => { window.location.href = '/stats'; },
@@ -100,7 +100,7 @@ export function CommandPalette({
     {
       id: 'nav-showcase',
       icon: '🌟',
-      label: 'View Showcase',
+      label: 'Ver vitrine',
       category: 'navigate',
       keywords: ['gallery', 'examples'],
       onSelect: () => { window.location.href = '/showcase'; },
@@ -108,7 +108,7 @@ export function CommandPalette({
     {
       id: 'nav-install',
       icon: '📥',
-      label: 'Install Instructions',
+      label: 'Instruções de instalação',
       category: 'navigate',
       keywords: ['setup', 'download', 'getting started'],
       onSelect: () => { window.location.href = '/install'; },
@@ -126,7 +126,7 @@ export function CommandPalette({
     ...(onCallMeeting ? [{
       id: 'action-meeting',
       icon: '📞',
-      label: 'Call a Meeting',
+      label: 'Chamar Reunião',
       category: 'action' as const,
       keywords: ['meeting', 'standup', 'discuss', 'team'],
       onSelect: () => { onCallMeeting(); },
@@ -134,7 +134,7 @@ export function CommandPalette({
     ...(onOpenShare ? [{
       id: 'action-share',
       icon: '🔗',
-      label: 'Share Office',
+      label: 'Compartilhar escritório',
       shortcut: '',
       category: 'action' as const,
       keywords: ['share', 'link', 'twitter', 'social'],
@@ -143,7 +143,7 @@ export function CommandPalette({
     ...(onOpenTemplates ? [{
       id: 'action-templates',
       icon: '📋',
-      label: 'Browse Quest Templates',
+      label: 'Ver modelos de missões',
       category: 'action' as const,
       keywords: ['templates', 'quests', 'tasks', 'assign'],
       onSelect: () => { onOpenTemplates(); },
@@ -153,7 +153,7 @@ export function CommandPalette({
     ...(onToggleDarkMode ? [{
       id: 'settings-theme',
       icon: isDarkMode ? '☀️' : '🌙',
-      label: isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
+      label: isDarkMode ? 'Modo claro' : 'Modo escuro',
       shortcut: '',
       category: 'settings' as const,
       keywords: ['theme', 'dark', 'light', 'mode', 'toggle'],
@@ -162,7 +162,7 @@ export function CommandPalette({
     ...(onToggleSFX ? [{
       id: 'settings-sfx',
       icon: sfxEnabled ? '🔇' : '🔊',
-      label: sfxEnabled ? 'Mute Sound Effects' : 'Enable Sound Effects',
+      label: sfxEnabled ? 'Silenciar efeitos' : 'Ativar efeitos',
       category: 'settings' as const,
       keywords: ['sound', 'audio', 'sfx', 'mute', 'volume'],
       onSelect: () => { onToggleSFX(); },
@@ -170,7 +170,7 @@ export function CommandPalette({
     ...(onToggleMusic ? [{
       id: 'settings-music',
       icon: musicPlaying ? '⏹️' : '🎵',
-      label: musicPlaying ? 'Stop Background Music' : 'Play Chiptune Music',
+      label: musicPlaying ? 'Parar música' : 'Tocar música chiptune',
       category: 'settings' as const,
       keywords: ['music', 'chiptune', '8-bit', 'lo-fi', 'background', 'soundtrack', 'audio'],
       onSelect: () => { onToggleMusic(); },
@@ -178,7 +178,7 @@ export function CommandPalette({
     ...(onOpenSettings ? [{
       id: 'settings-open',
       icon: '⚙️',
-      label: 'Open Settings',
+      label: 'Abrir Configurações',
       category: 'settings' as const,
       keywords: ['settings', 'config', 'preferences'],
       onSelect: () => { onOpenSettings(); },
@@ -198,7 +198,7 @@ export function CommandPalette({
     {
       id: 'fun-konami',
       icon: '🎮',
-      label: 'Enter the Konami Code',
+      label: 'Código Konami',
       category: 'fun',
       keywords: ['konami', 'cheat', 'easter egg', 'party', 'secret'],
       onSelect: () => {
@@ -278,11 +278,11 @@ export function CommandPalette({
 
   // Group by category
   const categoryLabels: Record<string, string> = {
-    navigate: '🗺️ NAVIGATE',
-    agent: '👥 AGENTS',
-    action: '⚡ ACTIONS',
-    settings: '⚙️ SETTINGS',
-    fun: '🎮 SECRETS',
+    navigate: '🗺️ NAVEGAR',
+    agent: '👥 AGENTES',
+    action: '⚡ AÇÕES',
+    settings: '⚙️ CONFIGURAÇÕES',
+    fun: '🎮 SEGREDOS',
   };
 
   const categoryOrder = ['action', 'navigate', 'agent', 'settings', 'fun'];
@@ -366,7 +366,7 @@ export function CommandPalette({
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Type a command..."
+            placeholder="Digite um comando..."
             style={{
               flex: 1,
               background: 'transparent',
@@ -408,7 +408,7 @@ export function CommandPalette({
               fontSize: 12,
             }}>
               <span style={{ fontSize: 24, display: 'block', marginBottom: 8 }}>🔍</span>
-              No commands found for &quot;{query}&quot;
+              Nenhum comando encontrado para &quot;{query}&quot;
             </div>
           )}
 

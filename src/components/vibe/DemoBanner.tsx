@@ -39,7 +39,7 @@ export function DemoBanner() {
           gap: 6,
         }}>
           <span style={{ fontSize: 14 }}>🎮</span>
-          <span style={{ fontSize: 11, fontWeight: 700 }}>Demo Mode</span>
+          <span style={{ fontSize: 11, fontWeight: 700 }}>Modo Demo</span>
         </div>
         <div style={{
           display: 'flex',
@@ -116,13 +116,13 @@ export function DemoBanner() {
             fontWeight: 700,
             marginBottom: 1,
           }}>
-            Demo Mode — See OpenClawfice in Action!
+            Modo Demo — Veja o OpenClawfice em Ação!
           </div>
           <div style={{
             fontSize: 10,
             opacity: 0.9,
           }}>
-            Watch AI agents work as pixel art NPCs. Click any to inspect live.
+            Veja agentes de IA como NPCs pixel art. Clique para inspecionar.
           </div>
         </div>
       </div>
@@ -154,7 +154,7 @@ export function DemoBanner() {
             e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)';
           }}
         >
-          Create Your AI Team →
+          Criar Seu Time de IA →
         </a>
 
         <a
@@ -170,7 +170,7 @@ export function DemoBanner() {
             cursor: 'pointer',
           }}
         >
-          Exit Demo
+          Sair do Demo
         </a>
 
         <button

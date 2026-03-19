@@ -177,7 +177,7 @@ export function AgentCard({ agent, accomplishments, onClose }: AgentCardProps) {
     ctx.font = '11px "Press Start 2P", monospace';
     ctx.fillStyle = '#94a3b8';
     ctx.textAlign = 'left';
-    ctx.fillText('MOOD', 50, statsY + 40);
+    ctx.fillText('HUMOR', 50, statsY + 40);
     ctx.fillStyle = agent.mood === 'great' ? '#22c55e' : agent.mood === 'good' ? '#84cc16' : agent.mood === 'okay' ? '#eab308' : '#ef4444';
     ctx.textAlign = 'right';
     ctx.fillText(moodStars(agent.mood), W - 50, statsY + 40);

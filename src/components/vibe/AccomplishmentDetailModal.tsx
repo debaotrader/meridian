@@ -75,7 +75,7 @@ export function AccomplishmentDetailModal({ accomplishment, onClose, onOpenFile 
               try {
                 await onOpenFile(filename);
               } catch (err) {
-                alert('Failed to open file');
+                alert('Falha ao abrir arquivo');
               }
             }}
             style={{

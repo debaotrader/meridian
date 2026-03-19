@@ -67,7 +67,7 @@ export function MeetingRoom({
 
   return (
     <Room
-      title="Meeting Room"
+      title="Sala de Reunião"
       icon="🤝"
       color="#1a0a2e"
       borderColor="#7c3aed"
@@ -88,7 +88,7 @@ export function MeetingRoom({
           lineHeight: 1.4,
           padding: '0 8px',
         }}>
-          {meeting.topic || 'Discussion in progress...'}
+          {meeting.topic || 'Discussão em andamento...'}
         </div>
 
         {/* Side-by-side: left = participants + controls, right = transcript */}

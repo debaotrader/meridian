@@ -205,7 +205,7 @@ export function OfficeHeader({
               const res = await fetch(apiPath('/api/export/workflow'), {
                 headers: token ? { 'X-OpenClawfice-Token': token } : {},
               });
-              if (!res.ok) throw new Error('Export failed');
+              if (!res.ok) throw new Error('Falha ao exportar');
               const blob = await res.blob();
               const url = window.URL.createObjectURL(blob);
               const a = document.createElement('a');
@@ -217,7 +217,7 @@ export function OfficeHeader({
               document.body.removeChild(a);
             } catch (err) {
               console.error('Failed to export workflow:', err);
-              alert('Failed to export workflow. Check console for details.');
+              alert('Falha ao exportar workflow. Verifique o console.');
             }
           }}
           style={{

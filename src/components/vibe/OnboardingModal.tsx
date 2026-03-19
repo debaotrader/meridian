@@ -276,7 +276,7 @@ export function OnboardingModal({ isVisible, onDismiss }: OnboardingModalProps) 
             padding: '2px 6px', 
             borderRadius: '4px',
             fontFamily: 'monospace'
-          }}>Ctrl+K</kbd> for command palette
+          }}>Ctrl+K</kbd> para a paleta de comandos
         </div>
       </div>
     </div>

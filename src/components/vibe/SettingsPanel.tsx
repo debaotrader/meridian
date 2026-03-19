@@ -212,14 +212,14 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
           transition: 'all 0.2s',
         }}
       >
-        {saved ? '✓ Saved' : saving ? 'Saving...' : 'Save Settings'}
+        {saved ? '✓ Salvo' : saving ? 'Salvando...' : 'Salvar configurações'}
       </button>
 
       {/* Keyboard Shortcuts */}
       <div style={{ marginTop: 16, padding: '12px 0', borderTop: '1px solid #334155' }}>
         <div style={{ fontSize: 9, fontFamily: '"Press Start 2P", monospace', color: '#94a3b8', marginBottom: 8 }}>⌨️ Atalhos</div>
         {[
-          ['1-9', 'Select agent'],
+          ['1-9', 'Selecionar agente'],
           ['T', 'Quest templates'],
           ['M', 'Call meeting'],
           ['?', 'Settings'],

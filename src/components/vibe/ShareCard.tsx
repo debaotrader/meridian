@@ -87,7 +87,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
     // Subtitle with better visibility
     ctx.font = 'bold 18px system-ui';
     ctx.fillStyle = '#e2e8f0';
-    ctx.fillText(isDemoMode ? 'LIVE DEMO OFFICE' : 'MY AI AGENT OFFICE', W / 2, 110);
+    ctx.fillText(isDemoMode ? 'ESCRITÓRIO DEMO AO VIVO' : 'MEU ESCRITÓRIO DE AGENTES IA', W / 2, 110);
 
     // Stats row
     const statsY = 150;

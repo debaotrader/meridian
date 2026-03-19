@@ -29,13 +29,13 @@ const TOUR_STEPS = [
   },
   {
     title: '🏆 Accomplishments',
-    body: 'Every completed task gets logged with a video replay. Your team\'s highlight reel, with XP rewards.',
+    body: 'Cada tarefa concluída é registrada com um replay em vídeo. Os melhores momentos da equipe, com recompensas XP.',
     target: 'accomplishments',
     position: 'top' as const,
   },
   {
     title: '🎮 Pro Tips!',
-    body: 'Press ⌘K to open the command palette. Try the Konami Code for a surprise. Click any agent for stats + DMs!',
+    body: 'Pressione ⌘K para abrir a paleta de comandos. Experimente o Código Konami. Clique em qualquer agente para ver status e DMs!',
     target: 'work-room',
     position: 'bottom' as const,
   },
@@ -194,7 +194,7 @@ export function DemoTour({ isDemoMode }: { isDemoMode: boolean }) {
           minHeight: 36,
         }}
       >
-        {isLast ? '🎮 Got it!' : 'Next →'}
+        {isLast ? '🎮 Entendi!' : 'Próximo →'}
       </button>
     </div>
   );
