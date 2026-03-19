@@ -15,7 +15,7 @@ export function ConnectionStatus({ className }: ConnectionStatusProps) {
     status === 'connected'
       ? 'Conectado'
       : status === 'reconnecting'
-        ? 'Reconnecting…'
+        ? 'Reconectando…'
         : 'Desconectado';
 
   return (
