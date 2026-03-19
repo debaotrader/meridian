@@ -54,6 +54,7 @@ export function useAuthenticatedFetch() {
     // Add auth header
     const headers = new Headers(options.headers);
     headers.set('X-OpenClawfice-Token', tokenRef.current!);
+    headers.set('Authorization', `Bearer ${tokenRef.current!}`);
 
     return fetch(url, {
       ...options,

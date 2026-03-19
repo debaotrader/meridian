@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import { readFileSync, existsSync, openSync, fstatSync, readSync, closeSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
-import { requireAuth } from '@/lib/vibe/auth';
-
+import { startTicker as startAutoworkTicker } from '@/lib/vibe/autowork-ticker';
+import { startTicker as startWatercoolerTicker } from '@/lib/vibe/watercooler-ticker';
 const OPENCLAW_DIR = join(homedir(), '.openclaw');
 const OPENCLAW_CONFIG = join(OPENCLAW_DIR, 'openclaw.json');
 const OPENCLAW_BIN = join(homedir(), '.local', 'node', 'bin', 'openclaw');
@@ -635,8 +635,9 @@ function calculateAgentProgression(agentName: string): { xp: number; level: numb
  * Main API handler
  */
 export async function GET(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
+  // Start background tickers on first API call
+  startAutoworkTicker();
+  startWatercoolerTicker();
 
   const now = Date.now();
 

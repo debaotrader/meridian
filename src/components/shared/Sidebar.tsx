@@ -19,6 +19,7 @@ import {
   X,
 } from 'lucide-react';
 import { ConnectionStatus } from './ConnectionStatus';
+import { useSidebar } from '@/lib/sidebar-context';
 
 interface NavItem {
   key: string;
@@ -39,7 +40,7 @@ const NAV_KEYS: NavItem[] = [
 export function Sidebar() {
   const pathname = usePathname();
   const { t } = useTranslation('nav');
-  const [collapsed, setCollapsed] = useState(false);
+  const { collapsed, toggle } = useSidebar();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isActive = (href: string): boolean => {
@@ -105,7 +106,7 @@ export function Sidebar() {
       {/* Collapse toggle (desktop only) */}
       <div className="hidden lg:block px-2 py-3 border-t border-border-subtle">
         <button
-          onClick={() => setCollapsed(!collapsed)}
+          onClick={toggle}
           className="flex items-center justify-center w-full py-2 rounded-lg text-text-tertiary hover:text-text-secondary hover:bg-surface-2 transition-colors"
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >

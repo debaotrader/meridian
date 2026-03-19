@@ -3,8 +3,6 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
 import { gatewayRpc } from '@/lib/vibe/gateway-rpc';
-import { requireAuth } from '@/lib/vibe/auth';
-
 const STATUS_DIR = join(homedir(), '.openclaw', '.status');
 const AUTOWORK_FILE = join(STATUS_DIR, 'autowork.json');
 const STOP_COOLDOWN_MS = 10 * 60_000; // 10 min — agent stays idle after stop
@@ -19,8 +17,6 @@ const STOP_COOLDOWN_MS = 10 * 60_000; // 10 min — agent stays idle after stop
  * Body: { agentId, pauseAutowork?: boolean }
  */
 export async function POST(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   try {
     const { agentId, pauseAutowork = true } = await request.json();

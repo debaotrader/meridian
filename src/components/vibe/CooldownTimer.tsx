@@ -68,7 +68,7 @@ export function linkifyFiles(text: string, fetchFn: typeof fetch = fetch): (stri
             e.preventDefault();
             e.stopPropagation();
             try {
-              const res = await fetchFn(apiPath(`/api/office/open-file`), {
+              const res = await fetchFn(apiPath(`/api/vibe/open-file`), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: filename }),

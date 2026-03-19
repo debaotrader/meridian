@@ -31,7 +31,7 @@ export function DailyChallenge({ getApiPath, onCelebration }: DailyChallengeProp
   useEffect(() => {
     const fetchChallenge = async () => {
       try {
-        const res = await fetch(getApiPath('/api/office/challenges'));
+        const res = await fetch(getApiPath('/api/vibe/challenges'));
         const data = await res.json();
         setChallenge(data.challenge);
         setStreak(data.streak);

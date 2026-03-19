@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server';
 import { readFileSync, existsSync, openSync, fstatSync, readSync, closeSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
-import { requireAuth } from '@/lib/vibe/auth';
-
 const AGENTS_DIR = join(homedir(), '.openclaw', 'agents');
 
 interface LogEntry {
@@ -98,8 +96,6 @@ function parseTranscriptEntries(lines: string[]): LogEntry[] {
 }
 
 export async function GET(req: Request) {
-  const authError = requireAuth(req);
-  if (authError) return authError;
 
   const { searchParams } = new URL(req.url);
   const agentId = searchParams.get('agentId');

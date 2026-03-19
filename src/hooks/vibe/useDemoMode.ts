@@ -24,19 +24,19 @@ export function useDemoMode() {
   }, [isDemoMode]);
 
   const getApiPath = useCallback((path: string) => {
-    if (!isDemoMode) return path;
+    if (!isDemoMode) return apiPath(path);
     
     const demoMap: Record<string, string> = {
-      '/api/office': '/api/demo',
-      '/api/office/actions': '/api/demo/actions',
-      '/api/office/chat': '/api/demo/chat',
-      '/api/office/meeting': '/api/demo/meeting',
-      '/api/office/config': '/api/demo/config',
-      '/api/office/autowork': '/api/demo/autowork',
-      '/api/office/meeting/start': '/api/demo/meeting/start',
-      '/api/office/message': '/api/demo/message',
-      '/api/office/stop': '/api/demo/stop',
-      '/api/office/challenges': '/api/demo/challenges',
+      '/api/vibe': '/api/demo',
+      '/api/vibe/actions': '/api/demo/actions',
+      '/api/vibe/chat': '/api/demo/chat',
+      '/api/vibe/meeting': '/api/demo/meeting',
+      '/api/vibe/config': '/api/demo/config',
+      '/api/vibe/autowork': '/api/demo/autowork',
+      '/api/vibe/meeting/start': '/api/demo/meeting/start',
+      '/api/vibe/message': '/api/demo/message',
+      '/api/vibe/stop': '/api/demo/stop',
+      '/api/vibe/challenges': '/api/demo/challenges',
     };
     
     return apiPath(demoMap[path] || path);

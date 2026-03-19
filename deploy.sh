@@ -7,7 +7,7 @@ echo "Building Meridian..."
 cd "$REPO_DIR"
 npm run build
 echo "Syncing to production..."
-rsync -a --delete .next/standalone/ "$PROD_DIR/"
+rsync -a --delete --exclude .env .next/standalone/ "$PROD_DIR/"
 rsync -a --delete .next/static/ "$PROD_DIR/.next/static/"
 rsync -a --delete .next/static/ "$PROD_DIR/.next/static/"
 rsync -a public/ "$PROD_DIR/public/" 2>/dev/null || true

@@ -68,15 +68,20 @@ export function getOrCreateToken(): string {
  * Returns true if authorized, false otherwise.
  */
 export function verifyToken(request: Request): boolean {
-  const expectedToken = getOrCreateToken();
   const providedToken = request.headers.get('X-OpenClawfice-Token');
   
   if (!providedToken) {
     return false;
   }
 
-  // Constant-time comparison to prevent timing attacks
-  return constantTimeEqual(expectedToken, providedToken);
+  // Accept both file-based token and MC_API_TOKEN from env
+  const fileToken = getOrCreateToken();
+  if (constantTimeEqual(fileToken, providedToken)) return true;
+  
+  const envToken = process.env.MC_API_TOKEN;
+  if (envToken && constantTimeEqual(envToken, providedToken)) return true;
+
+  return false;
 }
 
 /**

@@ -127,7 +127,7 @@ export function AccomplishmentDetailModal({ accomplishment, onClose, onOpenFile 
               accomplishment.screenshot.endsWith('.webm') ||
               accomplishment.screenshot.endsWith('.mov') ? (
                 <video
-                  src={authToken ? apiPath(`/api/office/screenshot?file=${encodeURIComponent(accomplishment.screenshot)}&token=${authToken}`) : undefined}
+                  src={authToken ? apiPath(`/api/vibe/screenshot?file=${encodeURIComponent(accomplishment.screenshot)}&token=${authToken}`) : undefined}
                   controls
                   autoPlay={!accomplishment.file}
                   style={{
@@ -139,7 +139,7 @@ export function AccomplishmentDetailModal({ accomplishment, onClose, onOpenFile 
                 />
               ) : (
                 <img
-                  src={authToken ? apiPath(`/api/office/screenshot?file=${encodeURIComponent(accomplishment.screenshot)}&token=${authToken}`) : undefined}
+                  src={authToken ? apiPath(`/api/vibe/screenshot?file=${encodeURIComponent(accomplishment.screenshot)}&token=${authToken}`) : undefined}
                   alt={accomplishment.title}
                   style={{
                     width: '100%',

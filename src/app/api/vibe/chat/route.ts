@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { readFileSync, existsSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
-import { requireAuth } from '@/lib/vibe/auth';
 import { generateChat, getNextChatIn } from '@/lib/vibe/watercooler-ticker';
 
 const STATUS_DIR = join(homedir(), '.openclaw', '.status');
@@ -29,8 +28,6 @@ function readOfficeConfig(): any { // justified: inherited from OpenClawfice mer
 }
 
 export async function GET(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   const url = new URL(request.url);
   if (url.searchParams.has('status')) {
@@ -41,8 +38,6 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   try {
     const body = await request.json();

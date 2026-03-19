@@ -3,30 +3,11 @@ import { existsSync, statSync, createReadStream } from 'fs';
 import { join, extname } from 'path';
 import { homedir } from 'os';
 import { validateFilename } from '@/lib/vibe/input-validation';
-import { requireAuth } from '@/lib/vibe/auth';
 
 const STATUS_DIR = join(homedir(), '.openclaw', '.status', 'screenshots');
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  
-  // Accept token either in header or query param (for <video> elements)
-  const authError = requireAuth(req);
-  const tokenParam = searchParams.get('token');
-  
-  if (authError && !tokenParam) {
-    return authError;
-  }
-  
-  // If no header auth, verify query param
-  if (authError && tokenParam) {
-    const { getOrCreateToken } = await import('@/lib/vibe/auth');
-    const expectedToken = getOrCreateToken();
-    if (tokenParam !== expectedToken) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-  }
-
   const file = searchParams.get('file');
 
   if (!file || !validateFilename(file)) {
@@ -48,7 +29,6 @@ export async function GET(req: Request) {
   const stat = statSync(filePath);
   const fileSize = stat.size;
 
-  // Handle Range requests (required for <video> seek/play)
   const range = req.headers.get('range');
   if (range) {
     const match = range.match(/bytes=(\d+)-(\d*)/);
@@ -79,7 +59,6 @@ export async function GET(req: Request) {
     }
   }
 
-  // Full file response with Accept-Ranges header
   const stream = createReadStream(filePath);
   const readable = new ReadableStream({
     start(controller) {

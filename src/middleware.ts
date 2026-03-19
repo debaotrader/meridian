@@ -88,6 +88,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Vibe routes are protected by nginx IP restriction - skip middleware auth
+  if (pathname.startsWith('/api/vibe')) {
+    return NextResponse.next();
+  }
+
   // If MC_API_TOKEN is not set, auth is disabled (dev mode)
   if (!MC_API_TOKEN) {
     return NextResponse.next();
@@ -107,12 +112,18 @@ export function middleware(request: NextRequest) {
     // Fall through to header check below
   }
 
-  // Check Authorization header for bearer token
+  // Check Authorization header for bearer token OR X-OpenClawfice-Token
   const authHeader = request.headers.get('authorization');
+  const openclawficeToken = request.headers.get('x-openclawfice-token');
+  
+  // Accept X-OpenClawfice-Token (used by authenticated UI fetch)
+  if (openclawficeToken && openclawficeToken === MC_API_TOKEN) {
+    return NextResponse.next();
+  }
   
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return NextResponse.json(
-      { error: 'Unauthorized' },
+      { error: 'Unauthorized - missing or invalid token' },
       { status: 401 }
     );
   }
@@ -121,7 +132,7 @@ export function middleware(request: NextRequest) {
   
   if (token !== MC_API_TOKEN) {
     return NextResponse.json(
-      { error: 'Unauthorized' },
+      { error: 'Unauthorized - invalid token' },
       { status: 401 }
     );
   }

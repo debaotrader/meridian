@@ -2,11 +2,7 @@ import { NextResponse } from 'next/server';
 import { basename } from 'path';
 import { execFile } from 'child_process';
 import { findFile, findRelatedFile, getAgentWorkspaces } from '@/lib/vibe/file-finder';
-import { requireAuth } from '@/lib/vibe/auth';
-
 export async function GET(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   const url = new URL(request.url);
   const filename = url.searchParams.get('name');
@@ -34,8 +30,6 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   try {
     const body = await request.json();

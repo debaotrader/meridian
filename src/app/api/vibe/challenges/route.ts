@@ -3,8 +3,6 @@ import { readFileSync, existsSync, writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
 import { getTodaysChallenge, calculateStreak, getChallengeProgress, getChallengeXP } from '@/lib/vibe/challenges';
-import { requireAuth } from '@/lib/vibe/auth';
-
 const STATUS_DIR = join(homedir(), '.openclaw', '.status');
 const CHALLENGES_FILE = join(STATUS_DIR, 'challenges.json');
 
@@ -91,8 +89,6 @@ export async function GET() {
  */
 export async function POST(request: Request) {
   // Require auth for POST
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   try {
     const body = await request.json();

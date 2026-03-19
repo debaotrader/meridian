@@ -265,13 +265,13 @@ export default function VibeView() {
       })();
 
       const [configRes, starsRes, officeRes, meetingRes, actionsRes, archiveRes, autoworkRes] = await Promise.allSettled([
-        secureFetch(getApiPath('/api/vibe/config')).then(r => r.json()),
+        fetch(getApiPath('/api/vibe/config')).then(r => r.json()),
         starsPromise,
-        secureFetch(getApiPath('/api/vibe')).then(r => r.json()),
-        secureFetch(getApiPath('/api/vibe/meeting')).then(r => r.json()),
-        secureFetch(getApiPath('/api/vibe/actions')).then(r => r.json()),
-        secureFetch(getApiPath('/api/vibe/actions') + '?archiveOffset=0&limit=0').then(r => r.json()),
-        secureFetch(getApiPath('/api/vibe/autowork')).then(r => r.json()),
+        fetch(getApiPath('/api/vibe')).then(r => r.json()),
+        fetch(getApiPath('/api/vibe/meeting')).then(r => r.json()),
+        fetch(getApiPath('/api/vibe/actions')).then(r => r.json()),
+        fetch(getApiPath('/api/vibe/actions') + '?archiveOffset=0&limit=0').then(r => r.json()),
+        fetch(getApiPath('/api/vibe/autowork')).then(r => r.json()),
       ]);
       // Batch all state updates in one go
       if (configRes.status === 'fulfilled') setConfig(configRes.value);
@@ -376,7 +376,7 @@ export default function VibeView() {
   useEffect(() => {
     const fetchAutowork = async () => {
       try {
-        const res = await secureFetch(getApiPath('/api/vibe/autowork'));
+        const res = await fetch(getApiPath('/api/vibe/autowork'));
         if (res.ok) {
           const data = await res.json();
           setAutoworkPolicies(data.policies || {});
@@ -394,7 +394,7 @@ export default function VibeView() {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const res = await secureFetch(getApiPath('/api/vibe'));
+        const res = await fetch(getApiPath('/api/vibe'));
         const data = await res.json();
         const json = JSON.stringify(data);
         if (json === lastStatusJson.current) return;
@@ -444,7 +444,7 @@ export default function VibeView() {
   useEffect(() => {
     const fetchMeeting = async () => {
       try {
-        const res = await secureFetch(getApiPath('/api/vibe/meeting'));
+        const res = await fetch(getApiPath('/api/vibe/meeting'));
         const data = await res.json();
         const json = JSON.stringify(data);
         if (json !== lastMeetingJson.current) {
@@ -475,7 +475,7 @@ export default function VibeView() {
   useEffect(() => {
     const fetchActions = async () => {
       try {
-        const res = await secureFetch(getApiPath('/api/vibe/actions'));
+        const res = await fetch(getApiPath('/api/vibe/actions'));
         const data = await res.json();
         const json = JSON.stringify(data);
         if (json !== lastActionsJson.current) {
@@ -485,7 +485,7 @@ export default function VibeView() {
         }
       } catch {}
       try {
-        const ar = await secureFetch(getApiPath('/api/vibe/actions') + '?archiveOffset=0&limit=0');
+        const ar = await fetch(getApiPath('/api/vibe/actions') + '?archiveOffset=0&limit=0');
         const ad = await ar.json();
         if (typeof ad.archiveTotal === 'number') setArchiveTotal(prev => prev === ad.archiveTotal ? prev : ad.archiveTotal);
       } catch {}
@@ -652,7 +652,7 @@ export default function VibeView() {
     setArchiveLoading(true);
     try {
       const offset = reset ? 0 : archivedAccomplishments.length;
-      const res = await secureFetch(apiPath(`/api/vibe/actions?archiveOffset=${offset}&limit=50`));
+      const res = await fetch(apiPath(`/api/vibe/actions?archiveOffset=${offset}&limit=50`));
       const data = await res.json();
       if (data.archive) {
         setArchivedAccomplishments(prev => reset ? data.archive : [...prev, ...data.archive]);
@@ -668,7 +668,7 @@ export default function VibeView() {
     if (!isDemoMode) return;
     const fetchDemoChat = async () => {
       try {
-        const res = await secureFetch(getApiPath('/api/vibe/chat'));
+        const res = await fetch(getApiPath('/api/vibe/chat'));
         const data = await res.json();
         if (data.messages && Array.isArray(data.messages)) {
           setChatLog(prev => {
@@ -712,7 +712,7 @@ export default function VibeView() {
     if (isDemoMode) return;
     const poll = async () => {
       try {
-        const res = await secureFetch(getApiPath('/api/vibe/chat?status=1'));
+        const res = await fetch(getApiPath('/api/vibe/chat?status=1'));
         if (res.ok) {
           const data = await res.json();
           if (typeof data.nextChatIn === 'number') {
@@ -785,14 +785,14 @@ export default function VibeView() {
       const ownerName = agents.find(a => a.id === '_owner')?.name || 'Você';
 
       // Add user message to water cooler chat so agents see it and respond
-      secureFetch(apiPath('/api/vibe/chat'), {
+      fetch(apiPath('/api/vibe/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'user_message', from: ownerName, text: groupMessage }),
       }).catch(() => {});
 
       // Send to all agents (broadcast)
-      const res = await secureFetch(apiPath('/api/vibe/message'), {
+      const res = await fetch(apiPath('/api/vibe/message'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -819,7 +819,7 @@ export default function VibeView() {
   const handleTemplateSelect = async (quest: any) => { // justified: inherited from OpenClawfice merge
     try {
       // Add the cloned quest to actions
-      const res = await secureFetch(apiPath('/api/vibe/actions'), {
+      const res = await fetch(apiPath('/api/vibe/actions'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'add', action: quest }),
@@ -827,7 +827,7 @@ export default function VibeView() {
       
       if (res.ok) {
         // Refresh actions
-        const actionsRes = await secureFetch(getApiPath('/api/vibe/actions'));
+        const actionsRes = await fetch(getApiPath('/api/vibe/actions'));
         const data = await actionsRes.json();
         if (data.actions) setPendingActions(data.actions);
       }
@@ -1153,8 +1153,12 @@ export default function VibeView() {
           >
             📞
           </button>
-          <a
-            href="/meridian/vibe#leaderboard"
+          <button
+            onClick={() => {
+              sfx.play('click');
+              const el = document.querySelector('[data-tour="accomplishments"]');
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }}
             style={{
               background: 'none',
               border: 'none',
@@ -1162,13 +1166,11 @@ export default function VibeView() {
               cursor: 'pointer',
               fontSize: 14,
               padding: '2px 4px',
-              textDecoration: 'none',
-              display: 'inline-block',
             }}
-            title="Ranking"
+            title="Conquistas"
           >
             🏆
-          </a>
+          </button>
           <a
             href="/meridian/analytics"
             style={{
@@ -1252,10 +1254,8 @@ export default function VibeView() {
           >
             𝕏
           </button>
-          <a
-            href="/meridian/vibe#templates"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => { sfx.play('open'); setShowTemplateGallery(true); }}
             style={{
               background: 'none',
               border: 'none',
@@ -1263,13 +1263,11 @@ export default function VibeView() {
               cursor: 'pointer',
               fontSize: 14,
               padding: '2px 4px',
-              textDecoration: 'none',
-              display: 'inline-block',
             }}
             title="Templates Virais"
           >
             📝
-          </a>
+          </button>
           <a
             href="https://github.com/openclawfice/openclawfice"
             target="_blank"
@@ -1562,9 +1560,7 @@ export default function VibeView() {
               &gt; RODAR DEMO
             </a>
             <a 
-              href="https://docs.openclaw.ai/#configuration-optional"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/meridian/kanban"
               onClick={() => sfx.play('click')}
               style={{
                 background: 'transparent',
@@ -1593,7 +1589,7 @@ export default function VibeView() {
               &gt; CONFIGURAR AGENTES
             </a>
             <a 
-              href="https://docs.openclaw.ai/getting-started"
+              href="/meridian/analytics"
               onClick={() => sfx.play('click')}
               style={{
                 background: 'transparent',
@@ -1619,7 +1615,7 @@ export default function VibeView() {
                 e.currentTarget.style.boxShadow = '0 0 10px rgba(0,255,65,0.2)';
               }}
             >
-              &gt; GUIA DE INSTALAÇÃO
+              &gt; PAINEL DE CONTROLE
             </a>
           </div>
           <div style={{
@@ -1667,14 +1663,14 @@ export default function VibeView() {
                 title="Clique para copiar">
                   $ {setupCheck?.installCommand || 'curl -fsSL https://openclaw.ai/install.sh | bash'}
                 </div>
-                <a href="https://docs.openclaw.ai/getting-started" target="_blank" rel="noopener noreferrer" style={{
+                <a href="/meridian/settings" style={{
                   color: '#00ff41',
                   fontSize: 10,
                   textDecoration: 'none',
                   borderBottom: '1px solid #00ff41',
                   opacity: 0.8,
                 }}>
-                  &gt; View full installation guide
+                  &gt; Ir para configurações
                 </a>
               </div>
             ) : setupCheck?.status === 'not_configured' ? (
@@ -1684,7 +1680,7 @@ export default function VibeView() {
                 <div style={{ marginBottom: 12, fontSize: 10 }}>
                   &gt; Configure agents in <code style={{ background: 'rgba(0,0,0,0.5)', padding: '2px 6px', border: '1px solid #00ff41', fontSize: 9, color: '#00ff41' }}>~/.openclaw/openclaw.json</code>
                 </div>
-                <a href="https://docs.openclaw.ai/getting-started" style={{
+                <a href="/meridian/settings" style={{
                   color: '#00ff41',
                   fontSize: 10,
                   textDecoration: 'none',
@@ -1892,7 +1888,7 @@ export default function VibeView() {
               celebrations={celebrations}
               onEndMeeting={async () => {
                 try {
-                  const res = await secureFetch(getApiPath("/api/vibe/meeting"), { method: "DELETE" });
+                  const res = await fetch(getApiPath("/api/vibe/meeting"), { method: "DELETE" });
                   if (res.ok) setMeeting({ active: false });
                 } catch (err) {
                   console.error("Failed to end meeting:", err);
@@ -2615,7 +2611,7 @@ export default function VibeView() {
         if (!action) return null;
         const priorityColors: Record<string, string> = { high: '#ef4444', medium: '#f59e0b', low: '#6366f1' };
         const respondAction = async (response: string) => {
-          await secureFetch(apiPath('/api/vibe/actions'), {
+          await fetch(apiPath('/api/vibe/actions'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ type: 'respond_action', id: action.id, response }),
@@ -2662,7 +2658,7 @@ export default function VibeView() {
                     e.preventDefault();
                     e.stopPropagation();
                     try {
-                      const res = await secureFetch(apiPath('/api/vibe/open-file'), {
+                      const res = await fetch(apiPath('/api/vibe/open-file'), {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name: action.data!.file }),
@@ -2869,7 +2865,7 @@ export default function VibeView() {
         accomplishment={selectedAccomplishment}
         onClose={() => setSelectedAccomplishment(null)}
         onOpenFile={async (filename) => {
-          const res = await secureFetch(apiPath("/api/vibe/open-file"), {
+          const res = await fetch(apiPath("/api/vibe/open-file"), {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: filename }),
@@ -2924,7 +2920,7 @@ export default function VibeView() {
         onDiscard={() => setPendingAutowork({})}
         onApply={async (entries) => {
           for (const [agentId, changes] of entries) {
-            await secureFetch(apiPath("/api/vibe/autowork"), {
+            await fetch(apiPath("/api/vibe/autowork"), {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ agentId, ...changes }),
@@ -3054,7 +3050,7 @@ export default function VibeView() {
         }}
         onStart={async (topic, participants) => {
           try {
-            const res = await secureFetch(getApiPath("/api/vibe/meeting/start"), {
+            const res = await fetch(getApiPath("/api/vibe/meeting/start"), {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ topic, participants }),
@@ -3063,7 +3059,7 @@ export default function VibeView() {
               setShowCallMeeting(false);
               setMeetingTopic("");
               setSelectedParticipants([]);
-              const meetRes = await secureFetch(getApiPath("/api/vibe/meeting"));
+              const meetRes = await fetch(getApiPath("/api/vibe/meeting"));
               const meetData = await meetRes.json();
               setMeeting(meetData);
             }

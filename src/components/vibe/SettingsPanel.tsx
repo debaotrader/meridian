@@ -49,7 +49,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
       },
     };
     try {
-      const res = await secureFetch(apiPath('/api/office/config'), {
+      const res = await fetch(apiPath('/api/vibe/config'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(patch),

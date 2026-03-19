@@ -84,7 +84,7 @@ function LiveSessionFeed({ agent, secureFetch }: { agent: Agent; secureFetch: (u
     let cancelled = false;
     const poll = async () => {
       try {
-        const res = await secureFetch(apiPath(`/api/office/logs?agentId=${encodeURIComponent(agent.id)}&limit=30`));
+        const res = await fetch(apiPath(`/api/vibe/logs?agentId=${encodeURIComponent(agent.id)}&limit=30`));
         if (!cancelled && res.ok) {
           const data = await res.json();
           if (data.entries?.length > 0) {
@@ -284,7 +284,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
     setSending(true);
     const messageText = dmMessage;
     try {
-      const res = await secureFetch(apiPath('/api/office/message'), {
+      const res = await fetch(apiPath('/api/vibe/message'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ agentId: agent.id, message: messageText }),
@@ -412,7 +412,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
           onClick={async () => {
             setStopping(true);
             try {
-              const res = await secureFetch(getApiPath('/api/office/stop'), {
+              const res = await fetch(getApiPath('/api/vibe/stop'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ agentId: agent.id }),
@@ -588,13 +588,19 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
                 onClick={async () => {
                   setAwSaving(true);
                   try {
-                    const res = await secureFetch(apiPath('/api/office/autowork'), {
+                    const res = await fetch(apiPath('/api/vibe/autowork'), {
                       method: 'PUT',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ agentId: agent.id }),
                     });
-                    if (res.ok) setAwEnabled(prev => prev);
-                  } catch {}
+                    if (res.ok) {
+                      setSentConfirm(true);
+                      setLastSent('⚡ Work dispatched!');
+                      setTimeout(() => setSentConfirm(false), 3000);
+                    } else {
+                      console.error('[AgentPanel] NOW failed:', res.status, await res.text());
+                    }
+                  } catch (err) { console.error('[AgentPanel] NOW error:', err); }
                   setAwSaving(false);
                 }}
                 disabled={awSaving}

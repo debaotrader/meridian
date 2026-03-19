@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { requireAuth } from '@/lib/vibe/auth';
 import {
   readConfig,
   writeConfig,
@@ -13,8 +12,6 @@ const MAX_SENDS_PER_TICK = 2;
  * GET — return all auto-work policies, config, and current mission
  */
 export async function GET(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   const config = readConfig();
   const mission = readMission();
@@ -30,8 +27,6 @@ export async function GET(request: Request) {
  * Body: { agentId, enabled?, intervalMs?, directive?, maxSendsPerTick? }
  */
 export async function POST(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   try {
     const { agentId, enabled, intervalMs, directive, maxSendsPerTick } = await request.json();
@@ -74,8 +69,6 @@ export async function POST(request: Request) {
  * Body: { agentId? } — if omitted, runs one normal tick cycle.
  */
 export async function PUT(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   try {
     let forceAgent: string | undefined;

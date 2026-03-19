@@ -10,14 +10,10 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import os from 'os';
-import { requireAuth } from '@/lib/vibe/auth';
-
 const STATUS_DIR = path.join(os.homedir(), '.openclaw', '.status');
 const MEETING_FILE = path.join(STATUS_DIR, 'meeting.json');
 
 export async function POST(req: Request) {
-  const authError = requireAuth(req);
-  if (authError) return authError;
 
   try {
     const { topic, participants } = await req.json();

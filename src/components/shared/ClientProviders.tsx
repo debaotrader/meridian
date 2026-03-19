@@ -3,6 +3,7 @@
 import { WsProvider } from '@/lib/gateway/ws-provider';
 import { I18nProvider } from './I18nProvider';
 import { CrossModuleBridgeInitializer } from './CrossModuleBridgeInitializer';
+import { AnalyticsBridgeInitializer } from './AnalyticsBridgeInitializer';
 
 const GATEWAY_URL =
   process.env.NEXT_PUBLIC_OPENCLAW_GATEWAY_URL ?? 'ws://127.0.0.1:18789';
@@ -17,6 +18,7 @@ export function ClientProviders({ children }: ClientProvidersProps) {
     <I18nProvider>
       <WsProvider url={GATEWAY_URL} apiKey={API_KEY}>
         <CrossModuleBridgeInitializer />
+        <AnalyticsBridgeInitializer />
         {children}
       </WsProvider>
     </I18nProvider>

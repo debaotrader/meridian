@@ -1,10 +1,6 @@
 import { NextResponse } from 'next/server';
 import { gatewayRpc } from '@/lib/vibe/gateway-rpc';
-import { requireAuth } from '@/lib/vibe/auth';
-
 export async function POST(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   try {
     const { jobId, intervalMs, enabled } = await request.json();

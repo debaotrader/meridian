@@ -351,7 +351,7 @@ export function composePrompt(
     'If there is a Team Insight above that is relevant to your role, that should be your top priority.\n\n' +
     'When you finish something, record it as an accomplishment (a Loom-style screen recording is automatically captured):\n\n' +
     '```bash\n' +
-    'curl -s -X POST http://localhost:3333/api/office/actions \\\n' +
+    'curl -s -X POST http://localhost:3333/api/vibe/actions \\\n' +
     '  -H "Content-Type: application/json" \\\n' +
     '  -d \'{"type":"add_accomplishment","accomplishment":{"icon":"✅","title":"<what you did>","detail":"<brief detail>","who":"<your name>"}}\'\n' +
     '```\n\n' +

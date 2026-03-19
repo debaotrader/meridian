@@ -4,8 +4,6 @@ import { join } from 'path';
 import { homedir } from 'os';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { sanitizeMessage, validateAgentId, validateAgentIdArray } from '@/lib/vibe/input-validation';
-import { requireAuth } from '@/lib/vibe/auth';
-
 // Find openclaw binary: check PATH first, then common install locations
 function findOpenclawBin(): string {
   try {
@@ -29,14 +27,44 @@ const CHAT_FILE = join(homedir(), '.openclaw', '.status', 'chat.json');
  * Send a message to an OpenClaw agent (fire and forget)
  */
 function sendToAgentAsync(agentId: string, message: string): void {
-  // Fire and forget - don't wait for response
+  // Spawn agent and capture response for chat log
   const proc = spawn(OPENCLAW_BIN, ['agent', '--agent', agentId, '--message', message], {
     env: process.env,
-    detached: true,
-    stdio: 'ignore',
+    stdio: ['ignore', 'pipe', 'ignore'],
   });
-  
-  // Unref so it doesn't block
+
+  let output = '';
+  proc.stdout?.on('data', (chunk: Buffer) => {
+    output += chunk.toString();
+  });
+
+  const timeout = setTimeout(() => {
+    try { proc.kill(); } catch {}
+  }, 120_000);
+
+  proc.on('close', () => {
+    clearTimeout(timeout);
+    const reply = output.trim();
+    if (reply && reply !== 'NO_REPLY' && reply !== 'HEARTBEAT_OK' && reply.length > 0) {
+      // Get agent display name from config
+      let displayName = agentId;
+      try {
+        const cfg = JSON.parse(readFileSync(join(homedir(), '.openclaw', 'openclaw.json'), 'utf-8'));
+        const agents = cfg.agents?.list || [];
+        const agent = agents.find((a: any) => a.id === agentId);
+        if (agent?.workspace) {
+          const idPath = join(agent.workspace, 'IDENTITY.md');
+          if (existsSync(idPath)) {
+            const txt = readFileSync(idPath, 'utf-8');
+            const nm = txt.match(/[-*]*\s*\*\*(?:Name|Nome):\*\*\s*(.+)/);
+            if (nm) displayName = nm[1].trim();
+          }
+        }
+      } catch {}
+      addToChatLog(displayName, reply.slice(0, 500));
+    }
+  });
+
   proc.unref();
 }
 
@@ -71,8 +99,6 @@ function addToChatLog(from: string, text: string): void {
  * POST endpoint to send messages to agents
  */
 export async function POST(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   try {
     const body = await request.json();
@@ -107,8 +133,8 @@ export async function POST(request: Request) {
         sendToAgentAsync(id, sanitizedMessage);
       }
       
-      // Add to water cooler chat log so it appears in UI
-      addToChatLog('You', sanitizedMessage);
+      // Note: chat log entry is handled by the /api/vibe/chat endpoint (user_message)
+      // to avoid duplicate messages
       
       return NextResponse.json({ 
         success: true, 

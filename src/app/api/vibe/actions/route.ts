@@ -4,8 +4,6 @@ import { join } from 'path';
 import { homedir } from 'os';
 import { exec } from 'child_process';
 import { findRelatedFile } from '@/lib/vibe/file-finder';
-import { requireAuth } from '@/lib/vibe/auth';
-
 const OPENCLAW_DIR = join(homedir(), '.openclaw');
 const STATUS_DIR = join(OPENCLAW_DIR, '.status');
 const ACTIONS_FILE = join(STATUS_DIR, 'actions.json');
@@ -287,8 +285,6 @@ function readArchive(offset: number, limit: number): { items: any[]; total: numb
 }
 
 export async function GET(request: Request) {
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   const url = new URL(request.url);
   const archiveOffset = parseInt(url.searchParams.get('archiveOffset') || '', 10);
@@ -328,8 +324,6 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   // Require authentication for POST operations
-  const authError = requireAuth(request);
-  if (authError) return authError;
 
   ensureStatusDir();
 
