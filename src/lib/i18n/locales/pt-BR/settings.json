@@ -1,0 +1,39 @@
+{
+  "title": "Configurações",
+  "back": "← Voltar",
+  "backToMC": "Voltar ao painel",
+  "resetDefaults": "Restaurar padrões",
+  "saveChanges": "Salvar alterações",
+  "saving": "Salvando...",
+  "savedSuccess": "✓ Configurações salvas com sucesso",
+  "resetConfirm": "Restaurar todas as configurações para o padrão? Essa ação não pode ser desfeita.",
+  "loadingSettings": "Carregando configurações...",
+  "failedSave": "Falha ao salvar configurações",
+  "workspace": {
+    "title": "Caminhos do workspace",
+    "description": "Configure onde o sistema armazena projetos e entregas.",
+    "basePath": "Caminho base do workspace",
+    "basePathHint": "Diretório base para todos os arquivos. Use ~ para o diretório home.",
+    "projectsPath": "Caminho dos projetos",
+    "projectsPathHint": "Diretório onde as pastas de projeto são criadas. Cada projeto tem sua própria pasta.",
+    "defaultProjectName": "Nome padrão do projeto",
+    "defaultProjectNameHint": "Nome padrão para novos projetos. Pode ser alterado por projeto."
+  },
+  "api": {
+    "title": "Configuração de API",
+    "description": "Configure a URL da API para orquestração de agentes.",
+    "mcUrl": "URL do painel",
+    "mcUrlHint": "URL onde o sistema está rodando. Detectado automaticamente por padrão. Altere para acesso remoto."
+  },
+  "kanbanUx": {
+    "title": "UX do Kanban",
+    "description": "Ajuste a densidade do quadro e o comportamento das colunas.",
+    "compactEmpty": "Colunas vazias compactas",
+    "compactEmptyHint": "Quando ativado, colunas Kanban vazias encolhem para o tamanho do cabeçalho, enquanto colunas com tarefas mantêm largura dinâmica."
+  },
+  "envVars": {
+    "title": "📝 Variáveis de ambiente",
+    "description": "Algumas configurações também podem ser definidas via variáveis de ambiente em",
+    "precedence": "Variáveis de ambiente têm precedência sobre configurações da interface para operações server-side."
+  }
+}

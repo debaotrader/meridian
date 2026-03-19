@@ -86,7 +86,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
       animation: 'slideInRight 0.3s ease-out',
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <h3 style={{ margin: 0, fontFamily: '"Press Start 2P", monospace', fontSize: 12 }}>⚙️ Settings</h3>
+        <h3 style={{ margin: 0, fontFamily: '"Press Start 2P", monospace', fontSize: 12 }}>⚙️ Configurações</h3>
         <button onClick={onClose} style={{
           background: '#1e293b', border: '1px solid #334155', color: '#94a3b8',
           borderRadius: 6, padding: '4px 10px', cursor: 'pointer', fontSize: 12,
@@ -103,10 +103,10 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
           type="text"
           value={mGoal}
           onChange={(e) => setMGoal(e.target.value)}
-          placeholder="What is your company trying to achieve?"
+          placeholder="O que sua empresa está buscando alcançar?"
           style={{ ...inputStyle, marginBottom: 8 }}
         />
-        <div style={{ ...labelStyle, fontSize: 8, marginTop: 4 }}>Priorities</div>
+        <div style={{ ...labelStyle, fontSize: 8, marginTop: 4 }}>Prioridades</div>
         {mPriorities.map((p, i) => (
           <div key={i} style={{ display: 'flex', gap: 4, marginBottom: 4 }}>
             <input
@@ -131,11 +131,11 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
           background: 'none', border: '1px dashed #334155', borderRadius: 6,
           color: '#64748b', fontSize: 9, padding: '4px 8px', cursor: 'pointer', width: '100%', marginTop: 2,
         }}>+ Add Priority</button>
-        <div style={{ ...labelStyle, fontSize: 8, marginTop: 8 }}>Context</div>
+        <div style={{ ...labelStyle, fontSize: 8, marginTop: 8 }}>Contexto</div>
         <textarea
           value={mContext}
           onChange={(e) => setMContext(e.target.value)}
-          placeholder="Additional context about your business, metrics, constraints..."
+          placeholder="Contexto adicional sobre seu negócio, métricas, restrições..."
           rows={3}
           style={{ ...inputStyle, resize: 'vertical' }}
         />
@@ -157,7 +157,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
         <div style={{ fontSize: 9, color: '#475569', marginBottom: 8 }}>
           Chat message frequency in the lounge
         </div>
-        <div style={{ ...labelStyle, fontSize: 8 }}>Frequency</div>
+        <div style={{ ...labelStyle, fontSize: 8 }}>Frequência</div>
         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 10 }}>
           {CHAT_FREQ_PRESETS.map(p => (
             <button
@@ -185,7 +185,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
               fontFamily: '"Press Start 2P", monospace',
             }}
           >{quietEnabled ? '🌙 ON' : '🌙 OFF'}</button>
-          <span style={{ fontSize: 9, color: '#64748b' }}>Quiet hours</span>
+          <span style={{ fontSize: 9, color: '#64748b' }}>Horário silencioso</span>
         </div>
         {quietEnabled && (
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -217,7 +217,7 @@ export function SettingsPanel({ config, onConfigChange, onClose }: {
 
       {/* Keyboard Shortcuts */}
       <div style={{ marginTop: 16, padding: '12px 0', borderTop: '1px solid #334155' }}>
-        <div style={{ fontSize: 9, fontFamily: '"Press Start 2P", monospace', color: '#94a3b8', marginBottom: 8 }}>⌨️ Shortcuts</div>
+        <div style={{ fontSize: 9, fontFamily: '"Press Start 2P", monospace', color: '#94a3b8', marginBottom: 8 }}>⌨️ Atalhos</div>
         {[
           ['1-9', 'Select agent'],
           ['T', 'Quest templates'],

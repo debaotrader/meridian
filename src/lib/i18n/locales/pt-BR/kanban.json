@@ -1,0 +1,93 @@
+{
+  "columns": {
+    "planning": "📋 Planejamento",
+    "inbox": "Entrada",
+    "assigned": "Atribuído",
+    "in_progress": "Em andamento",
+    "testing": "Em teste",
+    "review": "Revisão",
+    "verification": "Verificação",
+    "done": "Concluído"
+  },
+  "task": {
+    "createNew": "Criar nova tarefa",
+    "newTask": "+ Nova tarefa",
+    "title": "Título",
+    "titlePlaceholder": "O que precisa ser feito?",
+    "description": "Descrição",
+    "descriptionPlaceholder": "Adicione detalhes...",
+    "assignTo": "Atribuir a",
+    "priority": "Prioridade",
+    "dueDate": "Data limite",
+    "confirmDelete": "Excluir \"{{title}}\"?",
+    "needsAgent": "Precisa de agente — atribua para iniciar",
+    "assignedValidating": "Atribuído e validando — o auto-start moverá para Em andamento.",
+    "assignedBlocked": "Atribuído, mas bloqueado: {{error}}",
+    "planningAI": "Planejamento com IA"
+  },
+  "tabs": {
+    "overview": "Visão geral",
+    "planning": "Planejamento",
+    "team": "Equipe",
+    "activity": "Atividade",
+    "deliverables": "Entregas",
+    "images": "Imagens",
+    "sessions": "Sessões"
+  },
+  "header": {
+    "missionQueue": "Fila de missões",
+    "liveFeed": "Feed ao vivo",
+    "agentsOnline": "Agentes online",
+    "tasksActive": "Tarefas ativas",
+    "systemEvents": "Eventos do sistema"
+  },
+  "agents": {
+    "agents": "Agentes",
+    "working": "Trabalhando",
+    "blocked": "Bloqueados",
+    "activeTasks": "Tarefas ativas",
+    "createNew": "Criar novo agente",
+    "editAgent": "Editar {{name}}",
+    "namePlaceholder": "Nome do agente",
+    "rolePlaceholder": "O que esse agente faz?",
+    "expandAgents": "Expandir agentes",
+    "minimizeAgents": "Minimizar agentes"
+  },
+  "planning": {
+    "cancelConfirm": "Tem certeza que deseja cancelar o planejamento? Isso redefinirá o estado.",
+    "specifyPlaceholder": "Especifique...",
+    "retrying": "Tentando novamente...",
+    "continue": "Continuar →",
+    "waitingResponse": "Aguardando resposta...",
+    "waitingNextQuestion": "Aguardando próxima pergunta..."
+  },
+  "team": {
+    "saveTeam": "Salvando...",
+    "saved": "Salvar equipe"
+  },
+  "workspace": {
+    "allWorkspaces": "Todos os workspaces",
+    "createWorkspace": "Criar workspace",
+    "deleteWorkspace": "Excluir workspace",
+    "deleteConfirm": "Excluir este workspace?",
+    "liveSSE": "Ao vivo (SSE)",
+    "pollingFallback": "Polling alternativo"
+  },
+  "sessions": {
+    "markComplete": "Marcar como concluído",
+    "deleteSession": "Excluir sessão",
+    "deleteConfirm": "Excluir esta sessão de sub-agente?",
+    "subAgent": "Sub-agente"
+  },
+  "deliverables": {
+    "previewInBrowser": "Visualizar no navegador",
+    "openInFinder": "Abrir no explorador"
+  },
+  "actions": {
+    "saveAndNew": "Salvar e criar",
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "creating": "Criando...",
+    "deleting": "Excluindo..."
+  }
+}

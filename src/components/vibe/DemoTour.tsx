@@ -4,26 +4,26 @@ import React, { useState, useEffect } from 'react';
 
 const TOUR_STEPS = [
   {
-    title: '🏠 Your AI Office',
-    body: 'Your AI agents are pixel-art NPCs with moods, XP levels, and unique looks — like The Sims, but they ship code.',
+    title: '🏠 Seu escritório IA',
+    body: 'Seus agentes IA são NPCs em pixel art com humor, níveis de XP e visuais únicos — como The Sims, mas entregam código.',
     target: 'work-room',
     position: 'bottom' as const,
   },
   {
-    title: '⚔️ Quest Log',
-    body: 'Agents raise quests when they need your decision. Approve, reject, or pick an option — you\'re the boss.',
+    title: '⚔️ Registro de missões',
+    body: 'Agentes criam missões quando precisam da sua decisão. Aprove, rejeite ou escolha — você é o chefe.',
     target: 'quest-log',
     position: 'top' as const,
   },
   {
-    title: '📡 Office Feed',
-    body: 'Random events happen in the office — funny moments, milestones, and chaos. Watch the drama unfold!',
+    title: '📡 Feed do escritório',
+    body: 'Eventos aleatórios acontecem no escritório — momentos engraçados, marcos e caos. Acompanhe o drama!',
     target: 'office-events',
     position: 'left' as const,
   },
   {
-    title: '💬 Water Cooler',
-    body: 'Agents chat, debate, and collaborate in real-time. Send group messages or just watch the banter.',
+    title: '💬 Bebedouro',
+    body: 'Agentes conversam, debatem e colaboram em tempo real. Envie mensagens em grupo ou só assista.',
     target: 'water-cooler',
     position: 'left' as const,
   },

@@ -16,7 +16,7 @@ export function AnalyticsDashboard() {
       {/* Row 1: Metrics summary full width */}
       <div className="lg:col-span-3 bg-surface-1 border border-border-default rounded-lg p-4">
         <h2 className="text-xs font-mono text-text-muted uppercase tracking-widest mb-3">
-          Live Metrics
+          Métricas ao vivo
         </h2>
         <MetricsPanel />
       </div>
@@ -24,14 +24,14 @@ export function AnalyticsDashboard() {
       {/* Row 2: Token chart (2 cols) + Pie chart (1 col) */}
       <div className="lg:col-span-2 bg-surface-1 border border-border-default rounded-lg p-4">
         <h2 className="text-xs font-mono text-text-muted uppercase tracking-widest mb-3">
-          Token Usage Over Time
+          Uso de tokens ao longo do tempo
         </h2>
         <TokenLineChart />
       </div>
 
       <div className="bg-surface-1 border border-border-default rounded-lg p-4">
         <h2 className="text-xs font-mono text-text-muted uppercase tracking-widest mb-3">
-          Cost Distribution
+          Distribuição de custos
         </h2>
         <CostPieChart />
       </div>
@@ -39,21 +39,21 @@ export function AnalyticsDashboard() {
       {/* Row 3: Network + Heatmap */}
       <div className="bg-surface-1 border border-border-default rounded-lg p-4">
         <h2 className="text-xs font-mono text-text-muted uppercase tracking-widest mb-3">
-          Agent Network
+          Rede de agentes
         </h2>
         <NetworkGraph />
       </div>
 
       <div className="bg-surface-1 border border-border-default rounded-lg p-4">
         <h2 className="text-xs font-mono text-text-muted uppercase tracking-widest mb-3">
-          Activity Heatmap
+          Mapa de calor de atividade
         </h2>
         <ActivityHeatmap />
       </div>
 
       <div className="bg-surface-1 border border-border-default rounded-lg p-4">
         <h2 className="text-xs font-mono text-text-muted uppercase tracking-widest mb-3">
-          Sub-Agents
+          Sub-agentes
         </h2>
         <SubAgentPanel />
       </div>
@@ -61,7 +61,7 @@ export function AnalyticsDashboard() {
       {/* Row 4: Event timeline full width */}
       <div className="lg:col-span-3 bg-surface-1 border border-border-default rounded-lg p-4">
         <h2 className="text-xs font-mono text-text-muted uppercase tracking-widest mb-3">
-          Event Timeline
+          Linha do tempo de eventos
         </h2>
         <EventTimeline />
       </div>

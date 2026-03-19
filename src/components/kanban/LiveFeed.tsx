@@ -40,7 +40,7 @@ export function LiveFeed({ mobileMode = false, isPortrait = true }: LiveFeedProp
             <button
               onClick={toggleMinimize}
               className="p-1 rounded hover:bg-mc-bg-tertiary text-mc-text-secondary hover:text-mc-text transition-colors"
-              aria-label={effectiveMinimized ? 'Expand feed' : 'Minimize feed'}
+              aria-label={effectiveMinimized ? 'Expandir feed' : 'Minimizar feed'}
             >
               {effectiveMinimized ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
             </button>

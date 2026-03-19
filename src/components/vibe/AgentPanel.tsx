@@ -400,7 +400,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
             cursor: 'pointer',
             transition: 'all 0.2s',
           }}
-          title="Generate shareable agent card"
+          title="Gerar card compartilhável do agente"
         >
           🎴 Card
         </button>
@@ -605,7 +605,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
                   fontFamily: '"Press Start 2P", monospace',
                   opacity: awSaving ? 0.5 : 1,
                 }}
-                title="Send work prompt now"
+                title="Enviar prompt de trabalho agora"
               >
                 ▶ NOW
               </button>
@@ -644,7 +644,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
             </div>
           )}
 
-          <div style={{ fontSize: 8, color: '#64748b', marginBottom: 6, textTransform: 'uppercase' as const }}>Interval</div>
+          <div style={{ fontSize: 8, color: '#64748b', marginBottom: 6, textTransform: 'uppercase' as const }}>Intervalo</div>
           <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
             {COOLDOWN_PRESETS.map(p => (
               <button

@@ -17,7 +17,7 @@ export function Office3DView() {
     <div className="relative flex-1 h-full">
       <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
         <span className="text-xs font-mono text-text-muted uppercase tracking-widest">
-          Office — 3D View
+          Escritório — Visão 3D
         </span>
       </div>
       <div className="w-full h-full min-h-screen">

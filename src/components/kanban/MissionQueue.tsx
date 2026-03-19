@@ -10,6 +10,7 @@ import { TaskModal } from './TaskModal';
 import { formatDistanceToNow } from 'date-fns';
 import { emitTaskEvent } from '@/lib/events/task-events';
 import { apiPath } from '@/lib/api-path';
+import { useTranslation } from 'react-i18next';
 
 interface MissionQueueProps {
   workspaceId?: string;
@@ -20,14 +21,14 @@ interface MissionQueueProps {
 }
 
 const COLUMNS: { id: TaskStatus; label: string; color: string }[] = [
-  { id: 'planning', label: '📋 Planning', color: 'border-t-mc-accent-purple' },
-  { id: 'inbox', label: 'Inbox', color: 'border-t-mc-accent-pink' },
-  { id: 'assigned', label: 'Assigned', color: 'border-t-mc-accent-yellow' },
-  { id: 'in_progress', label: 'In Progress', color: 'border-t-mc-accent' },
-  { id: 'testing', label: 'Testing', color: 'border-t-mc-accent-cyan' },
-  { id: 'review', label: 'Review', color: 'border-t-mc-accent-purple' },
-  { id: 'verification', label: 'Verification', color: 'border-t-orange-500' },
-  { id: 'done', label: 'Done', color: 'border-t-mc-accent-green' },
+  { id: 'planning', label: '📋 Planejamento', labelKey: 'planning', color: 'border-t-mc-accent-purple' },
+  { id: 'inbox', label: 'Entrada', labelKey: 'inbox', color: 'border-t-mc-accent-pink' },
+  { id: 'assigned', label: 'Atribuído', labelKey: 'assigned', color: 'border-t-mc-accent-yellow' },
+  { id: 'in_progress', label: 'Em andamento', labelKey: 'in_progress', color: 'border-t-mc-accent' },
+  { id: 'testing', label: 'Em teste', labelKey: 'testing', color: 'border-t-mc-accent-cyan' },
+  { id: 'review', label: 'Revisão', labelKey: 'review', color: 'border-t-mc-accent-purple' },
+  { id: 'verification', label: 'Verificação', labelKey: 'verification', color: 'border-t-orange-500' },
+  { id: 'done', label: 'Concluído', labelKey: 'done', color: 'border-t-mc-accent-green' },
 ];
 
 export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = true, highlightTaskId, highlightAgentId }: MissionQueueProps) {
@@ -149,7 +150,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
       <div className="p-3 border-b border-mc-border flex items-center justify-between">
         <div className="flex items-center gap-2">
           <ChevronRight className="w-4 h-4 text-mc-text-secondary" />
-          <span className="text-sm font-medium uppercase tracking-wider">Mission Queue</span>
+          <span className="text-sm font-medium uppercase tracking-wider">Fila de missões</span>
         </div>
         <button
           onClick={() => setShowCreateModal(true)}
@@ -346,7 +347,7 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
         {isAssigned && !dispatchError && (
           <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-warning/10 rounded-md border border-status-warning/30`}>
             <div className="w-2 h-2 bg-status-warning rounded-full flex-shrink-0" />
-            <span className="text-xs text-mc-accent-yellow">Assigned and validating — auto-start will move this to In Progress.</span>
+            <span className="text-xs text-mc-accent-yellow">Assigned and validating — o auto-start moverá para Em andamento.</span>
           </div>
         )}
 

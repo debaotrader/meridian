@@ -60,7 +60,7 @@ export function DeliverablesList({ taskId }: DeliverablesListProps) {
     // Files - try to open in Finder
     if (deliverable.path) {
       try {
-        debug.file('Opening file in Finder', { path: deliverable.path });
+        debug.file('Abrindo arquivo no explorador', { path: deliverable.path });
         const res = await fetch(apiPath('/api/files/reveal'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -68,7 +68,7 @@ export function DeliverablesList({ taskId }: DeliverablesListProps) {
         });
 
         if (res.ok) {
-          debug.file('Opened in Finder successfully');
+          debug.file('Aberto no explorador com sucesso');
           return;
         }
 
@@ -97,7 +97,7 @@ export function DeliverablesList({ taskId }: DeliverablesListProps) {
 
   const handlePreview = (deliverable: TaskDeliverable) => {
     if (deliverable.path) {
-      debug.file('Opening preview', { path: deliverable.path });
+      debug.file('Abrindo visualização', { path: deliverable.path });
       window.open(apiPath(`/api/files/preview?path=${encodeURIComponent(deliverable.path)}`), '_blank');
     }
   };
@@ -164,7 +164,7 @@ export function DeliverablesList({ taskId }: DeliverablesListProps) {
                   <button
                     onClick={() => handlePreview(deliverable)}
                     className="flex-shrink-0 p-1.5 hover:bg-mc-bg-tertiary rounded text-mc-accent-cyan"
-                    title="Preview in browser"
+                    title="Visualizar no navegador"
                   >
                     <Eye className="w-4 h-4" />
                   </button>

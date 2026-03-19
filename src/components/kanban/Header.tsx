@@ -130,11 +130,11 @@ export function Header({ workspace, isPortrait = true }: HeaderProps) {
             <div className="hidden lg:flex items-center gap-8">
               <div className="text-center">
                 <div className="text-2xl font-bold text-mc-accent-cyan">{activeAgents}</div>
-                <div className="text-xs text-mc-text-secondary uppercase">Agents Active</div>
+                <div className="text-xs text-mc-text-secondary uppercase">Agentes ativos</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-mc-accent-purple">{tasksInQueue}</div>
-                <div className="text-xs text-mc-text-secondary uppercase">Tasks in Queue</div>
+                <div className="text-xs text-mc-text-secondary uppercase">Tarefas na fila</div>
               </div>
             </div>
           )}

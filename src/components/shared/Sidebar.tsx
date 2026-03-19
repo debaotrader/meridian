@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { clsx } from 'clsx';
@@ -20,23 +21,24 @@ import {
 import { ConnectionStatus } from './ConnectionStatus';
 
 interface NavItem {
-  label: string;
+  key: string;
   href: string;
   icon: React.ComponentType<{ className?: string }>;
   badge?: string;
 }
 
-const navItems: NavItem[] = [
-  { label: 'Kanban', href: '/kanban', icon: LayoutDashboard },
-  { label: 'Escritório', href: '/office', icon: Building2 },
-  { label: '3D', href: '/office/3d', icon: Box },
-  { label: 'Vibe', href: '/vibe', icon: Sparkles },
-  { label: 'Analytics', href: '/analytics', icon: BarChart3 },
-  { label: 'Configurações', href: '/settings', icon: Settings },
+const NAV_KEYS = [
+  { key: 'kanban', href: '/kanban', icon: LayoutDashboard },
+  { key: 'office', href: '/office', icon: Building2 },
+  { key: 'office3d', href: '/office/3d', icon: Box },
+  { key: 'vibe', href: '/vibe', icon: Sparkles },
+  { key: 'analytics', href: '/analytics', icon: BarChart3 },
+  { key: 'settings', href: '/settings', icon: Settings },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation('nav');
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -68,7 +70,7 @@ export function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
-        {navItems.map((item) => {
+        {NAV_KEYS.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href);
 
@@ -88,7 +90,7 @@ export function Sidebar() {
               <Icon className={clsx('w-[18px] h-[18px] flex-shrink-0', active && 'text-accent')} />
               {!collapsed && (
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  {item.label}
+                  {t(item.key)}
                 </motion.span>
               )}
               {!collapsed && item.badge && (

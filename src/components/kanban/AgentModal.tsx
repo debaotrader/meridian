@@ -127,7 +127,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-mc-border">
           <h2 className="text-lg font-semibold">
-            {agent ? `Edit ${agent.name}` : 'Create New Agent'}
+            {agent ? `Edit ${agent.name}` : 'Criar novo agente'}
           </h2>
           <button
             onClick={onClose}
@@ -188,7 +188,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
                   className="w-full min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
-                  placeholder="Agent name"
+                  placeholder="Nome do agente"
                 />
               </div>
 
@@ -213,7 +213,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   rows={2}
                   className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent resize-none"
-                  placeholder="What does this agent do?"
+                  placeholder="O que esse agente faz?"
                 />
               </div>
 
@@ -350,7 +350,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
               className="min-h-11 flex items-center gap-2 px-4 py-2 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90 disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
-              {isSubmitting ? 'Saving...' : 'Save'}
+              {isSubmitting ? 'Salvando...' : 'Salvar'}
             </button>
           </div>
         </div>

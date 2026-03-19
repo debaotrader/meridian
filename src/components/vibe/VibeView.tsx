@@ -338,7 +338,7 @@ export default function VibeView() {
             // Show meeting room
             setMeeting({
               active: true,
-              topic: topic || 'Demo Meeting',
+              topic: topic || 'Reunião demo',
               participants: meetingAgents || ['Cipher', 'Nova'],
               currentRound: 1,
               maxRounds: 3,
@@ -532,7 +532,7 @@ export default function VibeView() {
             agentName: agent.name,
             agentColor: agent.color || '#6366f1',
             icon: acc.icon || '⭐',
-            title: acc.title || 'Task completed',
+            title: acc.title || 'Tarefa concluída',
             xp: XP_AMOUNTS[Math.floor(Math.random() * XP_AMOUNTS.length)],
           }]);
         }
@@ -760,7 +760,7 @@ export default function VibeView() {
     sfx.play('send');
     setSendingGroup(true);
     try {
-      const ownerName = agents.find(a => a.id === '_owner')?.name || 'You';
+      const ownerName = agents.find(a => a.id === '_owner')?.name || 'Você';
 
       // Add user message to water cooler chat so agents see it and respond
       secureFetch(apiPath('/api/vibe/chat'), {
@@ -785,10 +785,10 @@ export default function VibeView() {
         setGroupSent(true);
         setTimeout(() => setGroupSent(false), 3000);
       } else {
-        alert('Failed to send group message');
+        alert('Falha ao enviar mensagem em grupo');
       }
     } catch (err) {
-      alert('Failed to send group message');
+      alert('Falha ao enviar mensagem em grupo');
     } finally {
       setSendingGroup(false);
     }
@@ -834,9 +834,9 @@ export default function VibeView() {
     
     let label: string;
     if (date.toDateString() === today.toDateString()) {
-      label = 'Today';
+      label = 'Hoje';
     } else if (date.toDateString() === yesterday.toDateString()) {
-      label = 'Yesterday';
+      label = 'Ontem';
     } else {
       const daysAgo = Math.floor((today.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
       if (daysAgo < 7) {
@@ -1367,7 +1367,7 @@ export default function VibeView() {
               padding: '2px 4px',
               opacity: sfxEnabled ? 1 : 0.5,
             }}
-            title={sfxEnabled ? 'Mute SFX' : 'Unmute SFX'}
+            title={sfxEnabled ? 'Silenciar efeitos' : 'Ativar efeitos'}
           >
             {sfxEnabled ? '🔊' : '🔇'}
           </button>
@@ -1387,7 +1387,7 @@ export default function VibeView() {
               opacity: music.playing ? 1 : 0.5,
               transition: 'all 0.2s',
             }}
-            title={music.playing ? 'Stop Music' : 'Play Chiptune Music 🎵'}
+            title={music.playing ? 'Parar música' : 'Play Chiptune Music 🎵'}
           >
             {music.playing ? '🎵' : '🎵'}
           </button>
@@ -1430,7 +1430,7 @@ export default function VibeView() {
               fontSize: 14,
               padding: '2px 4px',
             }}
-            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            title={darkMode ? 'Modo claro' : 'Modo escuro'}
           >
             {darkMode ? '🌙' : '☀️'}
           </button>
@@ -2183,7 +2183,7 @@ export default function VibeView() {
                       fontFamily: 'inherit',
                     }}
                   >
-                    {showArchive ? 'Hide History' : `${archiveTotal} archived`}
+                    {showArchive ? 'Ocultar histórico' : `${archiveTotal} archived`}
                   </button>
                 )}
               </span>

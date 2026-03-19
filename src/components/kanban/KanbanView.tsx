@@ -41,7 +41,7 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
             <button
               onClick={() => setShowPlanning((v) => !v)}
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded border border-border-default bg-surface-2 text-text-secondary hover:text-text-primary hover:border-border-strong transition-colors"
-              aria-label={showPlanning ? 'Hide planning panel' : 'Show planning panel'}
+              aria-label={showPlanning ? 'Ocultar painel de planejamento' : 'Mostrar painel de planejamento'}
             >
               {showPlanning ? (
                 <>

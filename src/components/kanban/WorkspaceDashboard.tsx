@@ -145,10 +145,10 @@ function WorkspaceCard({ workspace, onDelete }: { workspace: WorkspaceStats; onD
         onDelete(workspace.id);
       } else {
         const data = await res.json();
-        alert(data.error || 'Failed to delete workspace');
+        alert(data.error || 'Falha ao excluir workspace');
       }
     } catch {
-      alert('Failed to delete workspace');
+      alert('Falha ao excluir workspace');
     } finally {
       setDeleting(false);
       setShowDeleteConfirm(false);
@@ -178,7 +178,7 @@ function WorkspaceCard({ workspace, onDelete }: { workspace: WorkspaceStats; onD
                   setShowDeleteConfirm(true);
                 }}
                 className="p-1.5 rounded hover:bg-mc-accent-red/20 text-mc-text-secondary hover:text-mc-accent-red transition-colors opacity-0 group-hover:opacity-100"
-                title="Delete workspace"
+                title="Excluir workspace"
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -236,7 +236,7 @@ function WorkspaceCard({ workspace, onDelete }: { workspace: WorkspaceStats; onD
               disabled={deleting || workspace.taskCounts.total > 0 || workspace.agentCount > 0}
               className="px-4 py-2 bg-mc-accent-red text-white rounded-lg font-medium hover:bg-mc-accent-red/90 disabled:opacity-50"
             >
-              {deleting ? 'Deleting...' : 'Delete Workspace'}
+              {deleting ? 'Excluindo...' : 'Excluir workspace'}
             </button>
           </div>
         </div>
@@ -340,7 +340,7 @@ function CreateWorkspaceModal({ onClose, onCreated }: { onClose: () => void; onC
               disabled={!name.trim() || isSubmitting}
               className="px-6 py-2 bg-mc-accent text-mc-bg rounded-lg font-medium hover:bg-mc-accent/90 disabled:opacity-50"
             >
-              {isSubmitting ? 'Creating...' : 'Create Workspace'}
+              {isSubmitting ? 'Criando...' : 'Criar workspace'}
             </button>
           </div>
         </form>

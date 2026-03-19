@@ -139,7 +139,7 @@ export function OfficeHeader({
             fontSize: 14,
             padding: '2px 4px',
           }}
-          title="Call Meeting"
+          title="Chamar reunião"
         >
           📞
         </button>
@@ -157,7 +157,7 @@ export function OfficeHeader({
             textDecoration: 'none',
             display: 'inline-block',
           }}
-          title="Leaderboard"
+          title="Ranking"
         >
           🏆
         </a>
@@ -175,7 +175,7 @@ export function OfficeHeader({
             textDecoration: 'none',
             display: 'inline-block',
           }}
-          title="Office Stats"
+          title="Estatísticas do escritório"
         >
           📊
         </a>
@@ -191,7 +191,7 @@ export function OfficeHeader({
             fontSize: 14,
             padding: '2px 4px',
           }}
-          title="Share Screenshot"
+          title="Compartilhar captura"
         >
           📸
         </button>
@@ -228,7 +228,7 @@ export function OfficeHeader({
             fontSize: 14,
             padding: '2px 4px',
           }}
-          title="Export Config (JSON)"
+          title="Exportar config (JSON)"
         >
           💾
         </button>
@@ -247,7 +247,7 @@ export function OfficeHeader({
             fontSize: 14,
             padding: '2px 4px',
           }}
-          title="Share Workflow"
+          title="Compartilhar workflow"
         >
           📤
         </button>
@@ -268,7 +268,7 @@ export function OfficeHeader({
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          title="Share on Twitter/X"
+          title="Compartilhar no Twitter/X"
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'rgba(29,161,242,0.2)';
             e.currentTarget.style.borderColor = 'rgba(29,161,242,0.4)';

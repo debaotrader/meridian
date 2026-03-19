@@ -92,10 +92,10 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
     // Stats row
     const statsY = 150;
     const statsData = [
-      { label: 'Agents', value: String(agents.length), color: '#8b5cf6' },
-      { label: 'Working', value: String(workingAgents.length), color: '#10b981' },
-      { label: 'Quests', value: String(pendingActions.length), color: '#f59e0b' },
-      { label: 'Shipped', value: String(accomplishments.length), color: '#ec4899' },
+      { label: 'Agentes', value: String(agents.length), color: '#8b5cf6' },
+      { label: 'Trabalhando', value: String(workingAgents.length), color: '#10b981' },
+      { label: 'Missões', value: String(pendingActions.length), color: '#f59e0b' },
+      { label: 'Entregues', value: String(accomplishments.length), color: '#ec4899' },
     ];
     const statWidth = 160;
     const statsStartX = (W - statsData.length * statWidth) / 2;
@@ -139,7 +139,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
     // Work Room header
     ctx.font = 'bold 14px system-ui';
     ctx.fillStyle = '#10b981';
-    ctx.fillText('💼 WORK ROOM', 50, agentStartY);
+    ctx.fillText('💼 SALA DE TRABALHO', 50, agentStartY);
 
     // Draw working agents
     workingAgents.slice(0, 4).forEach((agent, i) => {
@@ -175,7 +175,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
       // Task
       ctx.font = '11px system-ui';
       ctx.fillStyle = '#94a3b8';
-      const task = agent.task ? truncate(agent.task, 30) : 'Working...';
+      const task = agent.task ? truncate(agent.task, 30) : 'Trabalhando...';
       ctx.fillText(task, x + 38, y + 42);
     });
 
@@ -225,7 +225,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
 
         ctx.font = 'bold 13px system-ui';
         ctx.fillStyle = '#fbbf24';
-        ctx.fillText(truncate(quest.title || 'Quest', 50), qx + 12, y + 18);
+        ctx.fillText(truncate(quest.title || 'Missão', 50), qx + 12, y + 18);
 
         ctx.font = '10px system-ui';
         ctx.fillStyle = '#94a3b8';
@@ -260,7 +260,7 @@ export function ShareCard({ agents, pendingActions, accomplishments, isDemoMode,
 
         ctx.font = '10px system-ui';
         ctx.fillStyle = '#94a3b8';
-        ctx.fillText(acc.who || 'Team', ax + 12, y + 32);
+        ctx.fillText(acc.who || 'Equipe', ax + 12, y + 32);
       });
     }
 

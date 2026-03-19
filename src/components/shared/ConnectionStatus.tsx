@@ -13,10 +13,10 @@ export function ConnectionStatus({ className }: ConnectionStatusProps) {
 
   const label =
     status === 'connected'
-      ? 'Connected'
+      ? 'Conectado'
       : status === 'reconnecting'
         ? 'Reconnecting…'
-        : 'Disconnected';
+        : 'Desconectado';
 
   return (
     <div

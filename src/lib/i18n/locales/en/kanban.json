@@ -1,0 +1,93 @@
+{
+  "columns": {
+    "planning": "📋 Planning",
+    "inbox": "Inbox",
+    "assigned": "Assigned",
+    "in_progress": "In Progress",
+    "testing": "Testing",
+    "review": "Review",
+    "verification": "Verification",
+    "done": "Done"
+  },
+  "task": {
+    "createNew": "Create New Task",
+    "newTask": "+ New Task",
+    "title": "Title",
+    "titlePlaceholder": "What needs to be done?",
+    "description": "Description",
+    "descriptionPlaceholder": "Add details...",
+    "assignTo": "Assign to",
+    "priority": "Priority",
+    "dueDate": "Due Date",
+    "confirmDelete": "Delete \"{{title}}\"?",
+    "needsAgent": "Needs agent — assign to start",
+    "assignedValidating": "Assigned and validating — auto-start will move this to In Progress.",
+    "assignedBlocked": "Assigned, but blocked: {{error}}",
+    "planningAI": "Planning with AI"
+  },
+  "tabs": {
+    "overview": "Overview",
+    "planning": "Planning",
+    "team": "Team",
+    "activity": "Activity",
+    "deliverables": "Deliverables",
+    "images": "Images",
+    "sessions": "Sessions"
+  },
+  "header": {
+    "missionQueue": "Mission Queue",
+    "liveFeed": "Live Feed",
+    "agentsOnline": "Agents Online",
+    "tasksActive": "Tasks Active",
+    "systemEvents": "System Events"
+  },
+  "agents": {
+    "agents": "Agents",
+    "working": "Working",
+    "blocked": "Blocked",
+    "activeTasks": "Active Tasks",
+    "createNew": "Create New Agent",
+    "editAgent": "Edit {{name}}",
+    "namePlaceholder": "Agent name",
+    "rolePlaceholder": "What does this agent do?",
+    "expandAgents": "Expand agents",
+    "minimizeAgents": "Minimize agents"
+  },
+  "planning": {
+    "cancelConfirm": "Are you sure you want to cancel planning? This will reset the planning state.",
+    "specifyPlaceholder": "Please specify...",
+    "retrying": "Retrying...",
+    "continue": "Continue →",
+    "waitingResponse": "Waiting for response...",
+    "waitingNextQuestion": "Waiting for next question..."
+  },
+  "team": {
+    "saveTeam": "Saving...",
+    "saved": "Save Team"
+  },
+  "workspace": {
+    "allWorkspaces": "All workspaces",
+    "createWorkspace": "Create Workspace",
+    "deleteWorkspace": "Delete Workspace",
+    "deleteConfirm": "Delete this workspace?",
+    "liveSSE": "Live (SSE)",
+    "pollingFallback": "Polling fallback"
+  },
+  "sessions": {
+    "markComplete": "Mark as complete",
+    "deleteSession": "Delete session",
+    "deleteConfirm": "Delete this sub-agent session?",
+    "subAgent": "Sub-Agent"
+  },
+  "deliverables": {
+    "previewInBrowser": "Preview in browser",
+    "openInFinder": "Open in Finder"
+  },
+  "actions": {
+    "saveAndNew": "Save & New",
+    "save": "Save",
+    "saving": "Saving...",
+    "creating": "Creating...",
+    "deleting": "Deleting..."
+  }
+}

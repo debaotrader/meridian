@@ -1,0 +1,75 @@
+{
+  "status": {
+    "connecting": "Conectando...",
+    "connected": "Conectado",
+    "reconnecting": "Reconectando",
+    "disconnected": "Desconectado",
+    "error": "Erro de conexão",
+    "active": "Ativo",
+    "paused": "Pausado",
+    "ok": "OK",
+    "failed": "Falhou",
+    "running": "Em execução",
+    "pending": "Pendente",
+    "disabled": "Desativado"
+  },
+  "actions": {
+    "send": "Enviar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "confirm": "Confirmar",
+    "stop": "Parar",
+    "retry": "Tentar novamente",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "refresh": "Atualizar",
+    "create": "Criar",
+    "edit": "Editar",
+    "search": "Buscar",
+    "viewDetails": "Ver detalhes",
+    "saveChanges": "Salvar alterações",
+    "saving": "Salvando...",
+    "creating": "Criando...",
+    "deleting": "Excluindo...",
+    "loading": "Carregando...",
+    "reset": "Redefinir"
+  },
+  "time": {
+    "justNow": "agora",
+    "secondsAgo": "há {{count}}s",
+    "minutesAgo": "há {{count}}min",
+    "hoursAgo": "há {{count}}h",
+    "running": "executando {{seconds}}s",
+    "runningMinutes": "executando {{minutes}}min {{seconds}}s"
+  },
+  "empty": {
+    "noData": "Nenhum dado",
+    "noCostData": "Nenhum dado de custo ainda",
+    "noActivityData": "Nenhum dado de atividade ainda",
+    "noRelationData": "Nenhum dado de relação entre agentes",
+    "noEvents": "Nenhum evento ainda",
+    "noMatchingAgents": "Nenhum agente encontrado",
+    "noSubAgents": "Nenhum sub-agente",
+    "waitingUsageData": "Aguardando dados de uso...",
+    "noResults": "Nenhum resultado",
+    "noDataAvailable": "Nenhum dado disponível"
+  },
+  "agent": {
+    "statusLabels": {
+      "idle": "Ocioso",
+      "thinking": "Pensando",
+      "tool_calling": "Chamada de ferramenta",
+      "speaking": "Falando",
+      "spawning": "Iniciando",
+      "error": "Erro",
+      "offline": "Offline"
+    }
+  },
+  "zones": {
+    "desk": "Área de trabalho",
+    "meeting": "Sala de reunião",
+    "hotDesk": "Mesa compartilhada",
+    "lounge": "Lounge",
+    "corridor": "Corredor"
+  }
+}

@@ -110,7 +110,7 @@ export function SessionsList({ taskId }: SessionsListProps) {
   };
 
   const handleDelete = async (sessionId: string) => {
-    if (!confirm('Delete this sub-agent session?')) return;
+    if (!confirm('Excluir esta sessão de sub-agente?')) return;
     try {
       const res = await fetch(apiPath(`/api/openclaw/sessions/${sessionId}`), {
         method: 'DELETE',
@@ -162,7 +162,7 @@ export function SessionsList({ taskId }: SessionsListProps) {
             <div className="flex items-center gap-2 mb-1">
               {getStatusIcon(session.status)}
               <span className="font-medium text-mc-text">
-                {session.agent_name || 'Sub-Agent'}
+                {session.agent_name || 'Sub-agente'}
               </span>
               <span className="text-xs text-mc-text-secondary capitalize">
                 {session.status}
@@ -197,7 +197,7 @@ export function SessionsList({ taskId }: SessionsListProps) {
               <button
                 onClick={() => handleMarkComplete(session.openclaw_session_id)}
                 className="p-1.5 hover:bg-mc-bg-tertiary rounded text-mc-accent-green"
-                title="Mark as complete"
+                title="Marcar como concluído"
               >
                 <Check className="w-4 h-4" />
               </button>
@@ -205,7 +205,7 @@ export function SessionsList({ taskId }: SessionsListProps) {
             <button
               onClick={() => handleDelete(session.openclaw_session_id)}
               className="p-1.5 hover:bg-mc-bg-tertiary rounded text-mc-accent-red"
-              title="Delete session"
+              title="Excluir sessão"
             >
               <Trash2 className="w-4 h-4" />
             </button>

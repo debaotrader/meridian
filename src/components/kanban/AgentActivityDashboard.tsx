@@ -226,10 +226,10 @@ export function AgentActivityDashboard({ workspace }: AgentActivityDashboardProp
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
         <section className={`grid ${isPortrait ? 'grid-cols-2' : 'grid-cols-4'} gap-3`}>
-          <MetricCard label="Agents" value={String(agents.length)} />
-          <MetricCard label="Working" value={String(agents.filter((a) => a.status === 'working').length)} />
-          <MetricCard label="Blocked" value={String(blockedAgentIds.size)} />
-          <MetricCard label="Active Tasks" value={String(activeTasks.length)} />
+          <MetricCard label="Agentes" value={String(agents.length)} />
+          <MetricCard label="Trabalhando" value={String(agents.filter((a) => a.status === 'working').length)} />
+          <MetricCard label="Bloqueados" value={String(blockedAgentIds.size)} />
+          <MetricCard label="Tarefas ativas" value={String(activeTasks.length)} />
         </section>
 
         <section className="bg-mc-bg-secondary border border-mc-border rounded-xl p-4">

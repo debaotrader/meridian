@@ -33,14 +33,14 @@ export default function SettingsPage() {
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to save settings');
+      setError(err instanceof Error ? err.message : 'Falha ao salvar configurações');
     } finally {
       setIsSaving(false);
     }
   };
 
   const handleReset = () => {
-    if (confirm('Reset all settings to defaults? This cannot be undone.')) {
+    if (confirm('Restaurar todas as configurações para o padrão? Essa ação não pode ser desfeita.')) {
       resetConfig();
       setConfig(getConfig());
       setSaveSuccess(true);
@@ -56,7 +56,7 @@ export default function SettingsPage() {
   if (!config) {
     return (
       <div className="min-h-screen bg-mc-bg flex items-center justify-center">
-        <div className="text-mc-text-secondary">Loading settings...</div>
+        <div className="text-mc-text-secondary">Carregando configurações...</div>
       </div>
     );
   }
@@ -70,12 +70,12 @@ export default function SettingsPage() {
             <button
               onClick={() => router.push('/')}
               className="p-2 hover:bg-mc-bg-tertiary rounded text-mc-text-secondary"
-              title="Back to Mission Control"
+              title="Voltar ao painel"
             >
               ← Back
             </button>
             <Settings className="w-6 h-6 text-mc-accent" />
-            <h1 className="text-2xl font-bold text-mc-text">Settings</h1>
+            <h1 className="text-2xl font-bold text-mc-text">Configurações</h1>
           </div>
 
           <div className="flex items-center gap-2">
@@ -92,7 +92,7 @@ export default function SettingsPage() {
               className="px-4 py-2 bg-mc-accent text-mc-bg rounded hover:bg-mc-accent/90 flex items-center gap-2 disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
-              {isSaving ? 'Saving...' : 'Save Changes'}
+              {isSaving ? 'Salvando...' : 'Salvar alterações'}
             </button>
           </div>
         </div>
@@ -118,10 +118,10 @@ export default function SettingsPage() {
         <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
           <div className="flex items-center gap-2 mb-4">
             <FolderOpen className="w-5 h-5 text-mc-accent" />
-            <h2 className="text-xl font-semibold text-mc-text">Workspace Paths</h2>
+            <h2 className="text-xl font-semibold text-mc-text">Caminhos do workspace</h2>
           </div>
           <p className="text-sm text-mc-text-secondary mb-4">
-            Configure where Mission Control stores projects and deliverables.
+            Configure onde o sistema armazena projetos e entregas.
           </p>
 
           <div className="space-y-4">
@@ -137,7 +137,7 @@ export default function SettingsPage() {
                 className="w-full px-4 py-2 bg-mc-bg border border-mc-border rounded text-mc-text focus:border-mc-accent focus:outline-none"
               />
               <p className="text-xs text-mc-text-secondary mt-1">
-                Base directory for all Mission Control files. Use ~ for home directory.
+                Diretório base para todos os arquivos. Use ~ para o diretório home.
               </p>
             </div>
 
@@ -153,7 +153,7 @@ export default function SettingsPage() {
                 className="w-full px-4 py-2 bg-mc-bg border border-mc-border rounded text-mc-text focus:border-mc-accent focus:outline-none"
               />
               <p className="text-xs text-mc-text-secondary mt-1">
-                Directory where project folders are created. Each project gets its own folder.
+                Diretório onde as pastas de projeto são criadas. Cada projeto tem sua própria pasta.
               </p>
             </div>
 
@@ -169,7 +169,7 @@ export default function SettingsPage() {
                 className="w-full px-4 py-2 bg-mc-bg border border-mc-border rounded text-mc-text focus:border-mc-accent focus:outline-none"
               />
               <p className="text-xs text-mc-text-secondary mt-1">
-                Default name for new projects. Can be changed per project.
+                Nome padrão para novos projetos. Pode ser alterado por projeto.
               </p>
             </div>
           </div>
@@ -179,10 +179,10 @@ export default function SettingsPage() {
         <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
           <div className="flex items-center gap-2 mb-4">
             <LinkIcon className="w-5 h-5 text-mc-accent" />
-            <h2 className="text-xl font-semibold text-mc-text">API Configuration</h2>
+            <h2 className="text-xl font-semibold text-mc-text">Configuração de API</h2>
           </div>
           <p className="text-sm text-mc-text-secondary mb-4">
-            Configure Mission Control API URL for agent orchestration.
+            Configure a URL da API para orquestração de agentes.
           </p>
 
           <div className="space-y-4">
@@ -198,7 +198,7 @@ export default function SettingsPage() {
                 className="w-full px-4 py-2 bg-mc-bg border border-mc-border rounded text-mc-text focus:border-mc-accent focus:outline-none"
               />
               <p className="text-xs text-mc-text-secondary mt-1">
-                URL where Mission Control is running. Auto-detected by default. Change for remote access.
+                URL onde o sistema está rodando. Detectado automaticamente por padrão. Altere para acesso remoto.
               </p>
             </div>
           </div>
@@ -208,10 +208,10 @@ export default function SettingsPage() {
         <section className="mb-8 p-6 bg-mc-bg-secondary border border-mc-border rounded-lg">
           <div className="flex items-center gap-2 mb-4">
             <Home className="w-5 h-5 text-mc-accent" />
-            <h2 className="text-xl font-semibold text-mc-text">Kanban UX</h2>
+            <h2 className="text-xl font-semibold text-mc-text">UX do Kanban</h2>
           </div>
           <p className="text-sm text-mc-text-secondary mb-4">
-            Tune board density and lane sizing behavior.
+            Ajuste a densidade do quadro e o comportamento das colunas.
           </p>
 
           <label className="flex items-start gap-3 p-3 bg-mc-bg border border-mc-border rounded cursor-pointer">
@@ -222,21 +222,21 @@ export default function SettingsPage() {
               className="mt-1 h-4 w-4 accent-[var(--mc-accent)]"
             />
             <div>
-              <div className="text-sm font-medium text-mc-text">Compact empty columns</div>
+              <div className="text-sm font-medium text-mc-text">Colunas vazias compactas</div>
               <div className="text-xs text-mc-text-secondary mt-1">
-                When enabled, empty Kanban columns shrink to header width while columns with tasks keep a wider, dynamic width.
+                Quando ativado, colunas Kanban vazias encolhem para o tamanho do cabeçalho, enquanto colunas com tarefas mantêm largura dinâmica.
               </div>
             </div>
           </label>
         </section>
 
-        {/* Environment Variables Note */}
+        {/* Variáveis de ambiente Note */}
         <section className="p-6 bg-blue-500/10 border border-blue-500/30 rounded-lg">
           <h3 className="text-lg font-semibold text-blue-400 mb-2">
-            📝 Environment Variables
+            📝 Variáveis de ambiente
           </h3>
           <p className="text-sm text-blue-300 mb-3">
-            Some settings are also configurable via environment variables in <code className="px-2 py-1 bg-mc-bg rounded">.env.local</code>:
+            Algumas configurações também podem ser definidas via variáveis de ambiente em <code className="px-2 py-1 bg-mc-bg rounded">.env.local</code>:
           </p>
           <ul className="text-sm text-blue-300 space-y-1 ml-4 list-disc">
             <li><code>MISSION_CONTROL_URL</code> - API URL override</li>
@@ -246,7 +246,7 @@ export default function SettingsPage() {
             <li><code>OPENCLAW_GATEWAY_TOKEN</code> - Gateway auth token</li>
           </ul>
           <p className="text-xs text-blue-400 mt-3">
-            Environment variables take precedence over UI settings for server-side operations.
+            Variáveis de ambiente têm precedência sobre configurações da interface para operações server-side.
           </p>
         </section>
       </div>

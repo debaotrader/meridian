@@ -362,7 +362,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
 
   // Cancel planning
   const cancelPlanning = async () => {
-    if (!confirm('Are you sure you want to cancel planning? This will reset the planning state.')) {
+    if (!confirm('Tem certeza que deseja cancelar o planejamento? Isso redefinirá o estado.')) {
       return;
     }
 
@@ -616,7 +616,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                           type="text"
                           value={otherText}
                           onChange={(e) => setOtherText(e.target.value)}
-                          placeholder="Please specify..."
+                          placeholder="Especifique..."
                           className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
                           disabled={submitting}
                         />
@@ -655,7 +655,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                             : 'text-mc-accent-red hover:text-mc-accent-red/80'
                         }`}
                       >
-                        {submitting ? 'Retrying...' : 'Retry'}
+                        {submitting ? 'Tentando novamente...' : 'Tentar novamente'}
                       </button>
                     )}
                   </div>
@@ -676,7 +676,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
                     Sending...
                   </>
                 ) : (
-                  'Continue →'
+                  'Continuar →'
                 )}
               </button>
 
@@ -694,7 +694,7 @@ export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
             <div className="text-center">
               <Loader2 className="w-8 h-8 animate-spin text-mc-accent mx-auto mb-2" />
               <p className="text-mc-text-secondary">
-                {isWaitingForResponse ? 'Waiting for response...' : 'Waiting for next question...'}
+                {isWaitingForResponse ? 'Aguardando resposta...' : 'Aguardando próxima pergunta...'}
               </p>
             </div>
           </div>

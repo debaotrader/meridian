@@ -116,7 +116,7 @@ export function CommandPalette({
     {
       id: 'nav-home',
       icon: '🏠',
-      label: 'Go to Office',
+      label: 'Ir para Escritório',
       category: 'navigate',
       keywords: ['home', 'dashboard', 'main'],
       onSelect: () => { window.location.href = '/'; },

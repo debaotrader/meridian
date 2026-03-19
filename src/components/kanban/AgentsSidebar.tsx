@@ -125,7 +125,7 @@ export function AgentsSidebar({ workspaceId, mobileMode = false, isPortrait = tr
             <button
               onClick={toggleMinimize}
               className="p-1 rounded hover:bg-mc-bg-tertiary text-mc-text-secondary hover:text-mc-text transition-colors"
-              aria-label={effectiveMinimized ? 'Expand agents' : 'Minimize agents'}
+              aria-label={effectiveMinimized ? 'Expandir agentes' : 'Minimizar agentes'}
             >
               {effectiveMinimized ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
             </button>

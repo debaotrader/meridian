@@ -38,7 +38,7 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
       const data = await res.json();
       setAgents(data.agents || []);
     } catch (err) {
-      setError('Failed to connect to the server');
+      setError('Falha ao conectar ao servidor');
     } finally {
       setLoading(false);
     }
@@ -93,7 +93,7 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
 
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error || 'Failed to import agents');
+        setError(data.error || 'Falha ao importar agentes');
         return;
       }
 
@@ -113,7 +113,7 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
       await discover();
       setSelectedIds(new Set());
     } catch (err) {
-      setError('Failed to import agents');
+      setError('Falha ao importar agentes');
     } finally {
       setImporting(false);
     }
@@ -275,14 +275,14 @@ export function DiscoverAgentsModal({ onClose, workspaceId }: DiscoverAgentsModa
         {/* Footer */}
         <div className="flex items-center justify-between p-4 border-t border-mc-border">
           <span className="text-sm text-mc-text-secondary">
-            {selectedIds.size > 0 ? `${selectedIds.size} selected` : 'Select agents to import'}
+            {selectedIds.size > 0 ? `${selectedIds.size} selected` : 'Selecionar agentes para importar'}
           </span>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={onClose}
               className="min-h-11 px-4 py-2 text-sm text-mc-text-secondary hover:text-mc-text"
             >
-              {importResult ? 'Done' : 'Cancel'}
+              {importResult ? 'Concluído' : 'Cancelar'}
             </button>
             <button
               onClick={handleImport}

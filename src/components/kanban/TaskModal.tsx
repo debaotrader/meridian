@@ -103,7 +103,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
             taskId: savedTask.id,
             taskTitle: savedTask.title,
             agentId: savedTask.assigned_agent_id,
-            agentName: savedTask.assigned_agent?.name || 'Unknown Agent',
+            agentName: savedTask.assigned_agent?.name || 'Agente desconhecido',
             workspaceId: savedTask.workspace_id
           }).catch((err) => console.error('Auto-dispatch failed:', err));
         }
@@ -137,7 +137,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
           taskId: savedTask.id,
           taskTitle: savedTask.title,
           agentId: savedTask.assigned_agent_id,
-          agentName: savedTask.assigned_agent?.name || 'Unknown Agent',
+          agentName: savedTask.assigned_agent?.name || 'Agente desconhecido',
           workspaceId: savedTask.workspace_id
         }).catch((err) => console.error('Auto-dispatch failed:', err));
       }
@@ -183,13 +183,13 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
   const priorities: TaskPriority[] = ['low', 'normal', 'high', 'urgent'];
 
   const tabs = [
-    { id: 'overview' as TabType, label: 'Overview', icon: null },
-    { id: 'planning' as TabType, label: 'Planning', icon: <ClipboardList className="w-4 h-4" /> },
-    { id: 'team' as TabType, label: 'Team', icon: <Users className="w-4 h-4" /> },
-    { id: 'activity' as TabType, label: 'Activity', icon: <Activity className="w-4 h-4" /> },
-    { id: 'deliverables' as TabType, label: 'Deliverables', icon: <Package className="w-4 h-4" /> },
-    { id: 'images' as TabType, label: 'Images', icon: <ImageIcon className="w-4 h-4" /> },
-    { id: 'sessions' as TabType, label: 'Sessions', icon: <Bot className="w-4 h-4" /> },
+    { id: 'overview' as TabType, label: 'Visão geral', icon: null },
+    { id: 'planning' as TabType, label: 'Planejamento', icon: <ClipboardList className="w-4 h-4" /> },
+    { id: 'team' as TabType, label: 'Equipe', icon: <Users className="w-4 h-4" /> },
+    { id: 'activity' as TabType, label: 'Atividade', icon: <Activity className="w-4 h-4" /> },
+    { id: 'deliverables' as TabType, label: 'Entregas', icon: <Package className="w-4 h-4" /> },
+    { id: 'images' as TabType, label: 'Imagens', icon: <ImageIcon className="w-4 h-4" /> },
+    { id: 'sessions' as TabType, label: 'Sessões', icon: <Bot className="w-4 h-4" /> },
   ];
 
   return (
@@ -198,12 +198,12 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-mc-border flex-shrink-0">
           <h2 className="text-lg font-semibold">
-            {task ? task.title : 'Create New Task'}
+            {task ? task.title : 'Criar nova tarefa'}
           </h2>
           <button
             onClick={onClose}
             className="p-1 hover:bg-mc-bg-tertiary rounded"
-            aria-label="Close modal"
+            aria-label="Fechar modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -243,7 +243,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               required
               className="w-full min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
-              placeholder="What needs to be done?"
+              placeholder="O que precisa ser feito?"
             />
           </div>
 
@@ -255,7 +255,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={3}
               className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent resize-none"
-              placeholder="Add details..."
+              placeholder="Adicione detalhes..."
             />
           </div>
 
@@ -413,7 +413,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
                   className="min-h-11 flex items-center gap-2 px-4 py-2 border border-mc-accent text-mc-accent rounded text-sm font-medium hover:bg-mc-accent/10 disabled:opacity-50"
                 >
                   <Plus className="w-4 h-4" />
-                  {isSubmitting ? 'Saving...' : 'Save & New'}
+                  {isSubmitting ? 'Salvando...' : 'Salvar e criar'}
                 </button>
               )}
               <button
@@ -422,7 +422,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
                 className="min-h-11 flex items-center gap-2 px-4 py-2 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90 disabled:opacity-50"
               >
                 <Save className="w-4 h-4" />
-                {isSubmitting ? 'Saving...' : 'Save'}
+                {isSubmitting ? 'Salvando...' : 'Salvar'}
               </button>
             </div>
           </div>

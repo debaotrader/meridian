@@ -336,7 +336,7 @@ export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
         className="w-full min-h-11 flex items-center justify-center gap-2 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90 disabled:opacity-50"
       >
         <Save className="w-4 h-4" />
-        {saving ? 'Saving...' : 'Save Team'}
+        {saving ? 'Salvando...' : 'Salvar equipe'}
       </button>
     </div>
   );
