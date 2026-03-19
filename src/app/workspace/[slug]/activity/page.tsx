@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { AgentActivityDashboard } from '@/components/AgentActivityDashboard';
+import { AgentActivityDashboard } from '@/components/kanban/AgentActivityDashboard';
 import type { Workspace } from '@/lib/types';
 
 export default function WorkspaceActivityPage() {
