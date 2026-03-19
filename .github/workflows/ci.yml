@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: TypeScript
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          OPENCLAW_GATEWAY_URL: ws://localhost:18789
+          OPENCLAW_GATEWAY_TOKEN: ci-token
+          MC_API_TOKEN: ci-token
+          WEBHOOK_SECRET: ci-secret
+          OPENCLAW_ENABLE_OFFICE_3D: '1'
+          OPENCLAW_ENABLE_VIBE: '1'
+
+      - name: R3F SSR check
+        run: npm run check:r3f-ssr
