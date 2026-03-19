@@ -19,7 +19,7 @@ WORKDIR /app
 ENV NODE_ENV=production \
   NEXT_TELEMETRY_DISABLED=1 \
   PORT=4000 \
-  DATABASE_PATH=/app/data/mission-control.db \
+  DATABASE_PATH=/app/data/meridian.db \
   WORKSPACE_BASE_PATH=/app/workspace \
   PROJECTS_PATH=/app/workspace/projects
 
