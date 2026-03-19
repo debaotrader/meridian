@@ -9,6 +9,8 @@ import { LiveFeed } from './LiveFeed';
 interface KanbanViewProps {
   workspaceId?: string;
   taskId?: string;
+  highlightTaskId?: string;
+  highlightAgentId?: string;
 }
 
 /**
@@ -18,7 +20,7 @@ interface KanbanViewProps {
  * Mobile: single column, LiveFeed collapsible at bottom
  * LiveFeed: collapsible panel at the bottom, max-h-[300px]
  */
-export function KanbanView({ workspaceId, taskId }: KanbanViewProps) {
+export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgentId }: KanbanViewProps) {
   const [showPlanning, setShowPlanning] = useState(false);
   const [liveFeedOpen, setLiveFeedOpen] = useState(true);
 
@@ -56,7 +58,7 @@ export function KanbanView({ workspaceId, taskId }: KanbanViewProps) {
           </div>
 
           <div className="flex-1 overflow-hidden">
-            <MissionQueue workspaceId={workspaceId} />
+            <MissionQueue workspaceId={workspaceId} highlightTaskId={highlightTaskId} highlightAgentId={highlightAgentId} />
           </div>
         </div>
 

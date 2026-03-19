@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Plus, ChevronRight, GripVertical, ArrowRightLeft } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import { triggerAutoDispatch, shouldTriggerAutoDispatch } from '@/lib/auto-dispatch';
@@ -8,11 +8,14 @@ import { getConfig } from '@/lib/config';
 import type { Task, TaskStatus } from '@/lib/types';
 import { TaskModal } from './TaskModal';
 import { formatDistanceToNow } from 'date-fns';
+import { emitTaskEvent } from '@/lib/events/task-events';
 
 interface MissionQueueProps {
   workspaceId?: string;
   mobileMode?: boolean;
   isPortrait?: boolean;
+  highlightTaskId?: string;
+  highlightAgentId?: string;
 }
 
 const COLUMNS: { id: TaskStatus; label: string; color: string }[] = [
@@ -26,7 +29,7 @@ const COLUMNS: { id: TaskStatus; label: string; color: string }[] = [
   { id: 'done', label: 'Done', color: 'border-t-mc-accent-green' },
 ];
 
-export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = true }: MissionQueueProps) {
+export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = true, highlightTaskId, highlightAgentId }: MissionQueueProps) {
   const { tasks, updateTaskStatus, addEvent } = useMissionControl();
   const [compactEmptyColumns, setCompactEmptyColumns] = useState(true);
 
@@ -47,6 +50,19 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
   const [draggedTask, setDraggedTask] = useState<Task | null>(null);
   const [mobileStatus, setMobileStatus] = useState<TaskStatus>('planning');
   const [statusMoveTask, setStatusMoveTask] = useState<Task | null>(null);
+  const highlightRef = useRef<HTMLDivElement | null>(null);
+
+  // Scroll to and highlight a task or filter by agent when navigated from office/vibe
+  useEffect(() => {
+    if (!highlightTaskId && !highlightAgentId) return;
+    // Give the DOM a moment to render
+    const timer = setTimeout(() => {
+      if (highlightRef.current) {
+        highlightRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [highlightTaskId, highlightAgentId]);
 
   const getTasksByStatus = (status: TaskStatus) => tasks.filter((task) => task.status === status);
 
@@ -69,6 +85,16 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
           task_id: task.id,
           message: `Task "${task.title}" moved to ${targetStatus}`,
           created_at: new Date().toISOString(),
+        });
+
+        // Emit cross-module event for office/vibe bridge
+        emitTaskEvent({
+          type: targetStatus === 'done' ? 'task.completed' : 'task.status_changed',
+          taskId: task.id,
+          taskName: task.title,
+          agentId: task.assigned_agent_id ?? undefined,
+          status: targetStatus,
+          timestamp: Date.now(),
         });
 
         if (shouldTriggerAutoDispatch(task.status, targetStatus, task.assigned_agent_id)) {
@@ -152,18 +178,23 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
                 </div>
 
                 <div className={`flex-1 overflow-y-auto p-2 ${hasTasks ? 'space-y-2' : ''}`}>
-                  {columnTasks.map((task) => (
-                    <TaskCard
-                      key={task.id}
-                      task={task}
-                      onDragStart={handleDragStart}
-                      onClick={() => setEditingTask(task)}
-                      onMoveStatus={() => setStatusMoveTask(task)}
-                      isDragging={draggedTask?.id === task.id}
-                      mobileMode={false}
-                      portraitMode={false}
-                    />
-                  ))}
+                  {columnTasks.map((task) => {
+                    const isHighlighted = task.id === highlightTaskId || task.assigned_agent_id === highlightAgentId;
+                    return (
+                      <TaskCard
+                        key={task.id}
+                        task={task}
+                        onDragStart={handleDragStart}
+                        onClick={() => setEditingTask(task)}
+                        onMoveStatus={() => setStatusMoveTask(task)}
+                        isDragging={draggedTask?.id === task.id}
+                        mobileMode={false}
+                        portraitMode={false}
+                        isHighlighted={isHighlighted}
+                        highlightRef={isHighlighted && task.id === highlightTaskId ? highlightRef : undefined}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             );
@@ -255,9 +286,11 @@ interface TaskCardProps {
   isDragging: boolean;
   mobileMode: boolean;
   portraitMode?: boolean;
+  isHighlighted?: boolean;
+  highlightRef?: React.MutableRefObject<HTMLDivElement | null>;
 }
 
-function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobileMode, portraitMode = true }: TaskCardProps) {
+function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobileMode, portraitMode = true, isHighlighted = false, highlightRef }: TaskCardProps) {
   const priorityStyles = {
     low: 'text-mc-text-secondary',
     normal: 'text-mc-accent',
@@ -278,12 +311,13 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
 
   return (
     <div
+      ref={highlightRef as React.RefObject<HTMLDivElement> | undefined}
       draggable={!mobileMode}
       onDragStart={(e) => onDragStart(e, task)}
       onClick={onClick}
       className={`group bg-mc-bg-secondary border rounded-lg cursor-pointer transition-all hover:shadow-lg hover:shadow-black/20 ${
         isDragging ? 'opacity-50 scale-95' : ''
-      } ${isPlanning ? 'border-purple-500/40 hover:border-purple-500' : 'border-mc-border/50 hover:border-mc-accent/40'}`}
+      } ${isHighlighted ? 'ring-2 ring-mc-accent animate-pulse-once' : ''} ${isPlanning ? 'border-purple-500/40 hover:border-purple-500' : 'border-mc-border/50 hover:border-mc-accent/40'}`}
     >
       {!mobileMode && (
         <div className="flex items-center justify-center py-1.5 border-b border-mc-border/30 opacity-0 group-hover:opacity-100 transition-opacity">

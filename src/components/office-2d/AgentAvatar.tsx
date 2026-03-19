@@ -5,6 +5,7 @@ import type { VisualAgent, AgentVisualStatus } from "@/lib/office/types";
 import { generateSvgAvatar, type SvgAvatarData } from "@/lib/office/avatar-generator";
 import { STATUS_COLORS, AVATAR } from "@/lib/office/constants";
 import { useOfficeStore } from "@/lib/store/visual-office-store";
+import { useCrossModuleNav } from "@/lib/navigation/cross-module-nav";
 
 const WALK_BOB_AMPLITUDE = 2;
 const WALK_BOB_FREQ = 8;
@@ -19,6 +20,7 @@ export const AgentAvatar = memo(function AgentAvatar({ agent }: AgentAvatarProps
   const selectAgent = useOfficeStore((s) => s.selectAgent);
   const tickMovement = useOfficeStore((s) => s.tickMovement);
   const theme = useOfficeStore((s) => s.theme);
+  const { goToAgentTask } = useCrossModuleNav();
   const [hovered, setHovered] = useState(false);
   const gRef = useRef<SVGGElement>(null);
   const rafRef = useRef<number>(0);
@@ -102,6 +104,7 @@ export const AgentAvatar = memo(function AgentAvatar({ agent }: AgentAvatarProps
       style={{ cursor: isPlaceholder ? "default" : "pointer" }}
       opacity={groupOpacity}
       onClick={() => !isPlaceholder && selectAgent(agent.id)}
+      onDoubleClick={() => !isPlaceholder && goToAgentTask(agent.id)}
       onMouseEnter={() => !isPlaceholder && setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -220,16 +223,18 @@ export const AgentAvatar = memo(function AgentAvatar({ agent }: AgentAvatarProps
       {/* Hover tooltip */}
       {hovered && (
         <foreignObject
-          x={-80}
-          y={-r - 38}
-          width={160}
-          height={32}
+          x={-90}
+          y={-r - 56}
+          width={180}
+          height={52}
           style={{ pointerEvents: "none" }}
         >
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "3px",
             }}
           >
             <span
@@ -247,6 +252,20 @@ export const AgentAvatar = memo(function AgentAvatar({ agent }: AgentAvatarProps
               }}
             >
               {agent.name} · {t(`agent.statusLabels.${agent.status}`)}
+            </span>
+            <span
+              style={{
+                fontSize: "9px",
+                color: isDark ? "#94a3b8" : "#6b7280",
+                backgroundColor: isDark ? "rgba(30,41,59,0.7)" : "rgba(255,255,255,0.8)",
+                backdropFilter: "blur(6px)",
+                borderRadius: "6px",
+                padding: "2px 8px",
+                whiteSpace: "nowrap",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)"}`,
+              }}
+            >
+              double-click → kanban
             </span>
           </div>
         </foreignObject>

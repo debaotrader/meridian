@@ -34,6 +34,7 @@ import { AgentCard } from './AgentCard';
 import { ChatBubble } from './ChatBubble';
 import { AgentSearchFilter } from './AgentSearchFilter';
 import { DiscoveryAnimation } from './DiscoveryAnimation';
+import { useCrossModuleNav } from '@/lib/navigation/cross-module-nav';
 
 
 function Clock({ color }: { color: string }) {
@@ -61,6 +62,7 @@ let moduleInitialLoaded = false;
 export default function VibeView() {
 
   const { isDemoMode, getApiPath } = useDemoMode();
+  const { goToOfficeAgent } = useCrossModuleNav();
   useUTMTracking();
   useReferralTracking();
   const sfx = useRetroSFX();
@@ -1820,6 +1822,15 @@ export default function VibeView() {
                         forceThought={activeThought && activeThought.agentId === a.id ? activeThought.text : null}
                         hasCelebration={celebrations.some(c => c.agentId === a.id)}
                         partyMode={partyMode}
+                      />
+                      {/* Double-click overlay to navigate to office */}
+                      <div
+                        style={{ position: 'absolute', inset: 0, zIndex: 10, cursor: 'pointer', opacity: 0 }}
+                        onDoubleClick={() => {
+                          sfx.play('click');
+                          track('npc_clicked', { agent: a.name || a.id });
+                          goToOfficeAgent(a.id);
+                        }}
                       />
                       <div style={{ position: 'absolute', inset: -10, pointerEvents: 'none', zIndex: 0 }}>
                         <NPCParticles
