@@ -4,7 +4,7 @@ export { AgentActivityDashboard } from './kanban/AgentActivityDashboard';
 export { AgentModal } from './kanban/AgentModal';
 export { AgentsSidebar } from './kanban/AgentsSidebar';
 export { DeliverablesList } from './kanban/DeliverablesList';
-export { DemoBanner } from './kanban/DemoBanner';
+export { default as DemoBanner } from './kanban/DemoBanner';
 export { DiscoverAgentsModal } from './kanban/DiscoverAgentsModal';
 export { Header } from './kanban/Header';
 export { LiveFeed } from './kanban/LiveFeed';
