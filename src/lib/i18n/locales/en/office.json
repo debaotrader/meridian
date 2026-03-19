@@ -1,0 +1,9 @@
+{
+  "view": {
+    "2d": "2D View",
+    "3d": "3D View"
+  },
+  "loading": "Loading 3D office...",
+  "webglUnavailable": "WebGL not available",
+  "subagents": "sub-agents"
+}

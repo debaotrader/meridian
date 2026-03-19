@@ -1,6 +1,7 @@
 'use client';
 
 import { WsProvider } from '@/lib/gateway/ws-provider';
+import { I18nProvider } from './I18nProvider';
 
 const GATEWAY_URL =
   process.env.NEXT_PUBLIC_OPENCLAW_GATEWAY_URL ?? 'ws://localhost:4001';
@@ -12,9 +13,11 @@ interface ClientProvidersProps {
 
 export function ClientProviders({ children }: ClientProvidersProps) {
   return (
-    <WsProvider url={GATEWAY_URL} apiKey={API_KEY}>
-      {children}
-    </WsProvider>
+    <I18nProvider>
+      <WsProvider url={GATEWAY_URL} apiKey={API_KEY}>
+        {children}
+      </WsProvider>
+    </I18nProvider>
   );
 }
 
