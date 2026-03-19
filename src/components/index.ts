@@ -16,3 +16,4 @@ export { TaskImages } from './kanban/TaskImages';
 export { TaskModal } from './kanban/TaskModal';
 export { TeamTab } from './kanban/TeamTab';
 export { WorkspaceDashboard } from './kanban/WorkspaceDashboard';
+export { KanbanView } from './kanban/KanbanView';
