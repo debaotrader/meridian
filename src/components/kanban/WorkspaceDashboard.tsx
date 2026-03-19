@@ -1,12 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Plus, ArrowRight, Folder, Users, CheckSquare, Trash2, AlertTriangle, Activity } from 'lucide-react';
 import Link from 'next/link';
 import type { WorkspaceStats } from '@/lib/types';
 import { apiPath } from '@/lib/api-path';
 
 export function WorkspaceDashboard() {
+  const { t } = useTranslation('kanban');
   const [workspaces, setWorkspaces] = useState<WorkspaceStats[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);

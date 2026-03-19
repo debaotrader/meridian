@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CheckCircle, Circle, Lock, AlertCircle, Loader2, X } from 'lucide-react';
 import { apiPath } from '@/lib/api-path';
 
@@ -50,6 +51,7 @@ interface PlanningTabProps {
 }
 
 export function PlanningTab({ taskId, onSpecLocked }: PlanningTabProps) {
+  const { t } = useTranslation('kanban');
   const [state, setState] = useState<PlanningState | null>(null);
   const [loading, setLoading] = useState(true);
   const [starting, setStarting] = useState(false);

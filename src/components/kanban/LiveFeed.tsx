@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChevronRight, ChevronLeft, Clock } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import type { Event } from '@/lib/types';

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Users, Save, AlertCircle, CheckCircle2, RefreshCw } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import type { WorkflowTemplate, WorkflowStage } from '@/lib/types';
@@ -21,6 +22,7 @@ interface RoleAssignment {
 const normalizeRole = (value: string) => value.trim().toLowerCase();
 
 export function TeamTab({ taskId, workspaceId }: TeamTabProps) {
+  const { t } = useTranslation('kanban');
   const { agents } = useMissionControl();
   const [roles, setRoles] = useState<RoleAssignment[]>([]);
   const [workflows, setWorkflows] = useState<WorkflowTemplate[]>([]);

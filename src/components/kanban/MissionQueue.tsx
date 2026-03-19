@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Plus, ChevronRight, GripVertical, ArrowRightLeft } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import { triggerAutoDispatch, shouldTriggerAutoDispatch } from '@/lib/auto-dispatch';
@@ -31,6 +32,7 @@ const COLUMNS: { id: TaskStatus; label: string; color: string }[] = [
 ];
 
 export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = true, highlightTaskId, highlightAgentId }: MissionQueueProps) {
+  const { t } = useTranslation('kanban');
   const { tasks, updateTaskStatus, addEvent } = useMissionControl();
   const [compactEmptyColumns, setCompactEmptyColumns] = useState(true);
 
@@ -226,7 +228,7 @@ export function MissionQueue({ workspaceId, mobileMode = false, isPortrait = tru
           <div className={`min-w-0 ${isPortrait ? 'space-y-3' : 'space-y-2'}`}>
             {mobileTasks.length === 0 ? (
               <div className="text-sm text-mc-text-secondary bg-mc-bg-secondary border border-mc-border rounded-lg p-4">
-                No tasks in this status.
+                {t('ui.noTasksInStatus')}
               </div>
             ) : (
               mobileTasks.map((task) => (
@@ -292,6 +294,7 @@ interface TaskCardProps {
 }
 
 function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobileMode, portraitMode = true, isHighlighted = false, highlightRef }: TaskCardProps) {
+  const { t } = useTranslation('kanban');
   const priorityStyles = {
     low: 'text-mc-text-secondary',
     normal: 'text-mc-accent',
@@ -332,28 +335,28 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
         {isPlanning && (
           <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-agent-shuri/10 rounded-md border border-agent-shuri/20`}>
             <div className="w-2 h-2 bg-agent-shuri rounded-full animate-pulse flex-shrink-0" />
-            <span className="text-xs text-agent-shuri font-medium">Continue planning</span>
+            <span className="text-xs text-agent-shuri font-medium">{t('ui.continuePlanning')}</span>
           </div>
         )}
 
         {isAssigned && dispatchError && (
           <div className={`flex items-start gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-error/10 rounded-md border border-status-error/30`}>
             <div className="w-2 h-2 bg-status-error rounded-full mt-1 flex-shrink-0" />
-            <span className="text-xs text-mc-accent-red">Assigned, but blocked: {dispatchError}</span>
+            <span className="text-xs text-mc-accent-red">{t('ui.assignedBlocked')} {dispatchError}</span>
           </div>
         )}
 
         {isAssigned && !dispatchError && (
           <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-warning/10 rounded-md border border-status-warning/30`}>
             <div className="w-2 h-2 bg-status-warning rounded-full flex-shrink-0" />
-            <span className="text-xs text-mc-accent-yellow">Assigned and validating — o auto-start moverá para Em andamento.</span>
+            <span className="text-xs text-mc-accent-yellow">{t('task.assignedValidating')}</span>
           </div>
         )}
 
         {task.status === 'inbox' && !task.assigned_agent_id && (
           <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-status-warning/10 rounded-md border border-status-warning/30`}>
             <div className="w-2 h-2 bg-status-warning rounded-full flex-shrink-0" />
-            <span className="text-xs text-status-warning">Needs agent — assign to start</span>
+            <span className="text-xs text-status-warning">{t('task.needsAgent')}</span>
           </div>
         )}
 
@@ -367,7 +370,7 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
         {task.status === 'review' && !dispatchError && (
           <div className={`flex items-center gap-2 ${portraitMode ? 'mb-3 py-2 px-3' : 'mb-2 py-1.5 px-2.5'} bg-agent-cyan/10 rounded-md border border-agent-cyan/30`}>
             <div className="w-2 h-2 bg-agent-cyan rounded-full flex-shrink-0" />
-            <span className="text-xs text-agent-cyan">In queue — waiting for verification</span>
+            <span className="text-xs text-agent-cyan">{t('ui.waitingVerification')}</span>
           </div>
         )}
 
@@ -395,7 +398,7 @@ function TaskCard({ task, onDragStart, onClick, onMoveStatus, isDragging, mobile
             className={`w-full min-h-11 rounded-md border border-mc-border bg-mc-bg flex items-center justify-center gap-2 text-mc-text-secondary ${portraitMode ? 'mt-3 text-sm' : 'mt-2 text-xs'}`}
           >
             <ArrowRightLeft className="w-4 h-4" />
-            Move Status
+            {t('ui.moveStatus')}
           </button>
         )}
       </div>

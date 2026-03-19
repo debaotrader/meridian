@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { X, Save, Trash2, Activity, Package, Bot, ClipboardList, Plus, Users, ImageIcon } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import { triggerAutoDispatch, shouldTriggerAutoDispatch } from '@/lib/auto-dispatch';
@@ -23,6 +24,7 @@ interface TaskModalProps {
 }
 
 export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
+  const { t } = useTranslation('kanban');
   const { agents, addTask, updateTask, addEvent } = useMissionControl();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAgentModal, setShowAgentModal] = useState(false);
@@ -85,7 +87,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
       });
 
       if (!res.ok) {
-        const errData = await res.json().catch(() => ({ error: 'Unknown error' }));
+        const errData = await res.json().catch(() => ({ error: t('ui.unknownError') }));
         setSaveError(errData.error || `Save failed (${res.status})`);
         return;
       }
@@ -103,7 +105,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
             taskId: savedTask.id,
             taskTitle: savedTask.title,
             agentId: savedTask.assigned_agent_id,
-            agentName: savedTask.assigned_agent?.name || 'Agente desconhecido',
+            agentName: savedTask.assigned_agent?.name || t('ui.agentUnknown'),
             workspaceId: savedTask.workspace_id
           }).catch((err) => console.error('Auto-dispatch failed:', err));
         }
@@ -137,7 +139,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
           taskId: savedTask.id,
           taskTitle: savedTask.title,
           agentId: savedTask.assigned_agent_id,
-          agentName: savedTask.assigned_agent?.name || 'Agente desconhecido',
+          agentName: savedTask.assigned_agent?.name || t('ui.agentUnknown'),
           workspaceId: savedTask.workspace_id
         }).catch((err) => console.error('Auto-dispatch failed:', err));
       }
@@ -198,7 +200,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-mc-border flex-shrink-0">
           <h2 className="text-lg font-semibold">
-            {task ? task.title : 'Criar nova tarefa'}
+            {task ? task.title : t('ui.createTask')}
           </h2>
           <button
             onClick={onClose}
@@ -243,7 +245,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               required
               className="w-full min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
-              placeholder="O que precisa ser feito?"
+              placeholder={t('task.titlePlaceholder')}
             />
           </div>
 
@@ -255,7 +257,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={3}
               className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent resize-none"
-              placeholder="Adicione detalhes..."
+              placeholder={t('task.descriptionPlaceholder')}
             />
           </div>
 
@@ -413,7 +415,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
                   className="min-h-11 flex items-center gap-2 px-4 py-2 border border-mc-accent text-mc-accent rounded text-sm font-medium hover:bg-mc-accent/10 disabled:opacity-50"
                 >
                   <Plus className="w-4 h-4" />
-                  {isSubmitting ? 'Salvando...' : 'Salvar e criar'}
+                  {isSubmitting ? t('actions.saving') : t('actions.saveAndNew')}
                 </button>
               )}
               <button
@@ -422,7 +424,7 @@ export function TaskModal({ task, onClose, workspaceId }: TaskModalProps) {
                 className="min-h-11 flex items-center gap-2 px-4 py-2 bg-mc-accent text-mc-bg rounded text-sm font-medium hover:bg-mc-accent/90 disabled:opacity-50"
               >
                 <Save className="w-4 h-4" />
-                {isSubmitting ? 'Salvando...' : 'Salvar'}
+                {isSubmitting ? t('actions.saving') : t('actions.save')}
               </button>
             </div>
           </div>

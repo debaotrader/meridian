@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { X, Save, Trash2 } from 'lucide-react';
 import { useMissionControl } from '@/lib/store';
 import type { Agent, AgentStatus } from '@/lib/types';
@@ -16,6 +17,7 @@ interface AgentModalProps {
 const EMOJI_OPTIONS = ['🤖', '🦞', '💻', '🔍', '✍️', '🎨', '📊', '🧠', '⚡', '🚀', '🎯', '🔧'];
 
 export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: AgentModalProps) {
+  const { t } = useTranslation('kanban');
   const { addAgent, updateAgent, agents } = useMissionControl();
   const [activeTab, setActiveTab] = useState<'info' | 'soul' | 'user' | 'agents'>('info');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -115,7 +117,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
   };
 
   const tabs = [
-    { id: 'info', label: 'Info' },
+    { id: 'info', label: t('ui.infoTab') },
     { id: 'soul', label: 'SOUL.md' },
     { id: 'user', label: 'USER.md' },
     { id: 'agents', label: 'AGENTS.md' },
@@ -127,7 +129,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-mc-border">
           <h2 className="text-lg font-semibold">
-            {agent ? `Editar ${agent.name}` : 'Criar novo agente'}
+            {agent ? `Editar ${agent.name}` : t('ui.createNewAgent')}
           </h2>
           <button
             onClick={onClose}
@@ -188,7 +190,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
                   className="w-full min-h-11 bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent"
-                  placeholder="Nome do agente"
+                  placeholder={t('ui.agentNamePlaceholder')}
                 />
               </div>
 
@@ -213,7 +215,7 @@ export function AgentModal({ agent, onClose, workspaceId, onAgentCreated }: Agen
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   rows={2}
                   className="w-full bg-mc-bg border border-mc-border rounded px-3 py-2 text-sm focus:outline-none focus:border-mc-accent resize-none"
-                  placeholder="O que esse agente faz?"
+                  placeholder={t('ui.agentDescPlaceholder')}
                 />
               </div>
 

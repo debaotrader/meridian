@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChevronDown, ChevronUp, LayoutPanelTop, X } from 'lucide-react';
 import { MissionQueue } from './MissionQueue';
 import { PlanningTab } from './PlanningTab';
@@ -21,6 +22,7 @@ interface KanbanViewProps {
  * LiveFeed: collapsible panel at the bottom, max-h-[300px]
  */
 export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgentId }: KanbanViewProps) {
+  const { t } = useTranslation('kanban');
   const [showPlanning, setShowPlanning] = useState(false);
   const [liveFeedOpen, setLiveFeedOpen] = useState(true);
 
@@ -46,12 +48,12 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
               {showPlanning ? (
                 <>
                   <X className="w-3.5 h-3.5" />
-                  Close Planning
+                  {t('ui.closePlanning')}
                 </>
               ) : (
                 <>
                   <LayoutPanelTop className="w-3.5 h-3.5" />
-                  Painel de planejamento
+                  {t('ui.planningPanel')}
                 </>
               )}
             </button>
@@ -67,7 +69,7 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
           <aside className="hidden lg:flex flex-col border-l border-border-default bg-surface-1 overflow-hidden animate-slide-in-right">
             <div className="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
               <span className="text-sm font-medium text-text-primary uppercase tracking-wider font-display">
-                Planning
+                {t('tabs.planning')}
               </span>
               <button
                 onClick={() => setShowPlanning(false)}
@@ -84,7 +86,7 @@ export function KanbanView({ workspaceId, taskId, highlightTaskId, highlightAgen
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center">
                   <div className="text-4xl mb-3">📋</div>
                   <p className="text-text-secondary text-sm">
-                    Open a task to start planning
+                    {t('ui.openTaskToStart')}
                   </p>
                 </div>
               )}
