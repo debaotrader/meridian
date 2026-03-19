@@ -93,17 +93,48 @@ export async function syncGatewayAgentsToCatalog(options?: { force?: boolean; re
   }
 }
 
+// Backoff state for pairing-required errors (not connected to OpenClaw Gateway)
+const PAIRING_BACKOFF_STEPS_MS = [5 * 60_000, 15 * 60_000, 60 * 60_000]; // 5min, 15min, 1h
+let pairingErrorCount = 0;
+let nextAllowedSyncAt = 0;
+
+function isPairingError(err: unknown): boolean {
+  const msg = err instanceof Error ? err.message : String(err);
+  return msg.includes('pairing required') || msg.includes('Authentication failed');
+}
+
+function handleSyncError(err: unknown, reason: string): void {
+  if (isPairingError(err)) {
+    pairingErrorCount = Math.min(pairingErrorCount + 1, PAIRING_BACKOFF_STEPS_MS.length);
+    const backoffMs = PAIRING_BACKOFF_STEPS_MS[pairingErrorCount - 1];
+    nextAllowedSyncAt = Date.now() + backoffMs;
+    console.warn(`[AgentCatalog] ${reason} sync skipped: pairing required. Next attempt in ${Math.round(backoffMs / 60_000)}min.`);
+  } else {
+    console.error(`[AgentCatalog] ${reason} sync failed:`, err);
+  }
+}
+
 export function ensureCatalogSyncScheduled(): void {
   if (process.env.NODE_ENV === 'test') return;
   const g = globalThis as unknown as { __mcAgentCatalogTimer?: NodeJS.Timeout };
   if (g.__mcAgentCatalogTimer) return;
   g.__mcAgentCatalogTimer = setInterval(() => {
-    syncGatewayAgentsToCatalog({ reason: 'scheduled' }).catch((err) => {
-      console.error('[AgentCatalog] scheduled sync failed:', err);
-    });
+    if (Date.now() < nextAllowedSyncAt) return; // still in backoff window
+    syncGatewayAgentsToCatalog({ reason: 'scheduled' })
+      .then((changed) => {
+        if (pairingErrorCount > 0) {
+          console.log('[AgentCatalog] sync recovered after pairing error. Resetting backoff.');
+          pairingErrorCount = 0;
+          nextAllowedSyncAt = 0;
+        }
+        return changed;
+      })
+      .catch((err) => {
+        handleSyncError(err, 'scheduled');
+      });
   }, SYNC_INTERVAL_MS);
   syncGatewayAgentsToCatalog({ reason: 'startup' }).catch((err) => {
-    console.error('[AgentCatalog] startup sync failed:', err);
+    handleSyncError(err, 'startup');
   });
 }
 
