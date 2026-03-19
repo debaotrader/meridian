@@ -34,7 +34,7 @@ export function ShareWorkflowModal({ isVisible, onClose, config, onShare }: Shar
         }),
       });
 
-      if (!res.ok) throw new Error('Failed to create template');
+      if (!res.ok) throw new Error('Falha ao criar modelo');
 
       const data = await res.json();
       setShareUrl(data.url || '');
@@ -141,7 +141,7 @@ export function ShareWorkflowModal({ isVisible, onClose, config, onShare }: Shar
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Auto-reply system with 3 agents..."
+            placeholder="Sistema de resposta automática com 3 agentes..."
             rows={3}
             style={{
               width: '100%',
@@ -178,7 +178,7 @@ export function ShareWorkflowModal({ isVisible, onClose, config, onShare }: Shar
             e.currentTarget.style.background = 'transparent';
           }}
         >
-          {showPreview ? 'Hide' : 'Preview'} Config
+          {showPreview ? 'Ocultar' : 'Visualizar'} Config
         </button>
 
         {/* Config preview */}

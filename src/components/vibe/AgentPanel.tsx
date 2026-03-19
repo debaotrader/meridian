@@ -426,7 +426,7 @@ export function AgentPanel({ agent, onClose, autowork, onAutoworkUpdate, onStop,
                 alert(data?.error || `Failed to stop agent (${res.status})`);
               }
             } catch (err: any) { // justified: inherited from OpenClawfice merge
-              alert(err?.message || 'Failed to stop agent');
+              alert(err?.message || 'Falha ao parar agente');
             }
             setStopping(false);
           }}

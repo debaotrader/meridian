@@ -128,7 +128,7 @@ export function AgentSearchFilter({
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder={isMobile ? 'Search...' : 'Search agents... (press / to focus)'}
+          placeholder={isMobile ? 'Buscar...' : 'Buscar agentes... (pressione / para focar)'}
           style={{
             width: '100%',
             background: 'rgba(0,0,0,0.3)',

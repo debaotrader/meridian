@@ -79,7 +79,7 @@ export function AutoworkBanner({ pendingAutowork, agents, onDiscard, onApply }: 
           try {
             await onApply(entries);
           } catch {
-            alert('Failed to apply changes');
+            alert('Falha ao aplicar alterações');
           }
         }}
         style={{

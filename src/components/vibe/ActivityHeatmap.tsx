@@ -268,7 +268,7 @@ export function ActivityHeatmap({ accomplishments, theme }: ActivityHeatmapProps
         fontSize: 7,
         color: t.textDim,
       }}>
-        <span>Less</span>
+        <span>Menos</span>
         <div style={{ display: 'flex', gap: 2 }}>
           {[0, 1, 3, 5].map(count => (
             <div
@@ -283,7 +283,7 @@ export function ActivityHeatmap({ accomplishments, theme }: ActivityHeatmapProps
             />
           ))}
         </div>
-        <span>More</span>
+        <span>Mais</span>
       </div>
     </div>
   );

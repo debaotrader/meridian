@@ -85,7 +85,7 @@ export function DemoInstallCTA({ delayMs = 30000 }: Props) {
           opacity: 0.6,
           lineHeight: 1,
         }}
-        aria-label="Close"
+        aria-label="Fechar"
       >
         x
       </button>

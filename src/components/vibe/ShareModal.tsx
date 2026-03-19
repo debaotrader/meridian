@@ -122,7 +122,7 @@ export function ShareModal({ onClose, agentCount, workingCount }: ShareModalProp
               }}
             >
               <span style={{ fontSize: 16 }}>📸</span>
-              <span>Take Screenshot (Cmd+P)</span>
+              <span>Tirar Screenshot (Cmd+P)</span>
             </button>
 
             <button
@@ -198,10 +198,10 @@ export function ShareModal({ onClose, agentCount, workingCount }: ShareModalProp
               margin: 0,
               paddingLeft: 20,
             }}>
-              <li>Screenshot captures your full office layout</li>
-              <li>Share on Twitter, Reddit, Discord, or HackerNews</li>
-              <li>Tag @openclaw for a retweet!</li>
-              <li>Include your agent count & coolest quest</li>
+              <li>O screenshot captura o layout completo do seu escritório</li>
+              <li>Compartilhe no Twitter, Reddit, Discord ou HackerNews</li>
+              <li>Marque @openclaw para um retweet!</li>
+              <li>Inclua o número de agentes e sua missão mais legal</li>
             </ul>
           </div>
         </div>
