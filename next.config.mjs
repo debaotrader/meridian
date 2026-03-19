@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
+  basePath: '/meridian',
   serverExternalPackages: ['better-sqlite3'],
   webpack: (config) => {
     config.externals.push({
